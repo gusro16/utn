@@ -1,0 +1,10 @@
+año_nacimiento = int(input("Ingrese su año de nacimiento: "))
+
+año_actual = 2023
+
+edad = año_actual - año_nacimiento
+
+if edad >= 18:
+    print("Eres mayor de edad.")
+else:
+    print("Eres menor de edad.")
