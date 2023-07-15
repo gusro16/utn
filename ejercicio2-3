@@ -1,0 +1,15 @@
+def verificar_edad(year):
+    current_year = datetime.datetime.now().year
+    edad = current_year - year
+
+    if edad >= 18:
+        return "Eres mayor de edad."
+    else:
+        return "Eres menor de edad."
+
+# Solicita al usuario ingresar el año de nacimiento
+year = int(input("Ingrese su año de nacimiento: "))
+
+# Verifica la edad e imprime un resultado
+resultado = verificar_edad(year)
+print(resultado)
