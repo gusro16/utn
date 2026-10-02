@@ -1,0 +1,91 @@
+
+ {icon:'📄', title:'Una página no abre', subtitle:'Archivo, nombre y navegación', checks:['Verificá que el archivo exista.','Compará el nombre real con el href.','Revisá desde qué carpeta se está intentando abrir.'], lesson:'enlaces'},
+ {icon:'📝', title:'Problema con formulario', subtitle:'Campos y validación HTML', checks:['Identificá qué dato debe pedir cada campo.','Revisá label, type y atributos del input.','Probá qué ocurre si dejás un campo obligatorio vacío.'], lesson:'formularios'},
+ {icon:'🎬', title:'Audio, video o YouTube no funciona', subtitle:'Ruta, formato, controles o código de inserción', checks:['Si es un archivo local, confirmá que exista y que la ruta sea correcta.','Si es YouTube, verificá que hayas usado el enlace/código de inserción y no la URL común del video.','Probá la reproducción dentro de la página y comprobá que no esté bloqueada.'], lesson:'multimedia'},
+ {icon:'☁️', title:'No sé si estoy trabajando en la carpeta correcta', subtitle:'Google Drive y carpeta oficial', checks:['Abrí Google Drive para escritorio y confirmá que iniciás sesión con tu cuenta institucional.','Buscá la carpeta oficial del equipo dentro de Mi unidad/Drive.','En VS Code verificá que esa sea la carpeta abierta y no una copia del Escritorio o Descargas.'], lesson:'drive'},
+ {icon:'❓', title:'No sé por dónde seguir', subtitle:'Volver a la ruta del proyecto', checks:['Mirá primero la etapa actual.','Elegí un requisito pendiente, no cinco.','Cerrá ese punto y recién después elegí el siguiente.'], target:'ruta'}
+];
+
+const visualItems = [
+ 'La presentación es prolija, se entiende y es acorde con el tema elegido.',
+ 'La información está ordenada en secciones y se comprende con facilidad.',
+ 'Revisamos la ortografía de títulos, textos, botones y datos.',
+ 'La cabecera, el logo y el nombre representan claramente el tema del sitio.',
+ 'El pie contiene los datos solicitados y se mantiene coherente entre páginas.',
+ 'Hay al menos seis imágenes pertinentes, nítidas y sin deformaciones.',
+ 'El título principal y los subtítulos tienen una jerarquía visual clara.',
+ 'El texto se lee cómodo: tamaño, contraste e interlineado adecuados.',
+ 'Los elementos están alineados y los espacios entre secciones son consistentes.',
+ 'Colores y tipografías se mantienen coherentes entre páginas.',
+ 'El menú se reconoce rápido y la navegación funciona de forma consistente.',
+ 'No hay sectores amontonados, vacíos extraños ni contenido desbordado; al achicar la ventana, las cajas e imágenes siguen dentro de sus contenedores.'
+]
+
+const defenseQuestions = [
+ ['¿Qué función cumple el archivo CSS en tu proyecto y dónde lo vinculaste?','Mostrá el link al CSS, explicá qué separa HTML de CSS y señalá una regla real de tu proyecto.'],
+ ['Elegí una regla CSS con selector de etiqueta y otra con selector de clase. ¿Qué diferencia hay?','Mostrá ambas reglas y explicá por qué una afecta etiquetas y la otra elementos con una clase determinada.'],
+ ['Elegí una clase CSS de tu sitio. ¿Por qué la creaste y dónde la usás?','Mostrá la clase en CSS y al menos un elemento HTML que la utilice. Explicá qué cambia visualmente.'],
+ ['Mostrá un enlace entre dos páginas. ¿Cómo funciona la ruta que escribiste?','Explicá desde qué archivo parte, a qué archivo llega y qué cambiaría si estuviera en otra carpeta.'],
+ ['Mostrá un ancla en la misma página o hacia otra página. ¿Cómo se conecta href con id?','Señalá el enlace y el destino. Explicá el uso de # y del atributo id.'],
+ ['¿Dónde está el enlace a un PDF, ZIP o DOC y por qué abre en otra pestaña?','Mostrá href y target="_blank" y explicá la decisión.'],
+ ['¿Qué hace el enlace mailto de tu sitio?','Mostrá la sintaxis y explicá qué aplicación o acción intenta abrir.'],
+ ['Elegí una imagen. ¿Cómo sabe el navegador dónde encontrarla?','Identificá src, carpeta, nombre del archivo y para qué sirve alt.'],
+ ['¿Qué parte de tu página cumple una función semántica clara?','Mostrá header, nav, section, article, aside o footer y justificá por qué tiene sentido allí.'],
+ ['Mostrá la jerarquía de títulos de una página. ¿Por qué usaste esos h1/h2/h3?','Explicá la relación lógica entre títulos, no solo el tamaño visual.'],
+ ['Mostrá una regla con margin o padding. ¿Qué espacio está modificando?','Distinguí espacio interior de espacio exterior sobre una caja real.'],
+ ['Mostrá la tabla. ¿Qué función cumplen table, tr, th y td?','Señalá una fila, encabezado y dato, y explicá por qué esa información se beneficia de una tabla.'],
+ ['Mostrá el formulario. ¿Qué dato pide cada campo y por qué elegiste ese type?','Explicá label, input/select/textarea, name/id y validaciones como required o maxlength.'],
+ ['Mostrá la multimedia del proyecto. ¿Es un archivo HTML5 o un contenido externo? Explicá qué etiqueta y atributos utiliza.','Si usaste video/audio, explicá la ruta y controls. Si usaste YouTube, explicá qué hace iframe y de dónde sale su src.'],
+ ['Mostrá una decisión visual que hayan tomado como equipo. ¿Qué problema buscaba resolver?','Relacioná tipografía, color, espacio o disposición con legibilidad, jerarquía o navegación; no solo con “queda lindo”.'],
+ ['Si usaron Google Fonts, mostrá dónde la cargaron y dónde la aplicaron.','Señalá el código del <head> y después el selector CSS que contiene font-family. Explicá por qué hacen falta ambos pasos.'],
+ ['¿Por qué organizaron los archivos de esta manera?','Mostrá carpetas y index.html; explicá cómo esa organización ayuda a mantener rutas y recursos.'],
+ ['¿Qué fue lo último que corrigieron porque no funcionaba?','Explicá el síntoma, qué revisaron, cuál era la causa y cómo comprobaron la solución.'],
+ ['Elegí una parte de código que no hayas escrito vos. Explicala igual.','En un proyecto grupal ambos integrantes deben comprender integralmente el proyecto.'],
+ ['Mostrá una caja que use box-sizing o una imagen que se adapte al contenedor. ¿Qué problema evita?','Explicá qué ocurre con width, padding y border, y cómo evitás que un contenido sea más ancho que su caja.'],
+ ['Si usaron Flex, mostrá el contenedor padre. ¿Qué elementos está organizando?','Señalá display:flex y explicá justify-content, align-items, flex-direction o flex-wrap si los usaron.'],
+ ['Si usaron float, ¿qué elemento sale del flujo normal y dónde termina ese efecto?','Explicá float y clear sobre una parte real del proyecto. Si elegiste Flex en vez de float, justificá por qué.'],
+ ['Mostrá el menú. ¿Cómo está construido y por qué elegiste esa forma de acomodarlo?','Explicá ul/li/a, la navegación y, si usaste Flex, por qué está aplicado al contenedor.'],
+  ['¿Qué decisión cambiarías hoy y por qué?','UTN también observa capacidad de argumentar y reflexionar sobre aciertos y dificultades del proceso.']
+]
+
+function localToday(){return new Date();}
+function dateOnly(s){return new Date(`${s}T12:00:00-03:00`)}
+
+function setupNavigation(){
+  document.querySelectorAll('.nav-btn,.jump').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view||b.dataset.target)));
+  document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('sidebar').classList.toggle('open'));
+}
+function showView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===id));
+  const view=document.getElementById(id);if(!view)return;document.getElementById('viewTitle').textContent=view.dataset.title||'';
+  document.getElementById('sidebar').classList.remove('open');window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderCalendar(){
+  const now=localToday();
+  const diff=DELIVERY-now;const days=Math.max(0,Math.ceil(diff/86400000));
+  document.getElementById('countdown').textContent=diff>0?`${days} días corridos hasta la entrega`:'Fecha de entrega alcanzada';
+  const upcoming=routeSteps.find(s=>!s.noClass && dateOnly(s.date)>=new Date(now.getFullYear(),now.getMonth(),now.getDate(),0,0,0));
+  document.getElementById('calendarStatus').textContent=upcoming?`Próximo hito: ${upcoming.label} · ${upcoming.title}`:'Etapa de cierre';
+
+  const container=document.getElementById('timeline');container.innerHTML='';
+  routeSteps.forEach((s,i)=>{
+    const d=dateOnly(s.date);const today0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    const isDone=d<today0;const nextIndex=routeSteps.findIndex(x=>!x.noClass && dateOnly(x.date)>=today0);const current=i===nextIndex;
+    const el=document.createElement('article');el.className=`timeline-item ${isDone?'done':''} ${current?'current':''} ${s.final?'final':''} ${s.noClass?'no-class':''}`;
+    el.innerHTML=`<div class="timeline-date">${s.label}</div><div><h3>${s.title}</h3><p>${s.desc}</p></div><span class="timeline-tag">${s.final?'ENTREGA':s.noClass?'SIN CLASE':isDone?'REALIZADO':current?'PRÓXIMO':'SIGUE'}</span>`;
+    el.addEventListener('click',()=>openRouteStep(s));container.appendChild(el);
+  });
+  const current=upcoming||routeSteps[routeSteps.length-1];
+  document.getElementById('currentPriority').innerHTML=`<strong>${current.title}</strong><ul>${current.tasks.slice(0,3).map(t=>`<li>${t}</li>`).join('')}</ul>`;
+}
+function openRouteStep(s){openModal(`<p class="eyebrow">${s.label}</p><h2>${s.title}</h2><p>${s.desc}</p><h3>Objetivos concretos</h3><ul>${s.tasks.map(t=>`<li>${t}</li>`).join('')}</ul><div class="question-box"><strong>Antes de pasar a la siguiente etapa:</strong><p>¿Podés mostrar qué completaste y explicar qué cambió en el proyecto?</p></div>`)}
+
+
+const conceptVisuals = {
+  estructura:`<div class="concept-visual"><div class="visual-title">Mapa visual · estructura de una página</div><div class="semantic-page"><div class="semantic-block semantic-header">&lt;head&gt; = información para el navegador</div><div class="semantic-block semantic-main" style="grid-template-columns:1fr"><div class="semantic-section">&lt;body&gt; = contenido que ve el usuario<br><small>h1 · p · imágenes · enlaces · etc.</small></div></div></div><p class="visual-caption">Pensalo como dos zonas: <strong>head</strong> configura/documenta la página y <strong>body</strong> contiene lo visible.</p></div>`,
+  semanticaBase:`<div class="concept-visual"><div class="visual-title">Mapa visual · estructura semántica ya vista</div><div class="semantic-page"><div class="semantic-block semantic-header">&lt;header&gt; · cabecera</div><div class="semantic-block semantic-main" style="grid-template-columns:1fr"><div class="semantic-section">&lt;main&gt; · contenido principal</div></div><div class="semantic-block semantic-footer">&lt;footer&gt; · pie</div></div><p class="visual-caption">Estas tres zonas son la base que ya trabajaron. Ahora UTN suma otras etiquetas semánticas según la función del contenido.</p></div>`,
+  div:`<div class="concept-visual"><div class="visual-title">Mapa visual · un div agrupa elementos</div><div class="safe-frame" style="padding:18px"><div style="border:2px dashed #93c5fd;border-radius:12px;padding:14px"><strong>&lt;div class=&quot;tarjeta&quot;&gt;</strong><div style="margin-top:10px;background:#eff6ff;padding:9px;border-radius:8px">&lt;h2&gt; Título</div><div style="margin-top:7px;background:#f8fafc;padding:9px;border-radius:8px">&lt;p&gt; Texto</div><div style="margin-top:7px;background:#f8fafc;padding:9px;border-radius:8px">&lt;img&gt; Imagen</div></div></div><p class="visual-caption">El div funciona como una <strong>caja contenedora</strong>. Después CSS puede mover, dimensionar o estilizar el grupo.</p></div>`,
+  bordes:`<div class="concept-visual"><div class="visual-title">Probalo · border y border-radius</div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px"><div style="padding:18px;border:2px solid #334155;border-radius:0;text-align:center;background:#fff"><strong>radius: 0</strong><br><small>esquinas rectas</small></div><div style="padding:18px;border:2px solid #334155;border-radius:12px;text-align:center;background:#fff"><strong>radius: 12px</strong><br><small>esquinas suaves</small></div><div style="padding:18px;border:2px solid #334155;border-radius:999px;text-align:center;background:#fff"><strong>radius alto</strong><br><small>forma redondeada</small></div></div><p class="visual-caption"><strong>border</strong> define el límite visible; <strong>border-radius</strong> cambia la curvatura de las esquinas. Con <strong>box-sizing:border-box</strong>, el borde queda dentro del ancho declarado.</p></div>`,
+  semantica:`<div class="concept-visual"><div class="visual-title">Mapa visual · HTML semántico</div><div class="semantic-page"><div class="semantic-block semantic-header">&lt;header&gt; cabecera</div><div class="semantic-block semantic-nav">&lt;nav&gt; navegación</div><div class="semantic-block semantic-main"><div class="semantic-section">&lt;main&gt;<br>&lt;section&gt; / &lt;article&gt;</div><div class="semantic-aside">&lt;aside&gt;</div></div><div class="semantic-block semantic-footer">&lt;footer&gt; pie</div></div><p class="visual-caption">No reemplac
