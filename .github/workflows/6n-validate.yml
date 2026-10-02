@@ -1,0 +1,30 @@
+name: Validar sitio 6N
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "6n-utn/**"
+      - ".github/workflows/6n-validate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Reconstruir JavaScript publicado
+        run: cat 6n-utn/app-part-01.txt 6n-utn/app-part-02.txt 6n-utn/app-part-03.txt 6n-utn/app-part-04.txt 6n-utn/app-part-05.txt 6n-utn/app-part-06.txt 6n-utn/app-part-07.txt > /tmp/app.js
+      - name: Verificar sintaxis JavaScript
+        run: node --check /tmp/app.js
+      - name: Verificar archivos esenciales
+        run: |
+          test -s 6n-utn/index.html
+          test -s 6n-utn/style.css
+          test -s 6n-utn/app-loader.js
+          grep -q 'folderInput' 6n-utn/index.html
+          grep -q 'analyzeFiles' /tmp/app.js
+          grep -q 'webkitdirectory' 6n-utn/index.html
