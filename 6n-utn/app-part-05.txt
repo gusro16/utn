@@ -1,0 +1,145 @@
+o:</strong> varias cajas flotantes dentro de un mismo contenedor.</li><li><strong>Mejor Flex:</strong> menú horizontal o distribución general de varias cajas.</li></ul>
+      <div class="guide-mini-quiz"><strong>Antes de decir “entiendo float”:</strong> ¿podés mostrar qué caja sale del flujo normal, hacia qué lado flota, qué contenido la rodea y dónde termina el efecto?</div>`
+  },
+  cajasegura:{
+    title:'Cajas y desbordes · explicación ampliada',
+    file:'ficha_cajas_desbordes.html',
+    intro:'Cuando algo se sale de una caja, la solución no es moverlo “a ojo”. Primero hay que entender cuánto mide realmente la caja y qué contenido está intentando entrar dentro de ella.',
+    html:`
+      <h3>1. La caja real puede medir más de lo que creés</h3>
+      <p>Por defecto, un <code>width</code> no siempre representa el tamaño final: el padding y el borde pueden sumarse por fuera.</p>
+      <div class="guide-compare"><div class="guide-panel warn"><strong>Sin border-box</strong><p>width + padding + border = una caja más grande de lo esperado.</p></div><div class="guide-panel good"><strong>Con border-box</strong><p>padding y border quedan incluidos dentro del ancho declarado.</p></div></div>
+      <div class="guide-code-title">Regla práctica trabajada en clase</div><pre><code>* {
+  box-sizing: border-box;
+}</code></pre>
+      <h3>2. Primero controlá la caja madre</h3>
+      <p>Preguntate: ¿cuánto espacio tiene el contenedor? ¿Tiene un ancho fijo? ¿Tiene padding? ¿Tiene varias cajas adentro que juntas superan el espacio disponible?</p>
+      <div class="guide-step"><strong>Secuencia útil</strong>Padre → hijos → ancho real → padding/borde → contenido. Revisá en ese orden antes de tocar valores al azar.</div>
+      <h3>3. Imágenes que respetan el contenedor</h3>
+      <div class="guide-code-title">Regla habitual</div><pre><code>.contenedor img {
+  max-width: 100%;
+  height: auto;
+}</code></pre>
+      <p><code>max-width: 100%</code> evita que la imagen supere el ancho disponible; <code>height: auto</code> conserva su proporción.</p>
+      <h3>4. Ojo con las alturas fijas</h3>
+      <p>Si una caja tiene una altura fija y el contenido crece, el contenido puede salir de la caja o quedar cortado. Si no existe una razón clara para fijar la altura, suele ser mejor dejar que la caja crezca con su contenido.</p>
+      <h3>5. Float puede empeorar el problema</h3>
+      <p>Si dentro de la caja hay hijos con <code>float</code>, además del ancho tenés que observar el flujo normal y la altura del padre. Un desborde puede ser de ancho, pero también puede parecer un problema de altura del contenedor.</p>
+      <h3>6. Prueba práctica</h3>
+      <ul class="guide-check"><li>Achicá la ventana del navegador lentamente.</li><li>Observá si aparece una barra horizontal.</li><li>Revisá qué elemento es el primero que sale de su contenedor.</li><li>No agregues márgenes negativos para “esconder” el problema.</li><li>Volvé a revisar padre, hijos, ancho, padding, borde e imágenes.</li></ul>
+      <div class="guide-mini-quiz"><strong>Pregunta para la oralidad:</strong> si una caja tiene <code>width: 100%</code>, padding y borde, ¿por qué <code>box-sizing: border-box</code> puede volver su tamaño más predecible?</div>`
+  },
+  flex:{
+    title:'Display Flex · explicación ampliada',
+    file:'ficha_display_flex.html',
+    intro:'Flex sirve para ordenar elementos que están dentro de otra caja. La idea central de la cursada es simple: el comportamiento flexible se define en la caja padre y afecta a sus hijos.',
+    html:`
+      <h3>1. La regla que no hay que olvidar</h3>
+      <div class="guide-step"><strong>display:flex va en el contenedor padre</strong>La caja padre pasa a organizar a sus hijos. No hace falta poner display:flex en cada hijo para que queden en fila.</div>
+      <div class="guide-code-title">Ejemplo base</div><pre><code>.caja-padre {
+  display: flex;
+}</code></pre>
+      <h3>2. Por defecto: fila</h3>
+      <div class="guide-diagram"><div class="guide-row"><div class="guide-box">A</div><div class="guide-box">B</div><div class="guide-box">C</div></div></div>
+      <p>Los hijos quedan en una fila horizontal. Si querés una columna:</p>
+      <pre><code>.caja-padre {
+  display: flex;
+  flex-direction: column;
+}</code></pre>
+      <h3>3. Centrar y distribuir</h3>
+      <div class="guide-compare"><div class="guide-panel"><strong>justify-content</strong><p>Distribuye en el eje principal. En una fila, normalmente lo vas a notar horizontalmente.</p></div><div class="guide-panel"><strong>align-items</strong><p>Alinea en el eje perpendicular. En una fila, normalmente lo vas a notar verticalmente.</p></div></div>
+      <div class="guide-code-title">Ejemplo</div><pre><code>.caja-padre {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}</code></pre>
+      <h3>4. ¿Qué pasa cuando ya no entra todo?</h3>
+      <p>Para el proyecto final sumamos una herramienta práctica:</p>
+      <pre><code>.caja-padre {
+  display: flex;
+  flex-wrap: wrap;
+}</code></pre>
+      <p>Con <code>flex-wrap</code>, los hijos pueden bajar de línea en vez de forzar un desborde horizontal.</p>
+      <h3>5. Flex + box-sizing</h3>
+      <p>Las dos herramientas se complementan: <strong>box-sizing</strong> hace más predecible el tamaño de las cajas; <strong>Flex</strong> organiza lo que hay adentro del contenedor.</p>
+      <div class="guide-mini-quiz"><strong>Chequeo:</strong> señalá en tu propio proyecto una caja padre con display:flex y nombrá cuáles son sus hijos directos.</div>`
+  },
+  menu:{
+    title:'Menú horizontal · explicación ampliada',
+    file:'ficha_menu_horizontal.html',
+    intro:'El menú no es solo “poner botones en línea”: primero hay una estructura HTML que representa una lista de opciones de navegación y después CSS se ocupa de su apariencia y distribución.',
+    html:`
+      <h3>1. La estructura: nav + lista + enlaces</h3>
+      <pre><code>&lt;nav&gt;
+  &lt;ul class="menu"&gt;
+    &lt;li&gt;&lt;a href="index.html"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="contacto.html"&gt;Contacto&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+      <p>La lista mantiene agrupadas las opciones. Cada <code>li</code> representa una opción y cada <code>a</code> contiene el destino real.</p>
+      <h3>2. Quitar el aspecto de lista</h3>
+      <pre><code>.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}</code></pre>
+      <h3>3. Dos formas que trabajamos</h3>
+      <div class="guide-compare"><div class="guide-panel warn"><strong>Con float</strong><p>Sirve para comprender cajas flotantes, pero exige prestar atención al flujo y al clear.</p></div><div class="guide-panel good"><strong>Con Flex · recomendado</strong><p>El contenedor organiza los li en línea de forma más directa y predecible.</p></div></div>
+      <pre><code>.menu {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}</code></pre>
+      <h3>4. Hacer clic en todo el bloque</h3>
+      <pre><code>.menu a {
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+}</code></pre>
+      <p>Así la zona clickeable no queda limitada solamente al texto.</p>
+      <h3>5. Mostrar interacción con :hover</h3>
+      <pre><code>.menu a:hover {
+  background: #ddd;
+}</code></pre>
+      <p><code>:hover</code> comunica visualmente qué opción está señalando el usuario.</p>
+      <h3>6. Prueba que no puede faltar</h3>
+      <ul class="guide-check"><li>Entrá a cada página desde el menú.</li><li>Comprobá que el menú mantenga el mismo orden.</li><li>Achicá la ventana y revisá que las opciones no se salgan.</li><li>Si falta espacio, usá <code>flex-wrap</code> antes de empezar a reducir todo arbitrariamente.</li></ul>
+      <div class="guide-mini-quiz"><strong>Pregunta para defender:</strong> ¿por qué el Flex está aplicado al <code>ul</code> y no a cada enlace?</div>`
+  }
+};
+
+function deepResourceBar(id){
+  if(!deepGuides[id]) return '';
+  return `<div class="deep-resource-bar"><strong>📘 Este tema tiene una ficha ampliada</strong><button class="deep-btn" onclick="openDeepGuide('${id}')">Ver explicación ampliada</button><button class="deep-btn secondary" onclick="downloadDeepGuide('${id}')">Descargar ficha</button></div>`;
+}
+function openDeepGuide(id){
+  const g=deepGuides[id]; if(!g) return;
+  openModal(`<div class="deep-guide"><p class="eyebrow">FICHA AMPLIADA · MATERIAL DE ESTUDIO</p><h2>${g.title}</h2><p class="lead">${g.intro}</p>${g.html}<div class="guide-actions"><button class="secondary" onclick="openLesson('${id}')">← Volver a explicación corta</button><button class="primary" onclick="downloadDeepGuide('${id}')">Descargar ficha</button></div></div>`);
+}
+function standaloneGuideHtml(id){
+  const g=deepGuides[id];
+  const css=`body{font-family:Arial,sans-serif;max-width:900px;margin:36px auto;padding:0 24px;color:#172033;line-height:1.6}h1{color:#1d4ed8}h2{margin-top:28px}pre{background:#0f172a;color:#e2e8f0;padding:16px;border-radius:10px;white-space:pre-wrap;overflow:auto}code{font-family:Consolas,monospace}.guide-step,.guide-callout,.guide-mini-quiz{padding:14px;border-radius:10px;background:#eff6ff;border:1px solid #bfdbfe;margin:12px 0}.guide-compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.guide-panel{border:1px solid #dbe2ea;border-radius:10px;padding:14px}.good{background:#f0fdf4}.warn{background:#fffbeb}.bad{background:#fef2f2}.guide-diagram{background:#f8fafc;padding:14px;border-radius:12px}.guide-row{display:flex;gap:10px;flex-wrap:wrap}.guide-box{border:2px solid #64748b;padding:12px;border-radius:8px;flex:1 1 130px;text-align:center}.guide-check{padding-left:22px}.eyebrow{font-size:.8rem;font-weight:bold;color:#475569;text-transform:uppercase}.lead{font-size:1.05rem;color:#475569}`;
+  return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${g.title}</title><style>${css}</style></head><body><p class="eyebrow">Proyecto Web 6N · ficha de estudio</p><h1>${g.title}</h1><p class="lead">${g.intro}</p>${g.html}<p><small>Material de acompañamiento basado en contenidos trabajados en clase. Usalo para comprender y revisar; el proyecto debe ser construido y explicado por el equipo.</small></p></body></html>`;
+}
+function downloadDeepGuide(id){
+  const g=deepGuides[id]; if(!g) return;
+  const blob=new Blob([standaloneGuideHtml(id)],{type:'text/html;charset=utf-8'});
+  const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=g.file; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+window.openDeepGuide=openDeepGuide; window.downloadDeepGuide=downloadDeepGuide; window.openLesson=openLesson;
+
+function renderLessons(filter='all',query=''){
+  const grid=document.getElementById('lessonGrid');grid.innerHTML='';
+  const q=query.trim().toLowerCase();
+  lessons.filter(l=>(filter==='all'||l.status===filter||l.area===filter)&&(!q||`${l.title} ${l.summary}`.toLowerCase().includes(q))).forEach(l=>{
+    const card=document.createElement('article');card.className='lesson card';
+    card.innerHTML=`<div class="lesson-top"><span class="lesson-icon">${l.icon}</span><span class="lesson-status ${l.status}">${l.status==='visto'?'YA VISTO':l.status==='temario'?'TEMARIO UTN':l.status==='extra'?'EXTRA / AVANZADO':'POR INCORPORAR'}</span></div><h3>${l.title}</h3><p>${l.summary}</p><button>Ver explicación corta</button>`;
+    card.querySelector('button').addEventListener('click',()=>openLesson(l.id));grid.appendChild(card);
+  });
+  if(!grid.children.length)grid.innerHTML='<div class="card" style="padding:20px;color:#64748b">No encontramos contenido con esa búsqueda.</div>';
+}
+function openLesson(id){const l=lessons.find(x=>x.id===id);if(!l)return;openModal(`<p class="eyebrow">${l.area.toUpperCase()} · ${l.status==='visto'?'REPASO':l.status==='temario'?'TEMARIO UTN · CONSULTA RÁPIDA':l.status==='extra'?'EXTRA · NO OBLIGATORIO EN FUNDAMENTOS':'CONTENIDO MÍNIMO'}</p><h2>${l.icon} ${l.title}</h2><p>${l.summary}</p>${deepResourceBar(l.id)}<h3>¿Para qué sirve?</h3><p>${l.why}</p><h3>Ejemplo mínimo</h3><pre><code>${escapeHtml(l.code)}</code></pre>${conceptVisual(l.id)}<div class="warning-box"><strong>Errores frecuentes</strong><ul>${l.errors.map(e=>`<li>${e}</li>`).join('')}</ul></div><h3>Ahora en tu proyecto</h3><div class="mini-task">${l.task}</div><h3>¿Podrías explicarlo?</h3><div class="question-box">${l.question}</div>`)}
+function setupLessonFilters(){
+  renderLessons();
+  document.querySelectorAll('#contentFilters .chip').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#contentFilters .chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderLessons(b.dataset.filter,document.getElementById('contentSearch').value)}));
+  document.getElementById('contentSearch').addEventListener('input',e=>{const f=document.querySelector('#contentFilters .chip.active')?.dataset.filter||'all';renderLessons(f,e.target.valu
