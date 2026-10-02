@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>6N · Ruta Proyecto Web UTN</title>
+<meta content="Fundamentos · Centro de acompañamiento para el Proyecto Web UTN de 6N." name="description"/>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+<div class="brand">
+<div class="brand-mark">6N</div>
+<div><strong>Proyecto Web UTN</strong><span>Fundamentos · Centro de acompañamiento</span></div>
+</div>
+<nav aria-label="Navegación principal" class="nav">
+<button class="nav-btn active" data-view="inicio">🏠 <span>Inicio</span></button>
+<button class="nav-btn" data-view="ruta">🚀 <span>Ruta</span></button>
+<button class="nav-btn" data-view="contenidos">📚 <span>Aprender / Repasar</span></button>
+<button class="nav-btn" data-view="dudas">🔧 <span>Resolver dudas</span></button>
+<button class="nav-btn" data-view="utn">✅ <span>Condiciones UTN</span></button>
+<button class="nav-btn" data-view="rubrica">📊 <span>Rúbrica UTN</span></button>
+<button class="nav-btn" data-view="defensa">🧠 <span>Preparar defensa</span></button>
+</nav>
+<div class="sidebar-note">
+<strong>Regla del espacio</strong>
+<p>Acá vas a encontrar orientación, no el proyecto resuelto. Todo lo que uses tenés que poder explicarlo.</p>
+</div>
+</aside>
+<main class="main">
+<header class="topbar">
+<button aria-label="Abrir menú" class="menu-btn" id="menuBtn">☰</button>
+<div>
+<p class="eyebrow">DISEÑO WEB · 6N</p>
+<h1 id="viewTitle">Tu proyecto, paso a paso</h1>
+</div>
+</header>
+<section class="view active" data-title="Tu proyecto, paso a paso" id="inicio">
+<div class="hero card">
+<div>
+<span class="pill warning" id="calendarStatus">Calculando calendario…</span>
+<h2>Que no te pierdas: sabé dónde estás, qué sigue y qué exige UTN.</h2>
+<p>Este espacio no hace el proyecto por vos. Te ayuda a organizarte, repasar lo visto, aprender lo mínimo que falta y detectar qué deberías revisar.</p>
+<div class="hero-actions">
+<button class="primary jump" data-target="ruta">Ver qué tengo que hacer ahora</button>
+<button class="secondary jump" data-target="dudas">Tengo un problema</button>
+</div>
+</div>
+<div class="deadline-box">
+<span>Fecha límite de entrega</span>
+<strong>22 OCT</strong>
+<small>Hasta las 12:00 h</small>
+<div class="countdown" id="countdown">—</div>
+</div>
+</div>
+<div class="grid-4 quick-grid">
+<button class="quick card jump" data-target="ruta"><span>🚀</span><strong>Continuar mi proyecto</strong><small>Qué hacer ahora y qué sigue</small></button>
+<button class="quick card jump" data-target="dudas"><span>🔧</span><strong>Resolver un problema</strong><small>Guías rápidas y pistas</small></button>
+<button class="quick card jump" data-target="contenidos"><span>📚</span><strong>Aprender / Repasar</strong><small>Contenido corto y aplicable</small></button>
+<button class="quick card jump" data-target="utn"><span>✅</span><strong>Mi situación frente a UTN</strong><small>Requisitos y chequeo de archivos</small></button>
+<button class="quick card jump" data-target="rubrica"><span>📊</span><strong>Rúbrica UTN</strong><small>Cómo se evalúa realmente el proyecto</small></button>
+<button class="quick card jump" data-target="contenidos"><span>☁️</span><strong>Trabajar desde Drive</strong><small>Una sola carpeta oficial por equipo</small></button>
+</div>
+<div class="grid-2">
+<div class="card">
+<div class="section-head"><div><p class="eyebrow">HOY</p><h3>Prioridad de trabajo</h3></div><span class="status-dot amber"></span></div>
+<div class="priority-box" id="currentPriority"></div>
+</div>
+<div class="card">
+<div class="section-head"><div><p class="eyebrow">TRES DIMENSIONES</p><h3>¿Cuándo está realmente terminado?</h3></div></div>
+<div class="dimension-list">
+<div><span>⚙️</span><p><strong>Construcción</strong><small>Cumple técnicamente y funciona.</small></p></div>
+<div><span>🎨</span><p><strong>Presentación</strong><small>Se ve ordenado, legible y coherente.</small></p></div>
+<div><span>🧠</span><p><strong>Comprensión</strong><small>Podés explicar qué hiciste y por qué.</small></p></div>
+</div>
+</div>
+</div>
+</section>
+<section class="view" data-title="Ruta de trabajo hasta UTN" id="ruta">
+<div class="intro-line">
+<div><p class="eyebrow">CALENDARIO DE CIERRE</p><h2>Una meta clara por encuentro</h2><p>No intentes hacer todo junto. Cerrá una etapa y recién después pasá a la siguiente.</p></div>
+</div>
+<div class="timeline" id="timeline"></div>
+<div class="card compact-tip"><strong>Calendario real:</strong> los encuentros de trabajo previstos son <strong>25/9, 2/10, 5/10, 16/10 y 19/10</strong>. El <strong>9/10 y el 12/10 no hay clases</strong> y no se contabilizan. La <strong>entrega final es el 22/10 hasta las 12:00 h</strong>; por eso, el 19/10 debe funcionar como el último encuentro fuerte de cierre y revisión.</div>
+</section>
+<section class="view" data-title="Aprender y repasar" id="contenidos">
+<div class="content-header">
+<div><p class="eyebrow">CONTENIDO SIMPLE</p><h2>Encontrá lo que necesitás sin buscar entre publicaciones</h2><p>Cada ficha tiene: qué es, para qué sirve, un ejemplo mínimo, errores frecuentes y una pequeña comprobación.</p></div>
+<div class="search-wrap"><input id="contentSearch" placeholder="Buscar: enlaces, imágenes, CSS…" type="search"/></div>
+</div>
+<div class="filter-row" id="contentFilters">
+<button class="chip active" data-filter="all">Todo</button>
+<button class="chip" data-filter="visto">Ya visto</button>
+<button class="chip" data-filter="pendiente">Por incorporar</button>
+<button class="chip" data-filter="html">HTML</button>
+<button class="chip" data-filter="css">CSS</button>
+<button class="chip" data-filter="herramientas">Drive / organización</button>
+<button class="chip" data-filter="temario">Temario UTN</button>
+<button class="chip" data-filter="extra">Extra / Avanzado</button>
+</div>
+<div class="lesson-grid" id="lessonGrid"></div>
+</section>
+<section class="view" data-title="Resolver dudas sin que te hagan el trabajo" id="dudas">
+<div class="content-header">
+<div><p class="eyebrow">PRIMER AUXILIO</p><h2>Entrá por el problema que estás viendo</h2><p>Seguí las comprobaciones en orden. Si resolvés el problema, intentá explicar cuál era la causa.</p></div>
+</div>
+<div class="problem-grid" id="problemGrid"></div>
+<div class="card doubt-rule">
+<h3>¿Y si sigo trabado?</h3>
+<p>Antes de pedir la solución, llevá estas tres cosas: <strong>qué querías lograr</strong>, <strong>qué probaste</strong> y <strong>qué resultado obtuviste</strong>. Eso permite ayudarte sin quitarte la construcción.</p>
+</div>
+</section>
+<section class="view" data-title="Condiciones UTN y chequeo del proyecto" id="utn">
+<div class="content-header">
+<div><p class="eyebrow">UTN.BA · FUNDAMENTOS 2026</p><h2>Chequeá lo comprobable, revisá lo visual y preparate para explicarlo</h2><p>El chequeo automático busca evidencia en tus archivos. No decide si el diseño está bien, no otorga una nota y no reemplaza la revisión docente ni el coloquio.</p></div>
+</div>
+<div class="grid-3 metric-grid">
+<div class="metric card"><span>⚙️</span><strong id="techMetric">Sin analizar</strong><small>Construcción técnica</small></div>
+<div class="metric card"><span>🎨</span><strong id="visualMetric">Sin revisar</strong><small>Diseño e interfaz</small></div>
+<div class="metric card"><span>🧠</span><strong>Oral final</strong><small>Comprensión individual</small></div>
+</div>
+<div class="official-banner"><strong>Condición oficial de aprobación</strong>En Fundamentos hay Contenidos Básicos Obligatorios (CBO) que deben dominarse en forma simultánea y, además, la calificación final debe ser igual o superior a 60/100. El porcentaje del analizador sirve solo para revisar <b>evidencia técnica detectable</b>: no incluye por sí solo la valoración visual/estética ni la defensa oral.</div>
+<div class="card rubric-note"><div class="section-head"><div><p class="eyebrow">PAUTAS GENERALES</p><h3>Lo que el proyecto debe tener sí o sí</h3></div></div><div class="requirements-grid">
+<div class="req-card"><strong>📄 Mínimo 5 páginas</strong><small>La página inicial debe identificarse como <code>index.html</code>.</small></div>
+<div class="req-card"><strong>🧭 Cabecera + logo + botonera</strong><small>La navegación debe ser clara y el logo/nombre coherente con el tema.</small></div>
+<div class="req-card"><strong>🖼️ Mínimo 6 imágenes</strong><small>Deben acompañar el tema y conservar buena calidad y proporción.</small></div>
+<div class="req-card"><strong>🧾 Pie completo</strong><small>Datos del alumno, colegio y año según los lineamientos.</small></div>
+<div class="req-card important"><strong>🚫 Sin plantillas ni Bootstrap</strong><small>UTN necesita observar la apropiación real de los contenidos.</small></div>
+<div class="req-card"><strong>🧱 Estructura propia del equipo</strong><small>El modelo de cajas HTML/CSS debe diferenciarse entre equipos de la misma institución.</small></div>
+<div class="req-card"><strong>👥 Equipos de 2</strong><small>Solo se acepta individual como excepción cuando la cantidad de alumnos a certificar sea impar.</small></div>
+<div class="req-card"><strong>💻 Ambos al coloquio</strong><small>Los dos integrantes deben estar presentes y conocer el proyecto completo.</small></div>
+</div></div>
+<div class="card analyzer">
+<div class="section-head"><div><p class="eyebrow">CHEQUEO LOCAL</p><h3>Analizar mis archivos HTML/CSS</h3></div><span class="safe-badge">No se suben a ningún servidor</span></div>
+<p><strong>No hace falta que tu sitio esté publicado ni online.</strong> Seleccioná la carpeta de tu proyecto o varios archivos directamente desde tu computadora. El navegador los lee localmente solo para detectar requisitos; no modifica ni sube nada.</p>
+<div class="official-banner"><strong>¿Qué significa el porcentaje del analizador?</strong>Es una <b>ponderación técnica orientativa</b>: muestra cuántos requisitos verificables encuentra en los archivos HTML/CSS. <b>No es una nota final ni significa que el sitio esté aprobado.</b> Falta valorar la composición visual, la estética, la claridad de la interfaz, la coherencia del contenido y la experiencia de navegación, aspectos que requieren observación humana y siempre tienen un componente subjetivo. También falta comprobar que cada integrante pueda explicar y defender lo realizado.</div>
+<div class="compact-tip card"><strong>🌐 Navegadores</strong><br/>Podés usar Chrome, Edge, Firefox o Safari actualizados, tanto en Windows como en Mac. Si la selección de carpeta diera problemas en algún equipo, usá <b>“Seleccionar archivos”</b> como alternativa.</div>
+<div class="compact-tip card"><strong>☁️ Si trabajás con Google Drive para escritorio</strong><br/>Podés seleccionar directamente la <b>carpeta oficial del equipo</b> sincronizada en tu PC o Mac. No hace falta copiar el proyecto a otra carpeta para analizarlo.</div>
+<div class="upload-row">
+<label class="upload-btn">📁 Seleccionar carpeta<input hidden="" id="folderInput" multiple="" type="file" webkitdirectory=""/></label>
+<label class="upload-btn secondary-upload">📄 Seleccionar archivos<input accept=".html,.htm,.css" hidden="" id="fileInput" multiple="" type="file"/></label>
+</div>
+<div class="analysis-summary empty" id="analysisSummary">Todavía no analizaste ningún proyecto.</div>
+<div class="checklist" id="analysisResults"></div>
+</div>
+<div class="grid-2">
+<div class="card">
+<div class="section-head"><div><p class="eyebrow">REVISIÓN VISUAL</p><h3>Miralo como si fueras un visitante</h3></div></div>
+<div class="manual-checklist" id="visualChecklist"></div>
+</div>
+<div class="card">
+<div class="section-head"><div><p class="eyebrow">ENTREGA</p><h3>Antes del ZIP definitivo</h3></div></div>
+<ul class="clean-list">
+<li>Proyecto en <strong>ZIP</strong>, con un peso máximo de <strong>1 GB</strong>.</li>
+<li>Subirlo a Drive, Dropbox u otro servidor y entregar el enlace por el canal/formulario indicado por UTN.</li>
+<li>Si usan Drive, asegurarse de que el enlace sea accesible según las indicaciones de UTN.</li>
+<li>Durante el desarrollo, trabajar siempre sobre la <strong>carpeta oficial del equipo en Google Drive</strong>, no sobre copias del Escritorio o Descargas.</li>
+<li>La entrega oficial se realiza <strong>una semana antes del coloquio</strong>. La versión entregada queda congelada: no se aceptan modificaciones.</li>
+<li>Confirmá que <code>index.html</code> sea la página inicial y esté escrito en minúsculas.</li>
+<li>Probalo desde otra computadora: páginas, enlaces, documentos, imágenes, audio y video.</li>
+<li>Para el coloquio, el equipo debe llevar al menos una notebook y todos los archivos necesarios para mostrar y explicar el proyecto.</li>
+<li>Ambos integrantes deben estar presentes y poder explicar integralmente el proyecto.</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="view" data-title="Rúbrica interactiva UTN" id="rubrica">
+<div class="content-header">
+<div><p class="eyebrow">RÚBRICA OFICIAL · FUNDAMENTOS</p><h2>Entendé cómo te va a mirar UTN</h2><p>Elegí en cada criterio el descriptor que más se parece hoy a tu proyecto. Es una autoevaluación para orientarte: no calcula ni reemplaza la nota oficial de UTN.</p></div>
+<button class="rubric-reset" id="resetRubric">Reiniciar autoevaluación</button>
+</div>
+<div class="gate-box"><strong>Primero: los CBO no se compensan simplemente con “tener otras cosas bien”.</strong><small>UTN exige dominar los Contenidos Básicos Obligatorios en forma simultánea y alcanzar una calificación final de 60/100 o más. Usá esta rúbrica para descubrir qué criterio todavía necesita trabajo.</small></div>
+<div class="official-banner"><strong>Cómo interpretar esta autoevaluación</strong>La rúbrica combina criterios objetivos y otros de valoración. Los requisitos técnicos pueden comprobarse parcialmente con los archivos, pero la <b>presentación visual, estética, organización de la información, legibilidad, coherencia y calidad de interfaz no se pueden convertir en una medición automática exacta</b>. Esa parte debe revisarse mirando el sitio y comparándolo con los descriptores de UTN. Por eso, un porcentaje técnico alto nunca equivale por sí solo a un proyecto terminado o aprobado.</div>
+<div class="rubric-summary">
+<div class="rubric-stat card"><strong id="rubricAnswered">0/0</strong><small>Criterios revisados</small></div>
+<div class="rubric-stat card"><strong id="rubricStrong">0</strong><small>En niveles altos</small></div>
+<div class="rubric-stat card"><strong id="rubricRisk">0</strong><small>Necesitan atención</small></div>
+<div class="rubric-stat card"><strong id="rubricCbo">—</strong><small>CBO relacionados</small></div>
+</div>
+<div class="rubric-tabs" id="rubricTabs">
+<button class="chip active" data-rubric-filter="all">Toda la rúbrica</button>
+<button class="chip" data-rubric-filter="proyecto">Proyecto / presentación</button>
+<button class="chip" data-rubric-filter="tecnico">Técnica</button>
+<button class="chip" data-rubric-filter="coloquio">Coloquio</button>
+<button class="chip" data-rubric-filter="cbo">Solo CBO relacionados</button>
+</div>
+<div class="card rubric-note"><strong>Cómo usarla</strong><p>No marques “lo que pensás que te van a poner”. Leé los cuatro descriptores y elegí el que describe mejor la evidencia real de tu proyecto hoy. Si caés en los niveles inferiores, ahí tenés una prioridad concreta de mejora.</p></div>
+<div class="rubric-table" id="rubricTable"></div>
+</section>
+<section class="view" data-title="Preparar la defensa oral" id="defensa">
+<div class="content-header">
+<div><p class="eyebrow">NO MEMORIZAR: COMPRENDER</p><h2>Practicá explicar tu propio proyecto</h2><p>Elegí una pregunta al azar, abrí tu proyecto y respondela mostrando el código correspondiente.</p></div>
+</div>
+<div class="defense card">
+<div class="defense-number" id="questionNumber">01</div>
+<p id="defenseQuestion">¿Qué función cumple el archivo CSS en tu proyecto y dónde lo vinculaste?</p>
+<div class="defense-actions"><button class="primary" id="newQuestion">Otra pregunta</button><button class="secondary" id="showGuide">¿Qué debería poder explicar?</button></div>
+<div class="answer-guide hidden" id="answerGuide"></div>
+</div>
+<div class="card oral-note">
+<strong>Regla:</strong> si una respuesta empieza con “porque me lo dio una IA” o “porque estaba en el código”, todavía falta comprensión. Tenés que poder explicar la función y la decisión.
+        </div>
+</section>
+<footer>Proyecto Web 6N · Material de acompañamiento · Lineamientos, Temario y Rúbrica UTN.BA 2026</footer>
+</main>
+</div>
+<div class="modal-backdrop" hidden="" id="modalBackdrop">
+<article aria-labelledby="modalTitle" aria-modal="true" class="modal" role="dialog">
+<button aria-label="Cerrar" class="modal-close" id="modalClose">×</button>
+<div id="modalContent"></div>
+</article>
+</div>
+<script src="app-loader.js"></script>
+</body>
+</html>
