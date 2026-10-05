@@ -24,7 +24,7 @@
   q('#inicio .grid-2').before(context);
 
   const routeSec=q('#ruta'); routeSec.dataset.title='Ruta de trabajo hasta la entrega'; routeSec.querySelector('.intro-line h2').textContent='Más tiempo, pero con una meta clara por etapa';
-  const cal=routeSec.querySelector('.compact-tip'); cal.innerHTML='<strong>Fechas a tener en cuenta:</strong> <strong>9/10</strong> es no laborable local en Escobar por su aniversario fundacional; <strong>12/10</strong> es feriado nacional; <strong>9/11</strong> es feriado nacional y <strong>11/11</strong> es feriado en la Provincia de Buenos Aires por la visita del papa León XIV. La <strong>entrega final es el 13/11</strong>. La última semana queda muy cortada, así que el proyecto debería llegar prácticamente cerrado al 6/11.';
+  const cal=routeSec.querySelector('.compact-tip'); cal.innerHTML='<strong>Fechas a tener en cuenta:</strong> <strong>12/10</strong> es feriado nacional; <strong>9/11</strong> es feriado nacional y <strong>11/11</strong> es feriado en la Provincia de Buenos Aires por la visita del papa León XIV. La <strong>entrega final es el 13/11</strong>. La última semana queda muy cortada, así que el proyecto debería llegar prácticamente cerrado al 6/11.';
 
   const temario=[...doc.querySelectorAll('#contentFilters .chip')].find(b=>b.dataset.filter==='temario'); if(temario) temario.textContent='Temario';
 
