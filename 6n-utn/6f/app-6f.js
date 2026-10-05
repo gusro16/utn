@@ -6,7 +6,6 @@
   const route=`const DELIVERY = new Date('2026-11-13T23:59:59-03:00');
 const routeSteps = [
   {date:'2026-10-05', label:'5/10', title:'Diagnóstico y orden', desc:'Confirmar el estado real de cada proyecto, ordenar archivos y verificar que la estructura general del sitio funcione.', tasks:['Abrir todas las páginas','Comprobar navegación básica','Confirmar CSS vinculado','Ordenar archivos y recursos']},
-  {date:'2026-10-09', label:'9/10', title:'No laborable local · Escobar', desc:'Aniversario fundacional de Escobar. No se cuenta como jornada normal de trabajo si corresponde a la sede.', tasks:['No se planifica avance de clase para esta fecha.'], noClass:true},
   {date:'2026-10-12', label:'12/10', title:'Feriado nacional', desc:'Día del Respeto a la Diversidad Cultural. No se cuenta como jornada de clase.', tasks:['No se planifica avance de clase para esta fecha.'], noClass:true},
   {date:'2026-10-16', label:'16/10', title:'Estructura y requisitos prioritarios', desc:'Cerrar estructura general, navegación y requisitos técnicos que todavía estén pendientes.', tasks:['Revisar condiciones del proyecto','Completar estructura y navegación','Resolver faltantes técnicos prioritarios','No incorporar código que no puedan explicar']},
   {date:'2026-10-19', label:'19/10', title:'Aplicación de contenidos', desc:'Transformar los contenidos vistos o pendientes en partes concretas del sitio.', tasks:['Avanzar formulario y tabla','Revisar enlaces, anclas y mailto','Incorporar multimedia cuando corresponda','Comprobar cada cambio en el navegador']},
