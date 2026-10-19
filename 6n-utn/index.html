@@ -8,6 +8,13 @@
 <meta content="Fundamentos · Centro de acompañamiento para el Proyecto Web UTN de 6N." name="description"/>
 <link href="style.css" rel="stylesheet"/>
 <style id="deliveryStyle">
+/* Espacio interior exclusivo de la sección de entrega. */
+#entrega > .card{padding:28px 30px}
+#entrega > .card > h3:first-child{margin-top:0}
+#entrega .delivery-fields,#entrega .delivery-choices,#entrega .delivery-review{max-width:100%}
+#entrega .delivery-fields > *,#entrega .delivery-choices > *{min-width:0}
+@media(max-width:700px){#entrega > .card{padding:18px 16px}}
+
 .delivery-fields,.delivery-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}.delivery-fields label{display:grid;gap:7px;font-weight:700}.delivery-fields input{padding:12px;border:1px solid #b9c6d9;border-radius:10px;width:100%;min-width:0}.delivery-choice{display:flex;flex-direction:column;gap:10px;padding:20px;border-radius:15px;background:#eff6ff;border:2px solid #bfdbfe;cursor:pointer;min-height:180px}.delivery-choice:hover{border-color:#2563eb;background:#dbeafe}.delivery-choice small{font-weight:400;color:#475569}.delivery-pick{background:#1d4ed8;color:white;padding:9px 12px;border-radius:9px;text-align:center;font-weight:700;margin-top:auto}.delivery-choice input[type=file]{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}.delivery-review{padding:18px;background:#f8fafc;border:1px solid #cbd5e1;border-radius:14px;margin:20px 0}.delivery-list{max-height:320px;overflow:auto;margin:12px 0}.delivery-row{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:9px 4px;border-bottom:1px solid #e2e8f0}.delivery-row span{overflow-wrap:anywhere;min-width:0}.delivery-row button{flex-shrink:0;background:white;border:1px solid #94a3b8;border-radius:7px;padding:5px 9px;cursor:pointer}.delivery-checkbox{display:flex;align-items:center;gap:9px;margin-top:14px}.delivery-checkbox input{width:18px;height:18px}.delivery-warning{border-left:4px solid #d97706;padding:12px;background:#fff7ed;margin-top:15px}#deliverySubmit{padding:13px 22px}#deliverySubmit:disabled{opacity:.55;cursor:not-allowed}#deliveryTotal{font-weight:700;padding:10px 0}@media(max-width:700px){.delivery-fields,.delivery-choices{grid-template-columns:1fr}}
 </style></head>
 <body>
