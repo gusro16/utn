@@ -7,7 +7,9 @@
 <title>6N · Ruta Proyecto Web UTN</title>
 <meta content="Fundamentos · Centro de acompañamiento para el Proyecto Web UTN de 6N." name="description"/>
 <link href="style.css" rel="stylesheet"/>
-</head>
+<style id="deliveryStyle">
+.delivery-fields,.delivery-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}.delivery-fields label{display:grid;gap:7px;font-weight:700}.delivery-fields input{padding:12px;border:1px solid #b9c6d9;border-radius:10px;width:100%;min-width:0}.delivery-choice{display:flex;flex-direction:column;gap:10px;padding:20px;border-radius:15px;background:#eff6ff;border:2px solid #bfdbfe;cursor:pointer;min-height:180px}.delivery-choice:hover{border-color:#2563eb;background:#dbeafe}.delivery-choice small{font-weight:400;color:#475569}.delivery-pick{background:#1d4ed8;color:white;padding:9px 12px;border-radius:9px;text-align:center;font-weight:700;margin-top:auto}.delivery-choice input[type=file]{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}.delivery-review{padding:18px;background:#f8fafc;border:1px solid #cbd5e1;border-radius:14px;margin:20px 0}.delivery-list{max-height:320px;overflow:auto;margin:12px 0}.delivery-row{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:9px 4px;border-bottom:1px solid #e2e8f0}.delivery-row span{overflow-wrap:anywhere;min-width:0}.delivery-row button{flex-shrink:0;background:white;border:1px solid #94a3b8;border-radius:7px;padding:5px 9px;cursor:pointer}.delivery-checkbox{display:flex;align-items:center;gap:9px;margin-top:14px}.delivery-checkbox input{width:18px;height:18px}.delivery-warning{border-left:4px solid #d97706;padding:12px;background:#fff7ed;margin-top:15px}#deliverySubmit{padding:13px 22px}#deliverySubmit:disabled{opacity:.55;cursor:not-allowed}#deliveryTotal{font-weight:700;padding:10px 0}@media(max-width:700px){.delivery-fields,.delivery-choices{grid-template-columns:1fr}}
+</style></head>
 <body>
 <div class="app-shell">
 <aside class="sidebar" id="sidebar">
@@ -22,6 +24,7 @@
 <button class="nav-btn" data-view="dudas">🔧 <span>Resolver dudas</span></button>
 <button class="nav-btn" data-view="utn">✅ <span>Condiciones UTN</span></button>
 <button class="nav-btn" data-view="rubrica">📊 <span>Rúbrica UTN</span></button>
+<button class="nav-btn" data-view="entrega">📦 <span>Subir proyecto</span></button>
 <button class="nav-btn" data-view="defensa">🧠 <span>Preparar defensa</span></button>
 </nav>
 <div class="sidebar-note">
@@ -60,6 +63,7 @@
 <button class="quick card jump" data-target="dudas"><span>🔧</span><strong>Resolver un problema</strong><small>Guías rápidas y pistas</small></button>
 <button class="quick card jump" data-target="contenidos"><span>📚</span><strong>Aprender / Repasar</strong><small>Contenido corto y aplicable</small></button>
 <button class="quick card jump" data-target="utn"><span>✅</span><strong>Mi situación frente a UTN</strong><small>Requisitos y chequeo de archivos</small></button>
+<button class="quick card jump" data-target="entrega"><span>📦</span><strong>Subir el proyecto</strong><small>Preparar ZIP o carpeta y revisar archivos</small></button>
 <button class="quick card jump" data-target="rubrica"><span>📊</span><strong>Rúbrica UTN</strong><small>Cómo se evalúa realmente el proyecto</small></button>
 <button class="quick card jump" data-target="contenidos"><span>☁️</span><strong>Trabajar desde Drive</strong><small>Una sola carpeta oficial por equipo</small></button>
 </div>
@@ -189,6 +193,23 @@
 <div class="card rubric-note"><strong>Cómo usarla</strong><p>No marques “lo que pensás que te van a poner”. Leé los cuatro descriptores y elegí el que describe mejor la evidencia real de tu proyecto hoy. Si caés en los niveles inferiores, ahí tenés una prioridad concreta de mejora.</p></div>
 <div class="rubric-table" id="rubricTable"></div>
 </section>
+<section class="view" data-title="Entrega del proyecto" id="entrega">
+<div class="content-header"><div><p class="eyebrow">ENTREGA FINAL · 6N</p><h2>Subí tu proyecto terminado</h2><p>Elegí un archivo ZIP o la carpeta completa. Revisá todo antes de confirmar.</p></div></div>
+<div class="card" style="border-left:5px solid #d97706"><h3>📣 ¡Atención hasta la entrega!</h3><p>Hasta el <strong>jueves 22 de octubre de 2026, a las 12:00 h</strong>, revisen frecuentemente el <strong>correo institucional y Classroom</strong>. Podrán recibir avisos, observaciones o indicaciones importantes.</p></div>
+<div class="card" style="margin-top:16px">
+<h3>☁️ Entrega del proyecto</h3><p>1. Escribí los datos del equipo. 2. Elegí ZIP o carpeta. 3. Revisá la lista de archivos. 4. Confirmá la entrega cuando el sistema esté habilitado.</p>
+<div class="delivery-fields"><label>Integrantes del equipo<input id="teamNames" placeholder="Apellido y nombre de ambos integrantes"></label><label>Tema del proyecto<input id="teamTopic" placeholder="Ej.: Turismo, deportes…"></label></div>
+<div class="delivery-choices">
+<label class="delivery-choice" for="deliveryZip"><span style="font-size:32px">📦</span><strong>Subir archivo ZIP</strong><small>Para quienes ya comprimieron su proyecto</small><span class="delivery-pick">Seleccionar ZIP</span><input id="deliveryZip" type="file" accept=".zip,application/zip"></label>
+<label class="delivery-choice" for="deliveryFolder"><span style="font-size:32px">📁</span><strong>Subir carpeta completa</strong><small>Si no sabés comprimir, elegí la carpeta</small><span class="delivery-pick">Seleccionar carpeta</span><input id="deliveryFolder" type="file" webkitdirectory multiple></label>
+</div>
+<div class="delivery-review"><h3>🗂️ Repositorio temporal de revisión</h3><p>Los archivos están preparados <strong>solo en tu navegador</strong>. Todavía NO están subidos a Drive.</p><div id="deliverySelected">Todavía no seleccionaste archivos.</div><div id="deliveryList" class="delivery-list"></div><div id="deliveryTotal"></div><button type="button" id="deliveryClear" class="secondary">↺ Vaciar y elegir de nuevo</button><label class="delivery-checkbox"><input type="checkbox" id="deliveryConfirm"> Revisé los archivos y los datos de mi equipo.</label></div>
+<button class="primary" id="deliverySubmit" type="button" disabled>☁️ Confirmar y subir los archivos</button>
+<p id="deliveryStatus" role="status"><strong>Recepción pendiente de habilitación:</strong> la selección de archivos es una preparación local, no una entrega.</p>
+<p class="delivery-warning"><strong>Importante:</strong> hasta que se conecte el sistema institucional, el botón de envío permanecerá deshabilitado. La confirmación «Subido correctamente» solo podrá aparecer cuando Drive confirme la recepción.</p>
+</div>
+<div class="card" style="margin-top:16px"><h3>✅ Antes de enviar</h3><p>Tu proyecto debe contener <code>index.html</code>, todas las páginas HTML, CSS, imágenes y demás recursos. Límite: <strong>1 GB</strong>. Usá el analizador para revisar tu trabajo, pero recordá que analizar no equivale a entregar.</p></div>
+</section>
 <section class="view" data-title="Preparar la defensa oral" id="defensa">
 <div class="content-header">
 <div><p class="eyebrow">NO MEMORIZAR: COMPRENDER</p><h2>Practicá explicar tu propio proyecto</h2><p>Elegí una pregunta al azar, abrí tu proyecto y respondela mostrando el código correspondiente.</p></div>
@@ -213,5 +234,21 @@
 </article>
 </div>
 <script src="app-loader.js"></script>
+<script id="deliveryLogic">
+(()=>{if(location.pathname.includes('/6f/'))return;
+const $=id=>document.getElementById(id),zip=$('deliveryZip'),folder=$('deliveryFolder'),list=$('deliveryList'),total=$('deliveryTotal'),selected=$('deliverySelected'),confirm=$('deliveryConfirm');if(!zip||!folder)return;
+let staged=[];
+function format(n){return n>1048576?(n/1048576).toFixed(1)+' MB':(n/1024).toFixed(1)+' KB'}
+function render(){
+list.replaceChildren();let bytes=staged.reduce((a,x)=>a+x.file.size,0);selected.textContent=staged.length?staged.length+' archivo(s) preparados para revisión. Ninguno se envió.':'Todavía no seleccionaste archivos.';
+total.textContent=staged.length?'Tamaño total: '+format(bytes)+(bytes>1073741824?' — SUPERÓ 1 GB':''):'';
+staged.forEach((x,i)=>{const row=document.createElement('div');row.className='delivery-row';const name=document.createElement('span');name.textContent=(x.path||x.file.name)+' · '+format(x.file.size);const del=document.createElement('button');del.type='button';del.textContent='Quitar';del.addEventListener('click',()=>{staged.splice(i,1);confirm.checked=false;render()});row.append(name,del);list.append(row)});
+$('deliverySubmit').disabled=true;
+}
+function stage(input,isFolder){const files=Array.from(input.files||[]);if(!files.length)return;staged=files.map(file=>({file,path:isFolder?file.webkitRelativePath:file.name}));confirm.checked=false;render();if(isFolder&&!staged.some(x=>x.path.endsWith('/index.html')||x.path==='index.html'))selected.textContent+=' ATENCIÓN: no se encontró index.html.';if(!isFolder&&(!files[0].name.toLowerCase().endsWith('.zip')||files.length!==1))selected.textContent='Elegí un único archivo ZIP.';}
+zip.addEventListener('change',()=>{folder.value='';stage(zip,false)});folder.addEventListener('change',()=>{zip.value='';stage(folder,true)});
+$('deliveryClear').addEventListener('click',()=>{staged=[];zip.value='';folder.value='';confirm.checked=false;render()});confirm.addEventListener('change',()=>{$('deliverySubmit').disabled=true});render();
+})();
+</script>
 </body>
 </html>
