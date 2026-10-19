@@ -11,6 +11,12 @@
   const brand=q('.brand > div:nth-child(2)'); brand.innerHTML='<strong>Proyecto Web 6F</strong><span>Diseño Web · Centro de acompañamiento</span>';
   q('.topbar .eyebrow').textContent='DISEÑO WEB · 6F';
 
+  // La entrega institucional de 6N no forma parte del sitio 6F.
+  doc.querySelector('.nav-btn[data-view="entrega"]')?.remove();
+  doc.querySelector('.quick[data-target="entrega"]')?.remove();
+  doc.querySelector('#entrega')?.remove();
+  doc.querySelector('#deliveryStyle')?.remove();
+  doc.querySelector('#deliveryLogic')?.remove();
   const navBtns=[...doc.querySelectorAll('.nav-btn')];
   const navCond=navBtns.find(b=>b.dataset.view==='utn'); if(navCond) navCond.querySelector('span').textContent='Condiciones del proyecto';
   const navRub=navBtns.find(b=>b.dataset.view==='rubrica'); if(navRub) navRub.querySelector('span').textContent='Rúbrica de evaluación';
