@@ -26,70 +26,57 @@
   doc.querySelector('#deliveryStyle')?.remove();
   doc.querySelector('#deliveryLogic')?.remove();
 
-  // Entrega 6F: simulador local para practicar, sin conexión a Drive.
+  // Repositorio oficial 6F conectado al Apps Script institucional.
+  const REPO_URL='https://script.google.com/a/macros/northfield.edu.ar/s/AKfycbyRI-VhT1gd1q4C4vuag9_OzdUInk2q0i2G5FoJfBnxu9pMoMu7p3_VirSoosqJnog1Tg/exec';
+
   const navEntrega=doc.createElement('button');
   navEntrega.className='nav-btn';
   navEntrega.dataset.view='entrega6f';
-  navEntrega.innerHTML='📦 <span>Practicar entrega</span>';
+  navEntrega.innerHTML='📁 <span>Repositorio</span>';
   const navDefensa=doc.querySelector('.nav-btn[data-view="defensa"]');
   if(navDefensa) navDefensa.before(navEntrega); else doc.querySelector('.nav').append(navEntrega);
+
   const entrega=doc.createElement('section');
-  entrega.id='entrega6f';entrega.className='view';entrega.dataset.title='Practicar la entrega de 6F';
+  entrega.id='entrega6f';
+  entrega.className='view';
+  entrega.dataset.title='Repositorio oficial del proyecto';
   entrega.innerHTML=`
-    <div class="content-header"><div><p class="eyebrow">PROYECTO WEB · 6F</p><h2>Conocé cómo será la entrega</h2><p>Esta sección es una <strong>práctica</strong> para conocer el procedimiento. Todavía no recibe trabajos reales.</p></div></div>
-    <div class="card" style="padding:26px 30px;border-left:5px solid #d97706"><h3>🧪 Modo práctica: no se envían archivos</h3><p>Podés seleccionar un ZIP o una carpeta completa, ver los archivos y corregir tu selección. <strong>Lo que elijas permanece en tu navegador y NO se sube a Google Drive.</strong></p><p><strong>Entrega final de 6F: 13 de noviembre.</strong> Defensas: <strong>16 y 20 de noviembre</strong>. Hasta esas fechas, mantenete atento al correo institucional y a Classroom.</p></div>
-    <div class="card" style="padding:28px 30px;margin-top:18px"><h3>📁 Prepará tu proyecto para entregar</h3><p>Completá los datos y probá el mismo procedimiento de selección y revisión que usaremos cuando se habiliten las entregas.</p>
-      <div class="delivery-fields"><label>Integrantes del equipo<input id="teamNames6f" placeholder="Apellido y nombre de ambos integrantes"></label><label>Beneficiario o tema<input id="teamTopic6f" placeholder="Nombre del beneficiario o proyecto"></label></div>
-      <div class="delivery-choices">
-        <label class="delivery-choice" for="deliveryZip6f"><span style="font-size:32px">📦</span><strong>Elegir ZIP</strong><small>Si ya comprimiste el proyecto</small><span class="delivery-pick">Seleccionar ZIP</span><input id="deliveryZip6f" type="file" accept=".zip,application/zip"></label>
-        <label class="delivery-choice" for="deliveryFolder6f"><span style="font-size:32px">📁</span><strong>Elegir carpeta</strong><small>Si todavía no sabés comprimirlo</small><span class="delivery-pick">Seleccionar carpeta</span><input id="deliveryFolder6f" type="file" webkitdirectory multiple></label>
+    <div class="content-header">
+      <div>
+        <p class="eyebrow">PROYECTO WEB · 6F</p>
+        <h2>Mantené actualizado el proyecto de tu equipo</h2>
+        <p>Este es el repositorio oficial de seguimiento. Subí la <strong>carpeta completa del proyecto</strong> cada vez que haya avances importantes.</p>
       </div>
-      <div class="delivery-review"><h3>🗂️ Repositorio temporal de revisión</h3><p>Estos archivos solamente están seleccionados en este navegador. No fueron enviados.</p><div id="deliverySelected6f">Todavía no elegiste archivos.</div><div class="delivery-list" id="deliveryList6f"></div><div id="deliveryTotal6f"></div><button type="button" class="secondary" id="deliveryClear6f">↺ Vaciar selección</button><label class="delivery-checkbox"><input id="deliveryConfirm6f" type="checkbox"> Revisé mi selección y los datos del equipo.</label></div>
-      <button class="primary" id="deliverySubmit6f" type="button" disabled>🔒 Envío no habilitado · Solo práctica</button>
-      <p class="delivery-warning" role="status"><strong>IMPORTANTE:</strong> no hay entrega realizada ni comprobante. El docente avisará por Classroom cuando se habilite el sistema definitivo.</p>
-    </div>`;
+    </div>
+    <div class="card" style="padding:28px 30px;border-left:5px solid #2563eb">
+      <h3 style="margin-top:0">📁 Repositorio oficial</h3>
+      <p>Seleccioná tu equipo y actualizá la carpeta del proyecto. La versión más reciente queda en <strong>ACTUAL</strong> y el sistema conserva evidencia de versiones anteriores para poder seguir el proceso.</p>
+      <a class="primary" href="${REPO_URL}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:10px;margin:14px 0;padding:15px 22px;text-decoration:none;font-size:1.05rem">📤 Actualizar mi proyecto ↗</a>
+      <p style="margin:4px 0 0;color:#475569"><strong>Importante:</strong> trabajá sobre la carpeta real del equipo y subí esa misma carpeta. No hace falta completar Trello o el Sheet para registrar el avance.</p>
+    </div>
+    <div class="card" style="padding:24px 28px;margin-top:18px">
+      <h3 style="margin-top:0">✅ Antes de actualizar</h3>
+      <ul class="clean-list">
+        <li>Elegí correctamente tu <strong>equipo</strong>.</li>
+        <li>Seleccioná la <strong>carpeta completa</strong> del proyecto.</li>
+        <li>Revisá la lista de archivos antes de confirmar.</li>
+        <li>Esperá a que aparezca el mensaje de actualización terminada.</li>
+        <li>Si todavía falta <code>index.html</code> o algún requisito, podés actualizar igualmente: este repositorio también registra el <strong>proceso</strong>.</li>
+      </ul>
+    </div>
+    <div class="card" style="padding:22px 26px;margin-top:18px;background:#f8fafc">
+      <strong>¿Para qué sirve?</strong>
+      <p style="margin:7px 0 0">Las revisiones de avance se harán sobre esta carpeta oficial. Así se puede comparar qué cambió entre una revisión y la siguiente y valorar correcciones, organización y progreso real.</p>
+    </div>
+  `;
   doc.querySelector('footer').before(entrega);
-  const deliveryStyles=doc.createElement('style');
-  deliveryStyles.textContent=`
-  #entrega6f .delivery-fields,#entrega6f .delivery-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}
-  #entrega6f .delivery-fields label{display:grid;gap:7px;font-weight:700}
-  #entrega6f .delivery-fields input{width:100%;min-width:0;padding:12px;border:1px solid #bac6d7;border-radius:10px}
-  #entrega6f .delivery-choice{display:flex;flex-direction:column;gap:9px;padding:20px;border:2px solid #bfdbfe;background:#eff6ff;border-radius:15px;cursor:pointer;min-width:0}
-  #entrega6f .delivery-choice:hover{border-color:#2563eb}
-  #entrega6f .delivery-choice small{color:#475569;font-weight:400}
-  #entrega6f .delivery-pick{background:#1d4ed8;color:white;text-align:center;padding:10px;border-radius:10px;font-weight:700;margin-top:auto}
-  #entrega6f .delivery-choice input[type=file]{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
-  #entrega6f .delivery-review{padding:18px;border:1px solid #cbd5e1;border-radius:14px;background:#f8fafc;margin:18px 0}
-  #entrega6f .delivery-list{max-height:330px;overflow:auto}
-  #entrega6f .delivery-row{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid #e2e8f0;padding:10px 0}
-  #entrega6f .delivery-row span{overflow-wrap:anywhere;min-width:0}
-  #entrega6f .delivery-row button{flex-shrink:0;background:white;border:1px solid #94a3b8;border-radius:8px;padding:6px 10px}
-  #entrega6f .delivery-checkbox{display:flex;gap:10px;align-items:center;margin-top:16px}
-  #entrega6f .delivery-warning{background:#fff7ed;border-left:4px solid #d97706;padding:13px}
-  #deliverySubmit6f:disabled{opacity:.65;cursor:not-allowed}
-  @media(max-width:700px){#entrega6f .delivery-fields,#entrega6f .delivery-choices{grid-template-columns:1fr}#entrega6f>.card{padding:18px 16px!important}}
-  `;
-  doc.head.append(deliveryStyles);
-  const deliveryLogic=doc.createElement('script');
-  deliveryLogic.textContent=`
-  (()=>{const $=id=>document.getElementById(id),zip=$('deliveryZip6f'),folder=$('deliveryFolder6f');
-  if(!zip||!folder)return;
-  const list=$('deliveryList6f'),selected=$('deliverySelected6f'),total=$('deliveryTotal6f'),confirm=$('deliveryConfirm6f');
-  let staged=[];const size=n=>n>=1048576?(n/1048576).toFixed(1)+' MB':(n/1024).toFixed(1)+' KB';
-  function render(){list.replaceChildren();const bytes=staged.reduce((n,f)=>n+f.file.size,0);
-  selected.textContent=staged.length?staged.length+' archivo(s) en revisión (NO enviados).':'Todavía no elegiste archivos.';
-  total.textContent=staged.length?'Tamaño total: '+size(bytes)+(bytes>1073741824?' · SUPERÓ 1 GB':''):'';
-  staged.forEach((entry,i)=>{const row=document.createElement('div');row.className='delivery-row';const name=document.createElement('span');name.textContent=entry.path+' · '+size(entry.file.size);const b=document.createElement('button');b.type='button';b.textContent='Quitar';b.onclick=()=>{staged.splice(i,1);confirm.checked=false;render()};row.append(name,b);list.append(row);});}
-  function stage(input,dir){staged=Array.from(input.files||[],f=>({file:f,path:dir?f.webkitRelativePath:f.name}));confirm.checked=false;render();if(dir&&staged.length&&!staged.some(x=>x.path.toLowerCase().endsWith('/index.html')))selected.textContent+=' Atención: falta index.html.';}
-  zip.onchange=()=>{folder.value='';stage(zip,false)};folder.onchange=()=>{zip.value='';stage(folder,true)};
-  $('deliveryClear6f').onclick=()=>{staged=[];zip.value='';folder.value='';confirm.checked=false;render()};render();
-  })();
-  `;
-  doc.body.append(deliveryLogic);
+
   const quickEntrega=doc.createElement('button');
-  quickEntrega.className='quick card jump';quickEntrega.dataset.target='entrega6f';
-  quickEntrega.innerHTML='<span>📦</span><strong>Practicar la entrega</strong><small>Elegí ZIP o carpeta y revisá sus archivos</small>';
-  const grid=q('#inicio .quick-grid');if(grid)grid.append(quickEntrega);
+  quickEntrega.className='quick card jump';
+  quickEntrega.dataset.target='entrega6f';
+  quickEntrega.innerHTML='<span>📁</span><strong>Mi repositorio</strong><small>Actualizar la carpeta oficial del proyecto</small>';
+  const grid=q('#inicio .quick-grid');
+  if(grid) grid.append(quickEntrega);
 
 
   // Seguimiento docente: corte parcial por equipo, actualizado desde un archivo separado.
