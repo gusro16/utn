@@ -47,7 +47,7 @@
       "funcionalidad": 3,
       "organizacion": 5,
       "avance": 6,
-      "nota": 4.9,
+      "nota": 4.8,
       "devolucion": "Hay más desarrollo y ya tienen varias páginas. Lo urgente es arreglar navegación y rutas: varios enlaces apuntan a 127.0.0.1 y otras rutas usan /Projecto/, así que fuera de su PC se rompen. Después, completar requisitos y ordenar el CSS.",
       "prioridad": "Corregir todas las rutas relativas y probar el sitio completo fuera de Live Server."
     },
@@ -59,7 +59,7 @@
       "funcionalidad": 1,
       "organizacion": 5,
       "avance": 3,
-      "nota": 3.5,
+      "nota": 3.4,
       "devolucion": "La página tiene una base prolija y el CSS usa flex, pero sigue siendo un inicio. La imagen que llaman desde el HTML no coincide con los archivos de la carpeta y todavía faltan navegación, más páginas y casi todos los requisitos del proyecto.",
       "prioridad": "Corregir la ruta de la imagen y convertir esta base en un sitio con varias páginas y navegación."
     },
@@ -71,7 +71,7 @@
       "funcionalidad": 1,
       "organizacion": 2,
       "avance": 2,
-      "nota": 1.4,
+      "nota": 1.3,
       "devolucion": "No puedo verificar una entrega de programación. Los enlaces compartidos son documentos y además no tengo acceso a ellos; no hay una carpeta con HTML/CSS revisable. Para el próximo control necesito el proyecto real, no solo documentación.",
       "prioridad": "Compartir la carpeta oficial con los archivos HTML, CSS y recursos."
     },
@@ -95,7 +95,7 @@
       "funcionalidad": 2,
       "organizacion": 7,
       "avance": 6,
-      "nota": 5,
+      "nota": 4.9,
       "devolucion": "El contenido está bastante trabajado y la carpeta está ordenada. La página tiene buena cantidad de información e imágenes, pero sigue siendo una sola página y casi no tiene navegación ni interacción. El CSS es todavía muy básico para todo lo que muestra el HTML.",
       "prioridad": "Separar u organizar mejor el contenido, sumar navegación y completar los requisitos que faltan."
     },
@@ -107,7 +107,7 @@
       "funcionalidad": 1,
       "organizacion": 3,
       "avance": 2,
-      "nota": 1.6,
+      "nota": 1.5,
       "devolucion": "Tienen bastante material de imágenes, pero no encontré HTML ni CSS. A esta altura el problema ya no es de contenido: necesitan empezar o entregar el sitio programado y dejarlo en la misma carpeta.",
       "prioridad": "Subir HTML/CSS y una versión que se pueda abrir y recorrer."
     },
@@ -131,7 +131,7 @@
       "funcionalidad": 1,
       "organizacion": 3,
       "avance": 4,
-      "nota": 4.1,
+      "nota": 4,
       "devolucion": "Hay bastante trabajo escrito en HTML y un CSS con muchas reglas, pero hoy las piezas no están conectadas bien. El HTML busca index.css e images/ como si estuvieran dentro de la misma carpeta y no es así; además el menú llama a una función que no existe. Primero hay que lograr que la página funcione completa.",
       "prioridad": "Arreglar rutas de CSS e imágenes y eliminar o completar la función de navegación."
     },
@@ -143,7 +143,7 @@
       "funcionalidad": 1,
       "organizacion": 6,
       "avance": 4,
-      "nota": 2.9,
+      "nota": 2.7,
       "devolucion": "El contenido y la planificación están bastante avanzados, con sitemap, benchmarking, imágenes y video. Pero el código sigue dentro de un documento y tiene varias etiquetas mal armadas; todavía no hay un HTML/CSS ejecutable. Ya es momento de pasarlo a archivos reales y probarlo en navegador.",
       "prioridad": "Convertir el documento en archivos HTML/CSS reales y corregir la sintaxis antes de seguir sumando contenido."
     },
