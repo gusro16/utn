@@ -5,6 +5,14 @@
   const doc=new DOMParser().parseFromString(raw,'text/html');
   const q=(sel)=>doc.querySelector(sel);
 
+  let seguimientoData=null;
+  try{
+    const seguimientoRes=await fetch('seguimiento-6f.json',{cache:'no-store'});
+    if(seguimientoRes.ok) seguimientoData=await seguimientoRes.json();
+  }catch(err){
+    console.warn('No se pudo cargar el seguimiento de 6F',err);
+  }
+
   q('title').textContent='6F · Ruta Proyecto Web';
   const meta=q('meta[name="description"]'); if(meta) meta.content='Centro de acompañamiento para el Proyecto Web de 6F.';
   q('.brand-mark').textContent='6F';
@@ -82,6 +90,78 @@
   quickEntrega.className='quick card jump';quickEntrega.dataset.target='entrega6f';
   quickEntrega.innerHTML='<span>📦</span><strong>Practicar la entrega</strong><small>Elegí ZIP o carpeta y revisá sus archivos</small>';
   const grid=q('#inicio .quick-grid');if(grid)grid.append(quickEntrega);
+
+
+  // Seguimiento docente: corte parcial por equipo, actualizado desde un archivo separado.
+  const navSeguimiento=doc.createElement('button');
+  navSeguimiento.className='nav-btn';
+  navSeguimiento.dataset.view='seguimiento6f';
+  navSeguimiento.innerHTML='📝 <span>Seguimiento</span>';
+  if(navDefensa) navDefensa.before(navSeguimiento); else doc.querySelector('.nav').append(navSeguimiento);
+
+  const seguimiento=doc.createElement('section');
+  seguimiento.id='seguimiento6f'; seguimiento.className='view'; seguimiento.dataset.title='Seguimiento docente del proyecto';
+  const esc=(v)=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const equipos=Array.isArray(seguimientoData?.equipos)?seguimientoData.equipos:[];
+  const opciones=equipos.map(e=>'<option value="'+esc(e.equipo)+'">Equipo '+esc(e.equipo)+' · '+esc(e.beneficiario)+'</option>').join('');
+  const tarjetas=equipos.map(e=>{
+    const estado=Number(e.nota)>=7?'Aprobado':'Por debajo de 7';
+    return '<article class="card teacher-team-card" data-team="'+esc(e.equipo)+'">'+
+      '<div class="teacher-summary"><div><p class="eyebrow">EQUIPO '+esc(e.equipo)+'</p><h3>'+esc(e.beneficiario)+'</h3><small>Revisión: '+esc(seguimientoData?.actualizado||'')+'</small></div><div class="teacher-score"><strong>'+Number(e.nota).toFixed(1)+'</strong><span>/ 10</span><small>'+estado+'</small></div></div>'+
+      '<div class="teacher-rubric-grid">'+
+        '<div><span>HTML</span><strong>'+esc(e.html)+'/10</strong><small>25%</small></div>'+
+        '<div><span>CSS</span><strong>'+esc(e.css)+'/10</strong><small>25%</small></div>'+
+        '<div><span>Funcionalidad</span><strong>'+esc(e.funcionalidad)+'/10</strong><small>20%</small></div>'+
+        '<div><span>Organización</span><strong>'+esc(e.organizacion)+'/10</strong><small>15%</small></div>'+
+        '<div><span>Avance</span><strong>'+esc(e.avance)+'/10</strong><small>15%</small></div>'+
+      '</div>'+
+      '<div class="teacher-feedback"><h4>Devolución</h4><p>'+esc(e.devolucion)+'</p><h4>Para la próxima revisión</h4><p>'+esc(e.prioridad)+'</p></div>'+
+    '</article>';
+  }).join('');
+  seguimiento.innerHTML=
+    '<div class="content-header"><div><p class="eyebrow">SEGUIMIENTO DOCENTE · 6F</p><h2>Revisá cómo viene tu proyecto</h2><p>La devolución se actualiza en las clases de lunes y viernes. Es una <strong>nota parcial y temporal</strong>: puede cambiar a medida que corrijan y avancen.</p></div></div>'+
+    '<div class="card teacher-note"><strong>Entrega final: '+esc(seguimientoData?.entrega||'13/11/2026')+'</strong><p>No se muestran nombres de estudiantes. Elegí tu equipo para ver la última revisión.</p></div>'+
+    '<div class="card teacher-controls"><label for="teacherTeam6f">Equipo</label><select id="teacherTeam6f"><option value="">Elegí tu equipo</option>'+opciones+'</select></div>'+
+    '<div id="teacherEmpty6f" class="card teacher-empty">Elegí un equipo para ver su nota parcial, la rúbrica y la devolución.</div>'+tarjetas;
+  doc.querySelector('footer').before(seguimiento);
+
+  const seguimientoStyles=doc.createElement('style');
+  seguimientoStyles.textContent=`
+    #seguimiento6f .teacher-note{padding:18px 22px;border-left:5px solid #2563eb;margin-bottom:16px}
+    #seguimiento6f .teacher-note p{margin:6px 0 0}
+    #seguimiento6f .teacher-controls{padding:20px 22px;margin-bottom:16px;display:grid;gap:8px;max-width:560px}
+    #seguimiento6f .teacher-controls label{font-weight:800}
+    #seguimiento6f .teacher-controls select{width:100%;padding:12px 14px;border:1px solid #bac6d7;border-radius:10px;background:white;font:inherit}
+    #seguimiento6f .teacher-empty{padding:22px;color:#475569}
+    #seguimiento6f .teacher-team-card{display:none;padding:24px 26px}
+    #seguimiento6f .teacher-team-card.active{display:block}
+    #seguimiento6f .teacher-summary{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;border-bottom:1px solid #e2e8f0;padding-bottom:18px}
+    #seguimiento6f .teacher-summary h3{margin:3px 0 4px}
+    #seguimiento6f .teacher-score{min-width:112px;text-align:center;border:1px solid #cbd5e1;border-radius:14px;padding:12px;background:#f8fafc}
+    #seguimiento6f .teacher-score strong{display:block;font-size:30px;line-height:1}
+    #seguimiento6f .teacher-score span,#seguimiento6f .teacher-score small{display:block;color:#64748b;margin-top:4px}
+    #seguimiento6f .teacher-rubric-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:18px 0}
+    #seguimiento6f .teacher-rubric-grid>div{border:1px solid #dbe3ee;border-radius:12px;padding:13px;background:#f8fafc;display:grid;gap:4px}
+    #seguimiento6f .teacher-rubric-grid span{font-size:13px;color:#475569}
+    #seguimiento6f .teacher-rubric-grid strong{font-size:18px}
+    #seguimiento6f .teacher-rubric-grid small{color:#64748b}
+    #seguimiento6f .teacher-feedback{display:grid;gap:6px}
+    #seguimiento6f .teacher-feedback h4{margin:10px 0 0}
+    #seguimiento6f .teacher-feedback p{margin:0;line-height:1.55}
+    @media(max-width:780px){#seguimiento6f .teacher-rubric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#seguimiento6f .teacher-summary{flex-direction:column}.teacher-score{align-self:flex-start}}
+  `;
+  doc.head.append(seguimientoStyles);
+
+  const seguimientoLogic=doc.createElement('script');
+  seguimientoLogic.textContent=`
+    (()=>{const select=document.getElementById('teacherTeam6f'),empty=document.getElementById('teacherEmpty6f');if(!select)return;const cards=[...document.querySelectorAll('#seguimiento6f .teacher-team-card')];function show(){const value=select.value;cards.forEach(c=>c.classList.toggle('active',c.dataset.team===value));if(empty)empty.style.display=value?'none':'block';}select.addEventListener('change',show);show();})();
+  `;
+  doc.body.append(seguimientoLogic);
+
+  const quickSeguimiento=doc.createElement('button');
+  quickSeguimiento.className='quick card jump'; quickSeguimiento.dataset.target='seguimiento6f';
+  quickSeguimiento.innerHTML='<span>📝</span><strong>Mi devolución</strong><small>Nota parcial, rúbrica y próximo paso</small>';
+  if(grid) grid.append(quickSeguimiento);
 
   const navBtns=[...doc.querySelectorAll('.nav-btn')];
   const navCond=navBtns.find(b=>b.dataset.view==='utn'); if(navCond) navCond.querySelector('span').textContent='Condiciones del proyecto';
