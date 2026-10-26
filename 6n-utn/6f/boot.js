@@ -107,7 +107,7 @@
   const tarjetas=equipos.map(e=>{
     const estado=Number(e.nota)>=7?'Aprobado':'Por debajo de 7';
     return '<article class="card teacher-team-card" data-team="'+esc(e.equipo)+'">'+
-      '<div class="teacher-summary"><div><p class="eyebrow">EQUIPO '+esc(e.equipo)+'</p><h3>'+esc(e.beneficiario)+'</h3><small>Revisión: '+esc(seguimientoData?.actualizado||'')+'</small></div><div class="teacher-score"><strong>'+Number(e.nota).toFixed(1)+'</strong><span>/ 10</span><small>'+estado+'</small></div></div>'+
+      '<div class="teacher-summary"><div><p class="eyebrow">EQUIPO '+esc(e.equipo)+'</p><h3>'+esc(e.beneficiario)+'</h3><small>Revisión: '+esc(seguimientoData?.actualizado||'')+'</small><div class="teacher-evidence"><span><b>Entrega:</b> '+esc(e.estadoEntrega||'Sin dato')+'</span><span><b>Última actualización detectada:</b> '+esc(e.ultimaActualizacion||'Sin dato')+'</span></div></div><div class="teacher-score"><strong>'+Number(e.nota).toFixed(1)+'</strong><span>/ 10</span><small>'+estado+'</small></div></div>'+
       '<div class="teacher-rubric-grid">'+
         '<div><span>HTML</span><strong>'+esc(e.html)+'/10</strong><small>25%</small></div>'+
         '<div><span>CSS</span><strong>'+esc(e.css)+'/10</strong><small>25%</small></div>'+
@@ -137,6 +137,7 @@
     #seguimiento6f .teacher-team-card.active{display:block}
     #seguimiento6f .teacher-summary{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;border-bottom:1px solid #e2e8f0;padding-bottom:18px}
     #seguimiento6f .teacher-summary h3{margin:3px 0 4px}
+    #seguimiento6f .teacher-evidence{display:grid;gap:4px;margin-top:10px;font-size:13px;color:#475569}
     #seguimiento6f .teacher-score{min-width:112px;text-align:center;border:1px solid #cbd5e1;border-radius:14px;padding:12px;background:#f8fafc}
     #seguimiento6f .teacher-score strong{display:block;font-size:30px;line-height:1}
     #seguimiento6f .teacher-score span,#seguimiento6f .teacher-score small{display:block;color:#64748b;margin-top:4px}
