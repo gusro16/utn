@@ -1,19 +1,21 @@
 {
   "actualizado": "26/10/2026",
   "entrega": "13/11/2026",
-  "aclaracion": "La nota es parcial y temporal. Puede cambiar a medida que el equipo corrige y avanza.",
+  "aclaracion": "Corte de proceso. La nota es parcial y temporal: se revisan código verificable, organización de la carpeta oficial, funcionamiento, avance y actualización del trabajo.",
   "equipos": [
     {
       "equipo": 1,
       "beneficiario": "Vintage Market Tigre",
-      "html": 7,
+      "html": 6,
       "css": 6,
       "funcionalidad": 4,
-      "organizacion": 7,
-      "avance": 6,
-      "nota": 6,
-      "devolucion": "La base está bien armada y el menú por secciones funciona. A esta altura falta completar varios requisitos: hoy es una sola página y todavía no aparecen imágenes, formulario, tabla, mailto ni multimedia. Van bien con la estructura, pero ya hay que cerrar esos faltantes.",
-      "prioridad": "Sumar los requisitos que faltan y probar todo desde otra computadora."
+      "organizacion": 4,
+      "avance": 4,
+      "nota": 5,
+      "devolucion": "La carpeta está accesible y el HTML/CSS tienen una base sólida. Ojo: la página principal no se llama index.html y desde el 4/9 no veo actualizaciones. Hoy sigue siendo una sola página y faltan varios requisitos. Necesito ver movimiento en la carpeta oficial de acá al viernes.",
+      "prioridad": "Renombrar la principal como index.html, completar requisitos y actualizar la carpeta oficial.",
+      "estadoEntrega": "Código verificable",
+      "ultimaActualizacion": "04/09/2026"
     },
     {
       "equipo": 2,
@@ -24,32 +26,38 @@
       "organizacion": 2,
       "avance": 1,
       "nota": 1.2,
-      "devolucion": "La carpeta abre, pero está vacía. Hoy no tengo código para corregir. Ya estamos muy cerca del 13/11: en el próximo control necesito encontrar al menos el HTML y el CSS funcionando dentro de la carpeta.",
-      "prioridad": "Cargar la entrega real y comprobar que la carpeta quede accesible."
+      "devolucion": "La carpeta está bien compartida, pero está vacía. Para poder evaluar proceso tiene que quedar ahí el trabajo real. El viernes necesito encontrar HTML/CSS y ver que empiecen a actualizarla.",
+      "prioridad": "Subir el trabajo real a la carpeta oficial antes del próximo control.",
+      "estadoEntrega": "Carpeta accesible pero vacía",
+      "ultimaActualizacion": "Sin archivos"
     },
     {
       "equipo": 3,
       "beneficiario": "El Bórdo",
-      "html": 6,
+      "html": 5,
       "css": 5,
       "funcionalidad": 2,
-      "organizacion": 6,
-      "avance": 4,
-      "nota": 4.7,
-      "devolucion": "Hay una base clara de HTML y el CSS ya tiene trabajo. El sitio todavía está muy chico para esta etapa: una sola página, sin navegación ni varios requisitos importantes. Además, una de las imágenes usa un enlace de Google que no va a funcionar como imagen.",
-      "prioridad": "Arreglar imágenes y avanzar con navegación, páginas y requisitos obligatorios."
+      "organizacion": 5,
+      "avance": 3,
+      "nota": 4.1,
+      "devolucion": "Hay HTML, CSS, imágenes y un documento, pero el código no se actualiza desde fines de agosto/principios de septiembre. El sitio sigue en una sola página, sin navegación y con una imagen mal enlazada. Hay base, pero el proceso quedó frenado.",
+      "prioridad": "Retomar el desarrollo en la carpeta oficial: navegación, páginas y corrección de imágenes.",
+      "estadoEntrega": "Código verificable",
+      "ultimaActualizacion": "02/09 documento · 31/08 código"
     },
     {
       "equipo": 4,
       "beneficiario": "Gelato Stelvio",
       "html": 6,
       "css": 4,
-      "funcionalidad": 3,
-      "organizacion": 5,
-      "avance": 6,
-      "nota": 4.8,
-      "devolucion": "Hay más desarrollo y ya tienen varias páginas. Lo urgente es arreglar navegación y rutas: varios enlaces apuntan a 127.0.0.1 y otras rutas usan /Projecto/, así que fuera de su PC se rompen. Después, completar requisitos y ordenar el CSS.",
-      "prioridad": "Corregir todas las rutas relativas y probar el sitio completo fuera de Live Server."
+      "funcionalidad": 2,
+      "organizacion": 6,
+      "avance": 4,
+      "nota": 4.6,
+      "devolucion": "Es de los que más estructura tiene: 4 páginas y carpetas separadas. Pero los enlaces usan 127.0.0.1 y rutas /Projecto/, por lo que fuera de su PC se rompen. Tampoco veo cambios desde 7/9. Primero corrijan rutas y dejen todo funcionando desde la carpeta oficial.",
+      "prioridad": "Corregir rutas relativas, completar la quinta página y probar fuera de Live Server.",
+      "estadoEntrega": "Código verificable · 4 páginas",
+      "ultimaActualizacion": "07/09/2026"
     },
     {
       "equipo": 5,
@@ -58,10 +66,12 @@
       "css": 4,
       "funcionalidad": 1,
       "organizacion": 5,
-      "avance": 3,
-      "nota": 3.4,
-      "devolucion": "La página tiene una base prolija y el CSS usa flex, pero sigue siendo un inicio. La imagen que llaman desde el HTML no coincide con los archivos de la carpeta y todavía faltan navegación, más páginas y casi todos los requisitos del proyecto.",
-      "prioridad": "Corregir la ruta de la imagen y convertir esta base en un sitio con varias páginas y navegación."
+      "avance": 2,
+      "nota": 3.2,
+      "devolucion": "Hay materiales, imágenes, video y una base HTML/CSS, pero el sitio sigue siendo una sola página y la imagen del HTML no coincide con los archivos disponibles. El código no se actualiza desde agosto. Necesito ver integración real de esos recursos.",
+      "prioridad": "Conectar los recursos reales al HTML y avanzar con navegación y más páginas.",
+      "estadoEntrega": "Código verificable · recursos sin integrar",
+      "ultimaActualizacion": "28/08 documento · 21/08 código"
     },
     {
       "equipo": 6,
@@ -69,35 +79,41 @@
       "html": 1,
       "css": 1,
       "funcionalidad": 1,
-      "organizacion": 2,
-      "avance": 2,
-      "nota": 1.3,
-      "devolucion": "No puedo verificar una entrega de programación. Los enlaces compartidos son documentos y además no tengo acceso a ellos; no hay una carpeta con HTML/CSS revisable. Para el próximo control necesito el proyecto real, no solo documentación.",
-      "prioridad": "Compartir la carpeta oficial con los archivos HTML, CSS y recursos."
+      "organizacion": 1,
+      "avance": 1,
+      "nota": 1,
+      "devolucion": "Los enlaces que dejaron no son accesibles con la cuenta de revisión. Puede ser un problema de permisos, un enlace incorrecto o un archivo eliminado. Así no puedo verificar el proceso. Necesito una carpeta oficial compartida y accesible.",
+      "prioridad": "Corregir permisos/enlaces y compartir una carpeta oficial accesible.",
+      "estadoEntrega": "No verificable",
+      "ultimaActualizacion": "No verificable"
     },
     {
       "equipo": 7,
       "beneficiario": "La Casa del Perforista",
-      "html": 2,
+      "html": 1,
       "css": 1,
       "funcionalidad": 1,
       "organizacion": 5,
-      "avance": 3,
-      "nota": 2.2,
-      "devolucion": "Hay planificación, contenido y benchmarking, pero la parte de programación no está entregada: el Index.html que aparece está vacío y no hay CSS. La idea está pensada; ahora falta convertirla en sitio.",
-      "prioridad": "Crear el HTML y CSS reales y empezar a probarlos en navegador."
+      "avance": 2,
+      "nota": 1.9,
+      "devolucion": "La carpeta está organizada y hay benchmarking/contenido, pero no hay código utilizable: el Index.html que aparece está vacío y no encontré CSS. El proceso de planificación está, pero falta pasar a desarrollo real.",
+      "prioridad": "Crear archivos HTML/CSS reales y trabajar siempre sobre la carpeta oficial.",
+      "estadoEntrega": "Planificación sí · código no utilizable",
+      "ultimaActualizacion": "31/08/2026"
     },
     {
       "equipo": 8,
       "beneficiario": "Alpa Multisport",
       "html": 6,
       "css": 4,
-      "funcionalidad": 2,
-      "organizacion": 7,
-      "avance": 6,
-      "nota": 4.9,
-      "devolucion": "El contenido está bastante trabajado y la carpeta está ordenada. La página tiene buena cantidad de información e imágenes, pero sigue siendo una sola página y casi no tiene navegación ni interacción. El CSS es todavía muy básico para todo lo que muestra el HTML.",
-      "prioridad": "Separar u organizar mejor el contenido, sumar navegación y completar los requisitos que faltan."
+      "funcionalidad": 1,
+      "organizacion": 4,
+      "avance": 3,
+      "nota": 3.8,
+      "devolucion": "Hay mucho contenido y 7 imágenes en una sola página, pero prácticamente no hay navegación ni interacción y el CSS es muy básico. Además, no veo actualizaciones desde 24/8. Tienen material, pero el sitio necesita avanzar bastante.",
+      "prioridad": "Agregar navegación real, organizar el contenido y retomar actualizaciones en la carpeta.",
+      "estadoEntrega": "Código verificable · una página",
+      "ultimaActualizacion": "24/08/2026"
     },
     {
       "equipo": 9,
@@ -106,10 +122,12 @@
       "css": 1,
       "funcionalidad": 1,
       "organizacion": 3,
-      "avance": 2,
+      "avance": 1,
       "nota": 1.5,
-      "devolucion": "Tienen bastante material de imágenes, pero no encontré HTML ni CSS. A esta altura el problema ya no es de contenido: necesitan empezar o entregar el sitio programado y dejarlo en la misma carpeta.",
-      "prioridad": "Subir HTML/CSS y una versión que se pueda abrir y recorrer."
+      "devolucion": "Hay 16 imágenes cargadas, pero no hay HTML ni CSS. La carpeta sirve como repositorio de recursos, no como entrega del proyecto. El próximo control tiene que mostrar código real.",
+      "prioridad": "Subir HTML/CSS y una versión que pueda abrirse y recorrerse.",
+      "estadoEntrega": "Sólo recursos",
+      "ultimaActualizacion": "26/06/2026"
     },
     {
       "equipo": 10,
@@ -120,20 +138,24 @@
       "organizacion": 1,
       "avance": 1,
       "nota": 1,
-      "devolucion": "No hay entrega verificable. Sin carpeta ni código no puedo evaluar el desarrollo. Para la próxima revisión tiene que estar compartido el proyecto completo.",
-      "prioridad": "Compartir la carpeta oficial con el sitio completo."
+      "devolucion": "No hay enlace. No puedo verificar ni calificar el proceso hasta que compartan la carpeta oficial.",
+      "prioridad": "Compartir la carpeta oficial del proyecto.",
+      "estadoEntrega": "Sin enlace",
+      "ultimaActualizacion": "—"
     },
     {
       "equipo": 11,
       "beneficiario": "Al Paso Mates",
       "html": 5,
-      "css": 6,
+      "css": 5,
       "funcionalidad": 1,
       "organizacion": 3,
-      "avance": 4,
-      "nota": 4,
-      "devolucion": "Hay bastante trabajo escrito en HTML y un CSS con muchas reglas, pero hoy las piezas no están conectadas bien. El HTML busca index.css e images/ como si estuvieran dentro de la misma carpeta y no es así; además el menú llama a una función que no existe. Primero hay que lograr que la página funcione completa.",
-      "prioridad": "Arreglar rutas de CSS e imágenes y eliminar o completar la función de navegación."
+      "avance": 3,
+      "nota": 3.6,
+      "devolucion": "Hay HTML y un CSS bastante trabajado, pero hoy no están conectados correctamente: las rutas de CSS e imágenes no coinciden con la estructura de carpetas y el menú llama a una función que no existe. No veo actualizaciones desde principios de septiembre. Primero hagan que lo que ya tienen funcione.",
+      "prioridad": "Arreglar rutas y navegación antes de seguir agregando contenido.",
+      "estadoEntrega": "Código verificable pero roto",
+      "ultimaActualizacion": "07/09 CSS · 31/08 HTML"
     },
     {
       "equipo": 12,
@@ -141,11 +163,13 @@
       "html": 3,
       "css": 1,
       "funcionalidad": 1,
-      "organizacion": 6,
+      "organizacion": 7,
       "avance": 4,
-      "nota": 2.7,
-      "devolucion": "El contenido y la planificación están bastante avanzados, con sitemap, benchmarking, imágenes y video. Pero el código sigue dentro de un documento y tiene varias etiquetas mal armadas; todavía no hay un HTML/CSS ejecutable. Ya es momento de pasarlo a archivos reales y probarlo en navegador.",
-      "prioridad": "Convertir el documento en archivos HTML/CSS reales y corregir la sintaxis antes de seguir sumando contenido."
+      "nota": 2.9,
+      "devolucion": "La carpeta está bien organizada y sí veo actividad reciente: el documento de programación se actualizó el 16/10. Eso suma al proceso. Pero todavía no hay archivos .html/.css ejecutables; el código sigue dentro de un documento y tiene errores de sintaxis. El siguiente paso es pasarlo a archivos reales.",
+      "prioridad": "Convertir el documento en HTML/CSS ejecutables y probarlos en navegador.",
+      "estadoEntrega": "Documentación reciente · código no ejecutable",
+      "ultimaActualizacion": "16/10/2026"
     },
     {
       "equipo": 14,
@@ -156,8 +180,10 @@
       "organizacion": 1,
       "avance": 1,
       "nota": 1,
-      "devolucion": "No hay entrega verificable. Para poder corregir necesito la carpeta compartida con los archivos reales del sitio.",
-      "prioridad": "Compartir la carpeta oficial y dejar allí HTML, CSS y recursos."
+      "devolucion": "No hay enlace. No puedo verificar el proceso hasta que compartan la carpeta oficial con los archivos reales del sitio.",
+      "prioridad": "Compartir la carpeta oficial con HTML, CSS y recursos.",
+      "estadoEntrega": "Sin enlace",
+      "ultimaActualizacion": "—"
     }
   ]
 }
