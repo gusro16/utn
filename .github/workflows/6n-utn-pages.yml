@@ -72,19 +72,18 @@ jobs:
             rel="${index_path#${dest}/}"
             if [ "${rel}" != "index.html" ]; then
               encoded="$(python -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1]))' "${rel}")"
-              cat > "${dest}/index.html" <<EOF
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=${encoded}">
-  <title>Abriendo proyecto…</title>
-</head>
-<body>
-  <p><a href="${encoded}">Abrir proyecto</a></p>
-</body>
-</html>
-EOF
+              printf '%s\n' \
+                '<!doctype html>' \
+                '<html lang="es">' \
+                '<head>' \
+                '  <meta charset="utf-8">' \
+                "  <meta http-equiv=\"refresh\" content=\"0; url=${encoded}\">" \
+                '  <title>Abriendo proyecto…</title>' \
+                '</head>' \
+                '<body>' \
+                "  <p><a href=\"${encoded}\">Abrir proyecto</a></p>" \
+                '</body>' \
+                '</html>' > "${dest}/index.html"
             fi
           }
 
