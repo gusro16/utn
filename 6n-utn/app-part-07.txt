@@ -21,6 +21,43 @@ function renderRubric(){const box=document.getElementById('rubricTable');if(!box
 function updateRubricSummary(){const s=rubricSaved();const answered=rubricItems.filter(r=>s[r.id]!==undefined);const strong=answered.filter(r=>s[r.id]<=1).length;const risk=answered.filter(r=>s[r.id]>=2).length;const cbos=rubricItems.filter(r=>r.cbo),cboAnswered=cbos.filter(r=>s[r.id]!==undefined),cboRisk=cboAnswered.filter(r=>s[r.id]>=2).length;document.getElementById('rubricAnswered').textContent=`${answered.length}/${rubricItems.length}`;document.getElementById('rubricStrong').textContent=strong;document.getElementById('rubricRisk').textContent=risk;document.getElementById('rubricCbo').textContent=cboAnswered.length?`${cboRisk} a revisar`:'Sin revisar'}
 function setupRubric(){document.querySelectorAll('#rubricTabs .chip').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#rubricTabs .chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');rubricFilter=b.dataset.rubricFilter;renderRubric()}));document.getElementById('resetRubric')?.addEventListener('click',()=>{localStorage.removeItem('utn6n_rubric');renderRubric()});renderRubric()}
 
+const AUTOEVAL_6N_ENDPOINT='https://script.google.com/a/macros/northfield.edu.ar/s/AKfycbxQfpPFnyvZJULhU17eK0QSgb5dIc1w4ms0DUAp-Pp1TtTf7LNM1exQ6zEZOn4_3fts/exec';
+const AUTOEVAL_6N_TEAMS=['Paterno / Tinnirello','Serio / Ledesma','Tartufoli / Converso','Lagrotta / Arcas','Resumil / Medrano','Bonaventura / Vidal','Veleche / Bedascarrasbure','Castellano / Tagliatti','Benetti / Pagura','Pace / López Letizia','Spollansky / Figueira','Ruiz Barassi / Ansó','Sosa / Bolli','Giavedoni','De Benedictis','Di Filippo / Martínez Merino'];
+function is6NSite(){return !location.pathname.includes('/6f/')}
+function visualSaved(){try{const v=JSON.parse(localStorage.getItem('utn6n_visual')||'[]');return Array.isArray(v)?v:[]}catch{return []}}
+function refreshRubricSubmissionStatus(){
+ const el=document.getElementById('rubricSubmitProgress');if(!el)return;
+ const r=rubricSaved(),answered=rubricItems.filter(x=>r[x.id]!==undefined).length,v=visualSaved().filter(Boolean).length;
+ el.textContent='Rúbrica: '+answered+'/'+rubricItems.length+' criterios respondidos · Checklist visual: '+v+'/12 marcados';
+ const btn=document.getElementById('rubricSubmit6n');if(btn)btn.disabled=answered<rubricItems.length;
+}
+function setupRubricSubmission(){
+ if(!is6NSite())return;
+ const section=document.getElementById('rubrica'),summary=section?.querySelector('.rubric-summary');if(!section||!summary||document.getElementById('rubricSubmission6n'))return;
+ const style=document.createElement('style');
+ style.textContent='#rubricSubmission6n{padding:22px 24px;margin:18px 0;border-left:5px solid #2563eb}#rubricSubmission6n h3{margin:0 0 6px}#rubricSubmission6n p{margin:6px 0 14px;line-height:1.55}#rubricSubmission6n .rubric-submit-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:end}#rubricSubmission6n label{display:grid;gap:7px;font-weight:800}#rubricSubmission6n select{width:100%;padding:12px 14px;border:1px solid #b9c6d9;border-radius:10px;background:#fff;font:inherit}#rubricSubmission6n button{padding:12px 18px}#rubricSubmission6n button:disabled{opacity:.5;cursor:not-allowed}#rubricSubmitProgress,#rubricSubmitStatus{display:block;margin-top:10px;color:#475569}#rubricSubmitStatus.ok{color:#166534;font-weight:800}#rubricSubmitStatus.error{color:#b91c1c;font-weight:800}@media(max-width:700px){#rubricSubmission6n .rubric-submit-grid{grid-template-columns:1fr}}';
+ document.head.append(style);
+ const opts=AUTOEVAL_6N_TEAMS.map(t=>'<option value="'+t+'">'+t+'</option>').join('');
+ const panel=document.createElement('div');panel.id='rubricSubmission6n';panel.className='card';
+ panel.innerHTML='<h3>📤 Entregar mi autoevaluación</h3><p>Completá los <strong>24 criterios</strong> de la rúbrica, elegí tu equipo y enviá el resultado. Tus elecciones siguen guardadas en este dispositivo hasta que las reinicies.</p><div class="rubric-submit-grid"><label>Equipo<select id="rubricTeam6n"><option value="">Elegí tu equipo</option>'+opts+'</select></label><button class="primary" id="rubricSubmit6n" type="button">Enviar autoevaluación</button></div><small id="rubricSubmitProgress"></small><small id="rubricSubmitStatus"></small>';
+ summary.after(panel);
+ const team=document.getElementById('rubricTeam6n'),btn=document.getElementById('rubricSubmit6n'),status=document.getElementById('rubricSubmitStatus');
+ const previous=localStorage.getItem('utn6n_equipo')||'';if(AUTOEVAL_6N_TEAMS.includes(previous))team.value=previous;
+ team.addEventListener('change',()=>localStorage.setItem('utn6n_equipo',team.value));
+ const iframe=document.createElement('iframe');iframe.name='rubricSubmitFrame6n';iframe.hidden=true;document.body.append(iframe);
+ let sending=false;
+ iframe.addEventListener('load',()=>{if(!sending)return;sending=false;btn.disabled=false;status.className='ok';status.textContent='✓ Envío realizado. El profesor podrá revisarlo en la planilla.';localStorage.setItem('utn6n_last_submission',JSON.stringify({equipo:team.value,fecha:new Date().toISOString()}));refreshRubricSubmissionStatus()});
+ btn.addEventListener('click',()=>{
+   status.className='';const rubrica=rubricSaved(),answered=rubricItems.filter(x=>rubrica[x.id]!==undefined).length;
+   if(!team.value){status.className='error';status.textContent='Elegí tu equipo antes de enviar.';return}
+   if(answered<rubricItems.length){status.className='error';status.textContent='Faltan responder '+(rubricItems.length-answered)+' criterios de la rúbrica.';return}
+   const form=document.createElement('form');form.method='POST';form.action=AUTOEVAL_6N_ENDPOINT;form.target='rubricSubmitFrame6n';form.style.display='none';
+   const input=document.createElement('input');input.type='hidden';input.name='payload';input.value=JSON.stringify({equipo:team.value,rubrica:rubrica,visual:visualSaved(),origen:'6N Proyecto Web 2026'});
+   form.append(input);document.body.append(form);sending=true;btn.disabled=true;status.textContent='Enviando…';form.submit();form.remove();
+ });
+ document.addEventListener('click',e=>{if(e.target.closest?.('.rubric-choice')||e.target.id==='resetRubric')setTimeout(refreshRubricSubmissionStatus,0)});
+ refreshRubricSubmissionStatus();
+}
 let qIndex=0;function renderQuestion(){const [q,g]=defenseQuestions[qIndex];document.getElementById('questionNumber').textContent=String(qIndex+1).padStart(2,'0');document.getElementById('defenseQuestion').textContent=q;const guide=document.getElementById('answerGuide');guide.textContent=g;guide.classList.add('hidden')}
 function setupDefense(){document.getElementById('newQuestion').addEventListener('click',()=>{let n;do{n=Math.floor(Math.random()*defenseQuestions.length)}while(n===qIndex&&defenseQuestions.length>1);qIndex=n;renderQuestion()});document.getElementById('showGuide').addEventListener('click',()=>document.getElementById('answerGuide').classList.toggle('hidden'));renderQuestion()}
 
@@ -29,4 +66,4 @@ function closeModal(){document.getElementById('modalBackdrop').hidden=true;docum
 function setupModal(){document.getElementById('modalClose').addEventListener('click',closeModal);document.getElementById('modalBackdrop').addEventListener('click',e=>{if(e.target.id==='modalBackdrop')closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()})}
 function escapeHtml(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
 
-setupNavigation();renderCalendar();setupLessonFilters();renderProblems();renderVisualChecklist();setupAnalyzer();setupRubric();setupDefense();setupModal();
+setupNavigation();renderCalendar();setupLessonFilters();renderProblems();renderVisualChecklist();setupAnalyzer();setupRubric();setupRubricSubmission();setupDefense();setupModal();
