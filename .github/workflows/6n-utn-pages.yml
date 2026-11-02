@@ -28,14 +28,14 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Restore cached student sites
-        id: project-cache
+        id: project_cache
         uses: actions/cache@v4
         with:
           path: .project-sites-cache
           key: 6n-project-sites-final-v1
 
       - name: Build navigable copies of final 6N projects
-        if: steps.project-cache.outputs.cache-hit != 'true'
+        if: steps.project_cache.outputs['cache-hit'] != 'true'
         shell: bash
         run: |
           set -euo pipefail
