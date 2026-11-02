@@ -26,102 +26,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-
-      - name: Restore cached student sites
-        id: project_cache
-        uses: actions/cache@v4
-        with:
-          path: .project-sites-cache
-          key: 6n-project-sites-final-v1
-
-      - name: Build navigable copies of final 6N projects
-        if: steps.project_cache.outputs['cache-hit'] != 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
-          python -m pip install --quiet gdown
-          rm -rf .project-sites-cache
-          mkdir -p .project-sites-cache
-
-          prepare_project() {
-            slug="$1"
-            file_id="$2"
-            zip="/tmp/${slug}.zip"
-            dest=".project-sites-cache/${slug}"
-
-            echo "Preparing ${slug}"
-            python -m gdown "${file_id}" -O "${zip}"
-
-            mkdir -p "${dest}"
-            unzip -q "${zip}" -d "${dest}"
-            rm -f "${zip}"
-
-            find "${dest}" -type d -name "__MACOSX" -prune -exec rm -rf {} + || true
-            find "${dest}" -type f \( -name ".DS_Store" -o -name "._*" \) -delete || true
-
-            # GitHub Pages is for review/navigation. Very large local media are
-            # omitted from this copy; the original final ZIP in Drive is untouched.
-            find "${dest}" -type f -size +90M -print -delete || true
-
-            index_path="$(find "${dest}" -type f -iname 'index.html' -printf '%d %p\n' | sort -n | head -n 1 | cut -d' ' -f2- || true)"
-            if [ -z "${index_path}" ]; then
-              echo "No index.html found for ${slug}" >&2
-              exit 1
-            fi
-
-            rel="${index_path#${dest}/}"
-            if [ "${rel}" != "index.html" ]; then
-              encoded="$(python -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1]))' "${rel}")"
-              printf '%s\n' \
-                '<!doctype html>' \
-                '<html lang="es">' \
-                '<head>' \
-                '  <meta charset="utf-8">' \
-                "  <meta http-equiv=\"refresh\" content=\"0; url=${encoded}\">" \
-                '  <title>Abriendo proyecto…</title>' \
-                '</head>' \
-                '<body>' \
-                "  <p><a href=\"${encoded}\">Abrir proyecto</a></p>" \
-                '</body>' \
-                '</html>' > "${dest}/index.html"
-            fi
-          }
-
-          prepare_project "paterno-tinnirello" "1PNZGMpq72zy-oDdmIzjWEMHPvg_ZuCmO"
-          prepare_project "serio-ledesma" "1KNusUc_FUAxFotdShJkkOxGI8jjf7GDN"
-          prepare_project "tartufoli-converso" "1__AEAjceKx-qmZFmU0a8phuc9_lQ2o81"
-          prepare_project "lagrotta-arcas" "1e9_7IZAnJGCViG53--IBbRLWgNFxjgfD"
-          prepare_project "resumil-medrano" "1BnBU4ZE3rewJdAG0Il2THiJLU8FbnFxw"
-          prepare_project "bonaventura-vidal" "1Y252E--s5h8mk-Zn6G3SkX9WVdKuVp_A"
-          prepare_project "veleche-bedascarrasbure" "14rcxBgG87KCRE-dYCukKPuVLKd7PF3lZ"
-          prepare_project "castellano-tagliatti" "1Q2mXMFmepSsnjbMYHbkZ5d5LU2x5_e0Z"
-          prepare_project "benetti-pagura" "1FAjTlp10GtCv1BfNchP6pQDvjs-bqt1W"
-          prepare_project "pace-lopez-letizia" "1y3fIFO30QPMjcuC1YeUPle5Jcc9XpX62"
-          prepare_project "ruiz-barassi-anso" "15qHY_9ZsPCwGK11ax_ZdSvHym-3MU6n5"
-          prepare_project "sosa-bolli" "1YxwZvEud5tw_9yvDo52HyFFE_HgJguNV"
-          prepare_project "giavedoni" "1HMrxfPMtTBDSNBPRg8GjRpWldE5aYVf0"
-          prepare_project "de-benedictis" "1Kbbrnb0WXpZZs4vfgiYqh3bNgAYWDA5_"
-          prepare_project "di-filippo-martinez-merino" "1BVqpiOHR6obtnZE5ykAlykwyLL8qdwmZ"
-
-      - name: Add student sites to Pages artifact
-        shell: bash
-        run: |
-          rm -rf 6n-utn/proyectos-6n
-          mkdir -p 6n-utn/proyectos-6n
-          cp -a .project-sites-cache/. 6n-utn/proyectos-6n/
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
-
       - name: Upload site
         uses: actions/upload-pages-artifact@v4
         with:
           path: 6n-utn
-
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
 
-# Las copias navegables se generan desde los ZIP finales congelados en Drive.
+# Relanzado tras habilitar GitHub Pages
