@@ -15,6 +15,23 @@ errores mínimos que no afectan funcionamiento.','Errores de anidación/indentac
  {id:'participacion',group:'coloquio',name:'Participación individual en la defensa',cbo:false,d:['Todos participan activamente y responden de manera autónoma.','Todos participan, aunque alguno requiere apoyo del grupo.','Participación desigual o intervención mínima de algún integrante.','Uno o más no participan efectivamente ni responden consultas.']},
  {id:'argumentacion',group:'coloquio',name:'Argumentación y reflexión',cbo:false,d:['Justifican decisiones, reflexionan sobre el proceso y reconocen aciertos/dificultades.','Justifican decisiones principales con poca profundización.','Respuestas descriptivas y poco reflexivas; cuesta justificar decisiones.','No logran justificar el trabajo ni reflexionar sobre el aprendizaje.']}
 ];
+function cleanPublicUrl6N(){
+  try{
+    const u=new URL(location.href);
+    let changed=false;
+    [...u.searchParams.entries()].forEach(([k,v])=>{
+      const pair=(k+'='+v).toLowerCase();
+      if(k.toLowerCase().startsWith('utm_')||pair.includes('chatgpt')||pair.includes('openai')||pair.includes('gpt')){
+        u.searchParams.delete(k);changed=true;
+      }
+    });
+    if(changed){
+      const qs=u.searchParams.toString();
+      history.replaceState(null,'',u.pathname+(qs?'?'+qs:'')+u.hash);
+    }
+  }catch(e){}
+}
+cleanPublicUrl6N();
 let rubricFilter='all';
 function rubricSaved(){try{return JSON.parse(localStorage.getItem('utn6n_rubric')||'{}')}catch{return {}}}
 function renderRubric(){const box=document.getElementById('rubricTable');if(!box)return;const saved=rubricSaved();const filtered=rubricItems.filter(r=>rubricFilter==='all'||r.group===rubricFilter||(rubricFilter==='cbo'&&r.cbo));box.innerHTML='';filtered.forEach(r=>{const row=document.createElement('div');row.className='rubric-row';row.innerHTML=`<div class="rubric-row-head"><div><h3>${r.name}${r.cbo?'<span class="cbo-badge">CBO relacionado</span>':''}</h3><div class="rubric-meta">${r.group==='proyecto'?'PROYECTO / PRESENTACIÓN':r.group==='tecnico'?'ASPECTO TÉCNICO':'COLOQUIO'}</div></div></div><div class="rubric-levels">${r.d.map((txt,i)=>`<button class="rubric-choice level-${3-i} ${saved[r.id]===i?'selected':''}" data-rid="${r.id}" data-level="${i}"><strong>${rubricLevels[i]}</strong>${txt}</button>`).join('')}</div>`;box.appendChild(row)});box.querySelectorAll('.rubric-choice').forEach(b=>b.addEventListener('click',()=>{const x=rubricSaved();x[b.dataset.rid]=Number(b.dataset.level);localStorage.setItem('utn6n_rubric',JSON.stringify(x));renderRubric();updateRubricSummary()}));updateRubricSummary()}
