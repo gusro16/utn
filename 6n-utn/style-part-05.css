@@ -1,1 +1,32 @@
 .deep-guide pre{white-space:pre-wrap}.guide-actions{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}.guide-mini-quiz{background:#f5f3ff;border:1px solid #ddd6fe;border-radius:12px;padding:14px;margin-top:16px}.guide-mini-quiz strong{display:block;margin-bottom:6px}
+
+
+/* Ajustes mobile para fichas y modales de contenido */
+html,body{max-width:100%;overflow-x:hidden}
+.modal-backdrop{width:100%;max-width:100vw;overflow-x:hidden}
+.modal{min-width:0;max-width:760px;width:100%;overflow-x:hidden}
+.modal h2,.modal h3,.modal p,.modal li,.modal .mini-task,.modal .question-box,.modal .warning-box{overflow-wrap:anywhere;word-break:normal}
+.modal pre{max-width:100%;min-width:0;white-space:pre-wrap;overflow-x:auto;overflow-y:hidden}
+.modal pre code{white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
+.modal img,.modal video,.modal iframe,.modal table{max-width:100%}
+.deep-guide,.concept-visual,.deep-resource-bar,.guide-step,.guide-compare,.guide-panel,.guide-diagram,.guide-row,.guide-box{min-width:0;max-width:100%}
+
+@media(max-width:720px){
+  .modal-backdrop{padding:6px;place-items:start stretch}
+  .modal{width:100%;max-width:100%;margin:6px 0;padding:20px 16px;border-radius:18px}
+  .modal h2{font-size:1.55rem;line-height:1.12;margin-right:38px}
+  .modal h3{font-size:1.12rem;line-height:1.25}
+  .modal p,.modal li{font-size:.98rem;line-height:1.55}
+  .modal-close{right:10px;top:10px}
+  .deep-resource-bar{display:grid;grid-template-columns:1fr;align-items:stretch}
+  .deep-resource-bar strong{margin-right:0}
+  .deep-btn{width:100%}
+  .guide-compare{grid-template-columns:1fr}
+  .guide-row{display:grid;grid-template-columns:1fr}
+  .guide-row>.guide-box{width:100%}
+  .concept-visual{padding:12px}
+  .bm-margin{padding:22px 14px 14px}
+  .bm-border{padding:16px 10px 10px}
+  .bm-padding{padding:20px 8px 8px}
+  .bm-content{padding:14px 8px}
+}
