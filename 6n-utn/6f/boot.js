@@ -27,7 +27,7 @@
   doc.querySelector('#deliveryLogic')?.remove();
 
   // Repositorio oficial 6F conectado al Apps Script institucional.
-  const REPO_URL='https://script.google.com/a/macros/northfield.edu.ar/s/AKfycbyRI-VhT1gd1q4C4vuag9_OzdUInk2q0i2G5FoJfBnxu9pMoMu7p3_VirSoosqJnog1Tg/exec';
+  const REPO_URL='https://script.google.com/a/macros/northfield.edu.ar/s/AKfycbzFY-sUUC_aTMBi3qxX6gBfN7WXDlBcgvRHWP9akD1Z37Y75vJBACorjpbFP-6b3qVflg/exec';
 
   const navEntrega=doc.createElement('button');
   navEntrega.className='nav-btn';
