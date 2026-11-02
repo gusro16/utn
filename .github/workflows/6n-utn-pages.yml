@@ -71,11 +71,7 @@ jobs:
 
             rel="${index_path#${dest}/}"
             if [ "${rel}" != "index.html" ]; then
-              encoded="$(python - "${rel}" <<'PY'
-import sys, urllib.parse
-print(urllib.parse.quote(sys.argv[1]))
-PY
-)"
+              encoded="$(python -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1]))' "${rel}")"
               cat > "${dest}/index.html" <<EOF
 <!doctype html>
 <html lang="es">
