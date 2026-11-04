@@ -117,3 +117,4 @@ jobs:
         uses: actions/deploy-pages@v4
 
 # Copias navegables de los ZIP finales compartidos con UTN.
+# Publicación forzada tras corrección del envío de autoevaluaciones 6N.
