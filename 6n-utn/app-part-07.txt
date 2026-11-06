@@ -39,6 +39,7 @@ function updateRubricSummary(){const s=rubricSaved();const answered=rubricItems.
 function setupRubric(){document.querySelectorAll('#rubricTabs .chip').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#rubricTabs .chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');rubricFilter=b.dataset.rubricFilter;renderRubric()}));document.getElementById('resetRubric')?.addEventListener('click',()=>{localStorage.removeItem('utn6n_rubric');renderRubric()});renderRubric()}
 
 const AUTOEVAL_6N_ENDPOINT='https://utn-6n-autoeval-api-gusros16-9799.vercel.app/api/autoeval-6n';
+const AUTOEVAL_6N_STATUS_ENDPOINT='https://utn-6n-autoeval-api-gusros16-9799.vercel.app/api/status-6n';
 const AUTOEVAL_6N_TEAMS=['Paterno / Tinnirello','Serio / Ledesma','Tartufoli / Converso','Lagrotta / Arcas','Resumil / Medrano','Bonaventura / Vidal','Veleche / Bedascarrasbure','Castellano / Tagliatti','Benetti / Pagura','Pace / López Letizia','Di Filippo / Martínez Merino','Ruiz Barassi / Ansó','Sosa / Bolli','Giavedoni','De Benedictis'];
 function is6NSite(){return !location.pathname.includes('/6f/')}
 function visualSaved(){try{const v=JSON.parse(localStorage.getItem('utn6n_visual')||'[]');return Array.isArray(v)?v:[]}catch{return []}}
@@ -48,16 +49,52 @@ function refreshRubricSubmissionStatus(){
  el.textContent='Rúbrica: '+answered+'/'+rubricItems.length+' criterios respondidos · Checklist visual: '+v+'/12 marcados';
  const btn=document.getElementById('rubricSubmit6n');if(btn&&!btn.dataset.sending)btn.disabled=answered<rubricItems.length;
 }
+function formatSubmissionDate6N(value){
+ if(!value)return '';
+ try{return new Date(value).toLocaleString('es-AR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}catch(e){return ''}
+}
+async function refreshAutoevalPublicStatus6N(){
+ if(!is6NSite())return;
+ const box=document.getElementById('autoevalStatus6n');
+ if(!box)return;
+ const delivered=box.querySelector('[data-role="delivered"]');
+ const pending=box.querySelector('[data-role="pending"]');
+ const summary=box.querySelector('[data-role="summary"]');
+ const updated=box.querySelector('[data-role="updated"]');
+ try{
+   const response=await fetch(AUTOEVAL_6N_STATUS_ENDPOINT,{cache:'no-store'});
+   const data=await response.json();
+   if(!response.ok||!data.ok)throw new Error(data.error||'No disponible');
+   summary.textContent=data.totalEntregas+' de '+data.totalEquipos+' equipos ya enviaron la autoevaluación.';
+   delivered.innerHTML=(data.entregaron||[]).length
+     ? data.entregaron.map(x=>'<li><strong>'+escapeHtml(x.equipo)+'</strong><small>'+formatSubmissionDate6N(x.submittedAt)+'</small></li>').join('')
+     : '<li class="muted">Todavía no hay entregas registradas.</li>';
+   pending.innerHTML=(data.faltan||[]).length
+     ? data.faltan.map(x=>'<li>'+escapeHtml(x)+'</li>').join('')
+     : '<li class="complete">Todos los equipos entregaron.</li>';
+   updated.textContent='Estado consultado: '+new Date(data.actualizado||Date.now()).toLocaleString('es-AR');
+ }catch(error){
+   summary.textContent='No se pudo actualizar el estado en este momento.';
+   delivered.innerHTML='<li class="muted">Volvé a intentar en unos minutos.</li>';
+   pending.innerHTML='';
+   updated.textContent='';
+ }
+}
+
 function setupRubricSubmission(){
  if(!is6NSite())return;
  const section=document.getElementById('rubrica'),summary=section?.querySelector('.rubric-summary');if(!section||!summary||document.getElementById('rubricSubmission6n'))return;
  const style=document.createElement('style');
- style.textContent='#rubricSubmission6n{padding:22px 24px;margin:18px 0;border-left:5px solid #2563eb}#rubricSubmission6n h3{margin:0 0 6px}#rubricSubmission6n p{margin:6px 0 14px;line-height:1.55}#rubricSubmission6n .rubric-submit-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:end}#rubricSubmission6n label{display:grid;gap:7px;font-weight:800}#rubricSubmission6n select{width:100%;padding:12px 14px;border:1px solid #b9c6d9;border-radius:10px;background:#fff;font:inherit}#rubricSubmission6n button{padding:12px 18px}#rubricSubmission6n button:disabled{opacity:.5;cursor:not-allowed}#rubricSubmitProgress,#rubricSubmitStatus{display:block;margin-top:10px;color:#475569}#rubricSubmitStatus.ok{color:#166534;font-weight:800}#rubricSubmitStatus.error{color:#b91c1c;font-weight:800}@media(max-width:700px){#rubricSubmission6n .rubric-submit-grid{grid-template-columns:1fr}}';
+ style.textContent='#rubricSubmission6n{padding:22px 24px;margin:18px 0;border-left:5px solid #2563eb}#rubricSubmission6n h3{margin:0 0 6px}#rubricSubmission6n p{margin:6px 0 14px;line-height:1.55}#rubricSubmission6n .rubric-submit-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:end}#rubricSubmission6n label{display:grid;gap:7px;font-weight:800}#rubricSubmission6n select{width:100%;padding:12px 14px;border:1px solid #b9c6d9;border-radius:10px;background:#fff;font:inherit}#rubricSubmission6n button{padding:12px 18px}#rubricSubmission6n button:disabled{opacity:.5;cursor:not-allowed}#rubricSubmitProgress,#rubricSubmitStatus{display:block;margin-top:10px;color:#475569}#rubricSubmitStatus.ok{color:#166534;font-weight:800}#rubricSubmitStatus.error{color:#b91c1c;font-weight:800}@media(max-width:700px){#rubricSubmission6n .rubric-submit-grid{grid-template-columns:1fr}}#autoevalStatus6n{padding:22px 24px;margin:18px 0;border-left:5px solid #16a34a}#autoevalStatus6n h3{margin:0 0 6px}#autoevalStatus6n .autoeval-status-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}#autoevalStatus6n .autoeval-status-col{border:1px solid #dbe3ee;border-radius:12px;padding:14px 16px;background:#f8fafc}#autoevalStatus6n .autoeval-status-col h4{margin:0 0 10px}#autoevalStatus6n ul{margin:0;padding-left:20px;display:grid;gap:7px}#autoevalStatus6n li small{display:block;color:#64748b;margin-top:2px}#autoevalStatus6n .muted{color:#64748b}#autoevalStatus6n .complete{color:#166534;font-weight:800}#autoevalStatus6n [data-role=updated]{display:block;margin-top:12px;color:#64748b}@media(max-width:700px){#autoevalStatus6n .autoeval-status-grid{grid-template-columns:1fr}}';
  document.head.append(style);
  const opts=AUTOEVAL_6N_TEAMS.map(t=>'<option value="'+t+'">'+t+'</option>').join('');
  const panel=document.createElement('div');panel.id='rubricSubmission6n';panel.className='card';
  panel.innerHTML='<h3>Entregar mi autoevaluación</h3><p>Completá los <strong>24 criterios</strong>, elegí tu equipo y enviá. El sistema confirma el envío solamente cuando queda guardado correctamente.</p><div class="rubric-submit-grid"><label>Equipo<select id="rubricTeam6n"><option value="">Elegí tu equipo</option>'+opts+'</select></label><button class="primary" id="rubricSubmit6n" type="button">Enviar autoevaluación</button></div><small id="rubricSubmitProgress"></small><small id="rubricSubmitStatus"></small>';
  summary.after(panel);
+ const statusPanel=document.createElement('div');statusPanel.id='autoevalStatus6n';statusPanel.className='card';
+ statusPanel.innerHTML='<h3>Estado de entregas</h3><p data-role="summary">Consultando entregas…</p><div class="autoeval-status-grid"><div class="autoeval-status-col"><h4>✅ Entregaron</h4><ul data-role="delivered"><li class="muted">Consultando…</li></ul></div><div class="autoeval-status-col"><h4>⏳ Falta entregar</h4><ul data-role="pending"><li class="muted">Consultando…</li></ul></div></div><small data-role="updated"></small>';
+ panel.after(statusPanel);
+ refreshAutoevalPublicStatus6N();
 
  const team=document.getElementById('rubricTeam6n'),btn=document.getElementById('rubricSubmit6n'),status=document.getElementById('rubricSubmitStatus');
  const previous=localStorage.getItem('utn6n_equipo')||'';if(AUTOEVAL_6N_TEAMS.includes(previous))team.value=previous;
@@ -93,6 +130,7 @@ function setupRubricSubmission(){
      localStorage.setItem('utn6n_last_submission',JSON.stringify({equipo:team.value,fecha,receipt:data.receipt||''}));
      status.className='ok';
      status.textContent='Envío confirmado y guardado.'+(data.receipt?' Comprobante: '+data.receipt:'');
+     refreshAutoevalPublicStatus6N();
    }catch(error){
      status.className='error';
      status.textContent='No quedó enviado. Revisá la conexión y probá nuevamente. Si sigue fallando, avisale al profesor.';
