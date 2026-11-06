@@ -15,7 +15,8 @@ const TEAMS = [
   'Ruiz Barassi / Ansó',
   'Sosa / Bolli',
   'Giavedoni',
-  'De Benedictis'
+  'De Benedictis',
+  'Spollansky / Figueira'
 ];
 
 export default async function handler(req, res) {
