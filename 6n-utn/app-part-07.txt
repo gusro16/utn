@@ -40,7 +40,7 @@ function setupRubric(){document.querySelectorAll('#rubricTabs .chip').forEach(b=
 
 const AUTOEVAL_6N_ENDPOINT='https://utn-6n-autoeval-api-gusros16-9799.vercel.app/api/autoeval-6n';
 const AUTOEVAL_6N_STATUS_ENDPOINT='https://utn-6n-autoeval-api-gusros16-9799.vercel.app/api/status-6n';
-const AUTOEVAL_6N_TEAMS=['Paterno / Tinnirello','Serio / Ledesma','Tartufoli / Converso','Lagrotta / Arcas','Resumil / Medrano','Bonaventura / Vidal','Veleche / Bedascarrasbure','Castellano / Tagliatti','Benetti / Pagura','Pace / López Letizia','Di Filippo / Martínez Merino','Ruiz Barassi / Ansó','Sosa / Bolli','Giavedoni','De Benedictis'];
+const AUTOEVAL_6N_TEAMS=['Paterno / Tinnirello','Serio / Ledesma','Tartufoli / Converso','Lagrotta / Arcas','Resumil / Medrano','Bonaventura / Vidal','Veleche / Bedascarrasbure','Castellano / Tagliatti','Benetti / Pagura','Pace / López Letizia','Di Filippo / Martínez Merino','Ruiz Barassi / Ansó','Sosa / Bolli','Giavedoni','De Benedictis','Spollansky / Figueira'];
 function is6NSite(){return !location.pathname.includes('/6f/')}
 function visualSaved(){try{const v=JSON.parse(localStorage.getItem('utn6n_visual')||'[]');return Array.isArray(v)?v:[]}catch{return []}}
 function refreshRubricSubmissionStatus(){
