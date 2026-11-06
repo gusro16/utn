@@ -46,6 +46,35 @@ const routeSteps = [
   for(const [a,b] of replacements) code=code.split(a).join(b);
   code=code.split('UTN.BA').join('').split('UTN').join('').split('6N').join('6F');
   (0,eval)(code);
+
+  try{
+    const res=await fetch('entregas-6f.json',{cache:'no-store'});
+    if(res.ok){
+      const data=await res.json();
+      const section=document.getElementById('entrega6f');
+      if(section&&!document.getElementById('repoStatus6f')){
+        const esc=(v)=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+        const equipos=Array.isArray(data.equipos)?data.equipos:[];
+        const entregados=equipos.filter(e=>e.estado==='entregado');
+        const pendientes=equipos.filter(e=>e.estado!=='entregado');
+        const item=(e)=>'<li><strong>Equipo '+esc(e.equipo)+' · '+esc(e.integrantes)+'</strong><small>'+esc(e.proyecto)+'</small></li>';
+        const total=data.totalEquipos||equipos.length;
+        const panel=document.createElement('div');
+        panel.id='repoStatus6f';
+        panel.className='card';
+        panel.innerHTML='<div class="section-head"><div><p class="eyebrow">ESTADO DEL REPOSITORIO</p><h3>Quiénes entregaron y quiénes faltan</h3></div><strong class="repo-status-count">'+entregados.length+' / '+total+'</strong></div><p class="repo-status-note">Se considera entregado cuando hay una actualización real del proyecto registrada en la carpeta <strong>ACTUAL</strong>.</p><div class="repo-status-grid"><div class="repo-status-col"><h4>✅ Entregaron</h4><ul>'+(entregados.length?entregados.map(item).join(''):'<li class="muted">Todavía no hay entregas registradas.</li>')+'</ul></div><div class="repo-status-col"><h4>⏳ Falta entregar</h4><ul>'+(pendientes.length?pendientes.map(item).join(''):'<li class="complete">Todos los equipos entregaron.</li>')+'</ul></div></div><small class="repo-status-updated">Estado revisado: '+esc(data.actualizado?new Date(data.actualizado).toLocaleString('es-AR'):'Sin dato')+'</small>';
+
+        const firstCard=section.querySelector('.card');
+        if(firstCard) firstCard.after(panel); else section.append(panel);
+
+        const style=document.createElement('style');
+        style.textContent='#repoStatus6f{padding:24px 28px;margin-top:18px;border-left:5px solid #16a34a}#repoStatus6f .repo-status-count{font-size:1.35rem;color:#166534}#repoStatus6f .repo-status-note{margin:8px 0 16px;color:#475569}#repoStatus6f .repo-status-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}#repoStatus6f .repo-status-col{border:1px solid #dbe3ee;border-radius:14px;padding:16px 18px;background:#f8fafc}#repoStatus6f .repo-status-col h4{margin:0 0 12px}#repoStatus6f .repo-status-col ul{margin:0;padding-left:20px;display:grid;gap:9px}#repoStatus6f .repo-status-col li small{display:block;color:#64748b;margin-top:2px}#repoStatus6f .repo-status-updated{display:block;margin-top:12px;color:#64748b}#repoStatus6f .muted{color:#64748b}#repoStatus6f .complete{color:#166534;font-weight:800}@media(max-width:760px){#repoStatus6f .repo-status-grid{grid-template-columns:1fr}}';
+        document.head.append(style);
+      }
+    }
+  }catch(err){
+    console.warn('No se pudo cargar el estado de entregas 6F',err);
+  }
 })().catch(err=>{
   console.error(err);
   document.body.innerHTML='<main style="font-family:Arial;padding:2rem"><h1>No se pudo cargar el asistente de 6F</h1><p>Recargá la página. Si el problema continúa, avisale al profesor.</p></main>';
