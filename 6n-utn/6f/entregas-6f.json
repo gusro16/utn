@@ -1,0 +1,84 @@
+{
+  "actualizado": "2026-11-06T16:11:00-03:00",
+  "totalEquipos": 13,
+  "equipos": [
+    {
+      "equipo": "01",
+      "integrantes": "Barletta / Lombraña",
+      "proyecto": "Vintage Market Tigre",
+      "estado": "pendiente"
+    },
+    {
+      "equipo": "02",
+      "integrantes": "Álvarez Posse / Yeste",
+      "proyecto": "Dos Orejas",
+      "estado": "pendiente"
+    },
+    {
+      "equipo": "03",
+      "integrantes": "Miranda Guarnieri / Martino",
+      "proyecto": "El Bórdo",
+      "estado": "pendiente"
+    },
+    {
+      "equipo": "04",
+      "integrantes": "Basualdo / Ticinese / Cristal",
+      "proyecto": "Gelato Stelvio",
+      "estado": "pendiente"
+    },
+    {
+      "equipo": "05",
+      "integrantes": "Vaicaitis / Bessone",
+      "proyecto": "Casa Cúrcuma",
+      "estado": "pendiente"
+    },
+    {
+      "equipo": "06",
+      "integrantes": "Gioia / Carman",
+      "proyecto": "Dunge Didácticos",
+      "estado": "pendiente"
+    },
+    {
+      "equipo": "07",
+      "integrantes": "Suárez / Albelo",
+      "proyecto": "La Casa del Perforista",
+      "estado": "pendiente"
+    },
+    {
+      "equipo": "08",
+      "integrantes": "Di Menna / Itzaina",
+      "proyecto": "Alpa Multisport",
+      "estado": "pendiente"
+    },
+    {
+      "equipo": "09",
+      "integrantes": "Giannetto / Artigas",
+      "proyecto": "Golta Camisetas",
+      "estado": "pendiente"
+    },
+    {
+      "equipo": "10",
+      "integrantes": "Pérez Wierna / Fernández",
+      "proyecto": "Cede World Padel Center Chivilcoy",
+      "estado": "entregado"
+    },
+    {
+      "equipo": "11",
+      "integrantes": "Cañada Repossi / Gastaldi",
+      "proyecto": "Al Paso Mates",
+      "estado": "pendiente"
+    },
+    {
+      "equipo": "12",
+      "integrantes": "Martínez Merino / Di Filippo",
+      "proyecto": "ONG CEAPI",
+      "estado": "pendiente"
+    },
+    {
+      "equipo": "14",
+      "integrantes": "Ventura / Carpilovsca",
+      "proyecto": "Resto House",
+      "estado": "pendiente"
+    }
+  ]
+}
