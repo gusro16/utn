@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-11-06T16:11:00-03:00",
+  "actualizado": "2026-11-07T15:28:00-03:00",
   "totalEquipos": 13,
   "equipos": [
     {
@@ -42,7 +42,8 @@
       "equipo": "07",
       "integrantes": "Suárez / Albelo",
       "proyecto": "La Casa del Perforista",
-      "estado": "pendiente"
+      "estado": "entregado",
+      "ultimaActualizacion": "2026-11-07T14:17:54-03:00"
     },
     {
       "equipo": "08",
