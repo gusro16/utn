@@ -2,9 +2,9 @@ const crypto=require('crypto');
 module.exports=(req,res)=>{
   const clientId=process.env.GOOGLE_CLIENT_ID;
   if(!clientId){
-    res.statusCode=503;
-    res.setHeader('Content-Type','application/json; charset=utf-8');
-    return res.end(JSON.stringify({ok:false,error:'google_oauth_not_configured'}));
+    res.statusCode=302;
+    res.setHeader('Location','/?auth=setup#situacion');
+    return res.end();
   }
   const host=req.headers['x-forwarded-host']||req.headers.host;
   const proto=(req.headers['x-forwarded-proto']||'https').split(',')[0];
