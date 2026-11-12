@@ -1,0 +1,53 @@
+(()=> {
+const PROJECT_BASE='https://gusro16.github.io/utn/6n-utn/proyectos-6n/';
+const teams=[
+ {team:'Paterno / Tinnirello',members:'Andrés Paterno · Lucila Tinnirello',proc1:5,proc2:5,utn:82,state:'approved',badge:'UTN aprobado',slug:'paterno-tinnirello',rubric:'https://drive.google.com/file/d/1-tbyIc-FQXfceSSGhAs69R1FOIKCxUi3/view',status:'UTN aprobado. No debe rendir recuperatorio. La acreditación escolar se define considerando esta evaluación junto con las notas procesuales del cuatrimestre, con 7 como mínimo.',action:'Revisar la devolución UTN y mejorar los puntos señalados. No necesita rehacer el sitio completo ni preparar recuperatorio.'},
+ {team:'Serio / Ledesma',members:'Dominique Serio · Catalina Ledesma',proc1:7,proc2:6,utn:62,state:'approved',badge:'UTN aprobado',slug:'serio-ledesma',rubric:'https://drive.google.com/file/d/1hmyiWwTX5r5b5Z0sSfuEP1vxJbti1_Ak/view',status:'UTN aprobado. No debe rendir recuperatorio. La acreditación escolar se define considerando esta evaluación junto con las notas procesuales del cuatrimestre, con 7 como mínimo.',action:'Revisar la devolución UTN y mejorar los puntos señalados. La mejora queda como cierre del recorrido, no como recuperatorio.'},
+ {team:'Tartufoli / Converso',members:'Faustina Tartufoli · Valentín Converso',proc1:9,proc2:8,utn:74,state:'approved',badge:'UTN aprobado',slug:'tartufoli-converso',rubric:'https://drive.google.com/file/d/1FOiWS3KqKxDNrN02xwWTp16DORXo0T9b/view',status:'UTN aprobado. No debe rendir recuperatorio. La acreditación escolar se define considerando esta evaluación junto con las notas procesuales del cuatrimestre, con 7 como mínimo.',action:'Revisar la devolución UTN y corregir únicamente los aspectos marcados para mejorar.'},
+ {team:'Lagrotta / Arcas',members:'Antonella Lagrotta · Aryana Arcas',proc1:5,proc2:5,utn:68,state:'approved',badge:'UTN aprobado',slug:'lagrotta-arcas',rubric:'https://drive.google.com/file/d/1KJGxrcrqjnnqBKiBAI4j623wB3vfJhle/view',status:'UTN aprobado. No debe rendir recuperatorio. La acreditación escolar se define considerando esta evaluación junto con las notas procesuales del cuatrimestre, con 7 como mínimo.',action:'Tomar la rúbrica como guía y mejorar los puntos observados por UTN.'},
+ {team:'Benetti / Pagura',members:'Azul Benetti · Renzo Pagura',proc1:4,proc2:4,utn:73,state:'approved',badge:'UTN aprobado',slug:'benetti-pagura',rubric:'https://drive.google.com/file/d/1hFVzfV75RhM51HqRDDO8735DFgwFvY40/view',status:'UTN aprobado. No debe rendir recuperatorio. La acreditación escolar se define considerando esta evaluación junto con las notas procesuales del cuatrimestre, con 7 como mínimo.',action:'Revisar especialmente la diferencia entre el proceso previo y el resultado final, y corregir los puntos señalados por UTN.'},
+ {team:'Pace / López Letizia',members:'Lautaro Pace · Josefina López Letizia',proc1:4,proc2:4,utn:63,state:'approved',badge:'UTN aprobado',slug:'pace-lopez-letizia',rubric:'https://drive.google.com/file/d/1xBRDDRTWlRkg9CyMA_fw3vlHd_p9j1gW/view',status:'UTN aprobado. No debe rendir recuperatorio. La acreditación escolar se define considerando esta evaluación junto con las notas procesuales del cuatrimestre, con 7 como mínimo.',action:'Mejorar los puntos que figuran en la rúbrica y dejar el proyecto ordenado como cierre del recorrido.'},
+
+ {team:'Ruiz Barassi / Ansó',members:'Catalina Ruiz Barassi · Camila Ansó',proc1:9,proc2:8,utn:40,state:'special',badge:'Defensa 16/11 + recuperatorio',slug:'ruiz-barassi-anso',rubric:'https://drive.google.com/file/d/1Li-8tOmcLig3sjToZTyHkp9m4uwRXQ1B/view',status:'Materia abierta. No aprobó UTN, pero el recorrido de proceso fue sólido. Debe continuar hasta el recuperatorio de diciembre.',action:'16/11: mejorar el sitio con evidencia escrita y realizar defensa oral. Después, preparar el recuperatorio UTN. Si no lo aprueba, se ponderará esa nota con todo el trabajo realizado de marzo a diciembre.'},
+ {team:'Bonaventura / Vidal',members:'Martín Bonaventura · Joaquín Vidal',proc1:7,proc2:6,utn:50,state:'special',badge:'Defensa 16/11 + recuperatorio',slug:'bonaventura-vidal',rubric:'https://drive.google.com/file/d/1PAl2sdXv_wxHjhZryMG0W7E36Qv8NA9q/view',status:'Materia abierta. Debe rendir recuperatorio UTN y la defensa oral del sitio es una condición central.',action:'16/11: corregir el sitio, registrar qué mejoraron y defender oralmente esas decisiones. Luego continuar la preparación para el recuperatorio UTN.'},
+ {team:'Spollansky / Figueira',members:'Joaquina Spollansky · Iara Figueira',proc1:10,proc2:8,utn:null,state:'absence',badge:'Ausencia justificada · instancia pendiente',slug:null,rubric:null,status:'Materia abierta. No realizaron la instancia UTN por ausencia vinculada a la actividad de Junín. Deben completar la defensa y presentarse al recuperatorio.',action:'16/11: presentar el sitio y realizar defensa oral. En diciembre deben concurrir al recuperatorio UTN. Su recorrido de proceso queda registrado y será considerado si la instancia final no resulta aprobada.'},
+
+ {team:'Giavedoni',members:'Rodolfo Giavedoni',proc1:4,proc2:4,utn:53,state:'recovery',badge:'Recuperatorio UTN',slug:'giavedoni',rubric:'https://drive.google.com/file/d/11sXzfRTRtWzvxYWtxVynOgROTkTXUMv8/view',status:'Materia abierta. Debe rendir recuperatorio UTN y demostrar comprensión del sitio en la defensa oral.',action:'Mejorar el sitio según la rúbrica, registrar evidencias de cada corrección y practicar la defensa mostrando el código que modifica.'},
+ {team:'De Benedictis',members:'Rocco De Benedictis',proc1:4,proc2:4,utn:53,state:'recovery',badge:'Recuperatorio UTN',slug:'de-benedictis',rubric:'https://drive.google.com/file/d/1a_NltaZjNxJSo4s2XPFEw6jlGGPk-g3v/view',status:'Materia abierta. Debe rendir recuperatorio UTN y sostener una defensa oral correcta del proyecto.',action:'Corregir los faltantes y enlaces señalados, registrar cada mejora y preparar una defensa donde pueda explicar estructura, navegación y decisiones de código.'},
+ {team:'Sosa / Bolli',members:'Juan Bautista Sosa · Ramiro Bolli',proc1:4,proc2:4,utn:null,state:'absence',badge:'No aprobado · sin coloquio',slug:'sosa-bolli',rubric:'https://drive.google.com/file/d/1FuQn7HX667bhb8ufw13OkDIKDkJ_NdL6/view',status:'Materia abierta. El puntaje que figura en la rúbrica original no valida la aprobación porque el equipo no realizó el coloquio. La situación vigente es no aprobado por ausencia a la defensa.',action:'Mantener el sitio presentado, preparar una defensa oral completa y concurrir al recuperatorio UTN. La rúbrica original se conserva como documento, pero no se toma su 78 como resultado válido.'},
+
+ {team:'Resumil / Medrano',members:'Catalina Resumil · Delfina Medrano',proc1:4,proc2:4,utn:47,state:'newsite',badge:'Nuevo sitio + recuperatorio',slug:'resumil-medrano',rubric:'https://drive.google.com/file/d/1ehBubf0zORsv59k87vigNPcV84E3pQdT/view',status:'Materia abierta. UTN indicó incumplimiento de lineamientos por coincidencia de template. Para la segunda instancia no alcanza con corregir el sitio anterior.',action:'Realizar un sitio nuevo que cumpla los lineamientos UTN, registrar el proceso de construcción y preparar la defensa oral del nuevo trabajo.'},
+ {team:'Veleche / Bedascarrasbure',members:'Inés Veleche · Charo Bedascarrasbure',proc1:4,proc2:4,utn:47,state:'newsite',badge:'Nuevo sitio + recuperatorio',slug:'veleche-bedascarrasbure',rubric:'https://drive.google.com/file/d/1Gb5GPw38IDJIeU6JyC_hlPgjlYk-7pQV/view',status:'Materia abierta. UTN indicó incumplimiento de lineamientos por coincidencia de template. Debe resolverse con un trabajo nuevo para la segunda instancia.',action:'Construir un sitio nuevo, propio y explicable; registrar las decisiones y preparar la defensa oral completa.'},
+ {team:'Castellano / Tagliatti',members:'Zoe Castellano · Giulia Tagliatti',proc1:4,proc2:4,utn:35,state:'newsite',badge:'Nuevo trabajo + recuperatorio',slug:'castellano-tagliatti',rubric:'https://drive.google.com/file/d/1V-3s2zfTZLFYmlEFq8j3AaROWRtJdqjL/view',status:'Materia abierta. UTN dejó asentada una observación de posible uso de IA sin poder demostrar comprensión suficiente durante el coloquio.',action:'Preparar un trabajo nuevo que puedan construir, modificar y explicar. En la defensa deberán demostrar comprensión individual del HTML y CSS utilizado.'}
+];
+
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function card(t){
+ const utn=t.utn==null?'Pendiente / no válido':t.utn+'/100';
+ const site=t.slug?'<a class="primary" href="'+PROJECT_BASE+t.slug+'/" target="_blank" rel="noopener">🌐 Ver sitio presentado</a>':'';
+ const rubric=t.rubric?'<a href="'+t.rubric+'" target="_blank" rel="noopener">📊 Ver rúbrica UTN</a>':'';
+ return '<article class="sit-team" data-state="'+esc(t.state)+'">'+
+   '<div class="sit-team-top"><div><h3>'+esc(t.team)+'</h3><div class="sit-members">'+esc(t.members)+'</div></div><span class="sit-badge '+esc(t.state)+'">'+esc(t.badge)+'</span></div>'+
+   '<div class="sit-scores"><div class="sit-score"><small>Proceso · desarrollo</small><strong>'+esc(t.proc1)+'</strong></div><div class="sit-score"><small>Proceso · avance</small><strong>'+esc(t.proc2)+'</strong></div><div class="sit-score"><small>UTN</small><strong>'+esc(utn)+'</strong></div></div>'+
+   '<div class="sit-status"><b>Situación actual</b>'+esc(t.status)+'</div>'+
+   '<div class="sit-action"><b>Qué tiene que hacer ahora</b>'+esc(t.action)+'</div>'+
+   (t.state==='approved'?'':'<div class="sit-evidence"><b>Evidencia de mejora:</b> anotar qué se cambió, en qué archivo o parte del sitio, por qué se cambió y cómo se explicaría en el coloquio.</div>')+
+   '<div class="sit-links">'+site+rubric+'</div>'+
+ '</article>';
+}
+function render(filter='all'){
+ const grid=document.getElementById('situacion6nGrid'); if(!grid)return;
+ const list=teams.filter(t=>filter==='all'||t.state===filter);
+ grid.innerHTML=list.map(card).join('');
+ const count=document.getElementById('situacionCount'); if(count) count.textContent=list.length+' equipo'+(list.length===1?'':'s');
+}
+function init(){
+ const grid=document.getElementById('situacion6nGrid'); if(!grid)return;
+ render();
+ document.querySelectorAll('[data-sit-filter]').forEach(btn=>btn.addEventListener('click',()=>{
+   document.querySelectorAll('[data-sit-filter]').forEach(b=>b.classList.remove('active'));
+   btn.classList.add('active'); render(btn.dataset.sitFilter);
+ }));
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init); else init();
+})();
