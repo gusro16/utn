@@ -1,0 +1,53 @@
+/* Vista de prueba · situación y acreditación 6N */
+.sit-head{display:grid;grid-template-columns:1.4fr .9fr;gap:18px;margin-bottom:18px}
+.sit-lead{padding:24px}
+.sit-lead h2{margin:4px 0 10px}
+.sit-lead p{color:var(--muted);line-height:1.55;margin:0}
+.sit-rule{padding:18px;border-left:5px solid #2563eb;background:#eff6ff}
+.sit-rule strong{display:block;margin-bottom:5px}
+.sit-rule small{color:#475569;line-height:1.45}
+.sit-conditions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
+.sit-condition{padding:16px;border:1px solid var(--border);border-radius:14px;background:#fff}
+.sit-condition b{display:block;margin-bottom:5px}
+.sit-condition span{font-size:.82rem;color:var(--muted);line-height:1.4}
+.sit-calendar{padding:18px 20px;margin:16px 0}
+.sit-calendar-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}
+.sit-date{padding:12px;border-radius:12px;background:#f8fafc;border:1px solid var(--border)}
+.sit-date strong{display:block;font-size:.82rem}
+.sit-date small{color:var(--muted);line-height:1.35}
+.sit-filter{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.sit-filter button{border:1px solid var(--border);background:#fff;color:#334155;border-radius:999px;padding:8px 12px;font-weight:800;cursor:pointer}
+.sit-filter button.active{background:#0f172a;color:#fff;border-color:#0f172a}
+.sit-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.sit-team{padding:20px;border:1px solid var(--border);border-radius:17px;background:#fff;box-shadow:var(--shadow)}
+.sit-team[data-state="approved"]{border-top:5px solid #16a34a}
+.sit-team[data-state="recovery"]{border-top:5px solid #d97706}
+.sit-team[data-state="special"]{border-top:5px solid #2563eb}
+.sit-team[data-state="newsite"]{border-top:5px solid #dc2626}
+.sit-team[data-state="absence"]{border-top:5px solid #7c3aed}
+.sit-team-top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+.sit-team h3{margin:0 0 4px;font-size:1.08rem}
+.sit-members{font-size:.78rem;color:var(--muted)}
+.sit-badge{font-size:.7rem;font-weight:900;border-radius:999px;padding:7px 10px;white-space:nowrap}
+.sit-badge.approved{background:#dcfce7;color:#166534}
+.sit-badge.recovery{background:#fef3c7;color:#92400e}
+.sit-badge.special{background:#dbeafe;color:#1d4ed8}
+.sit-badge.newsite{background:#fee2e2;color:#991b1b}
+.sit-badge.absence{background:#ede9fe;color:#6d28d9}
+.sit-scores{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:15px 0}
+.sit-score{background:#f8fafc;border:1px solid #e2e8f0;border-radius:11px;padding:10px}
+.sit-score small{display:block;color:#64748b;font-size:.68rem;margin-bottom:3px}
+.sit-score strong{font-size:1rem}
+.sit-status{padding:12px 13px;border-radius:12px;background:#f8fafc;line-height:1.45;font-size:.84rem;margin:10px 0}
+.sit-status b{display:block;margin-bottom:3px}
+.sit-action{margin-top:12px;padding:13px;border-radius:12px;background:#fff7ed;border:1px solid #fed7aa;font-size:.83rem;line-height:1.48}
+.sit-action b{display:block;color:#9a3412;margin-bottom:4px}
+.sit-evidence{margin-top:10px;padding:12px;border-radius:12px;background:#f0fdf4;border:1px solid #bbf7d0;font-size:.8rem;line-height:1.45}
+.sit-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.sit-links a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #cbd5e1;border-radius:9px;padding:8px 10px;font-size:.76rem;font-weight:800;color:#1e293b;background:#fff}
+.sit-links a.primary{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
+.sit-note{margin-top:14px;padding:14px 16px;border-radius:13px;background:#f8fafc;border:1px dashed #94a3b8;color:#475569;font-size:.8rem;line-height:1.45}
+.sit-final-rule{margin-top:20px;padding:18px 20px;border-radius:14px;background:#0f172a;color:#e2e8f0}
+.sit-final-rule strong{color:#fff}
+@media(max-width:900px){.sit-head,.sit-grid{grid-template-columns:1fr}.sit-conditions{grid-template-columns:1fr 1fr}.sit-calendar-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.sit-conditions,.sit-calendar-grid,.sit-scores{grid-template-columns:1fr}.sit-team-top{flex-direction:column}.sit-badge{white-space:normal}}
