@@ -51,3 +51,25 @@
 .sit-final-rule strong{color:#fff}
 @media(max-width:900px){.sit-head,.sit-grid{grid-template-columns:1fr}.sit-conditions{grid-template-columns:1fr 1fr}.sit-calendar-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.sit-conditions,.sit-calendar-grid,.sit-scores{grid-template-columns:1fr}.sit-team-top{flex-direction:column}.sit-badge{white-space:normal}}
+
+.sit-login{grid-column:1/-1;max-width:620px;margin:10px auto;padding:28px;text-align:center}
+.sit-login-icon{font-size:2.2rem;margin-bottom:6px}
+.sit-login h3{margin:5px 0 10px;font-size:1.35rem}
+.sit-login p{color:var(--muted);line-height:1.5}
+.sit-login small{display:block;color:#64748b;margin-top:12px;line-height:1.4}
+.sit-login-msg{margin:12px 0;padding:11px 12px;border-radius:10px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;font-size:.82rem}
+.sit-google-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:10px;padding:12px 18px;margin-top:8px;font-weight:800;background:#1d4ed8;color:#fff}
+.sit-userbar{grid-column:1/-1;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.sit-userbar small,.sit-userbar strong,.sit-userbar span{display:block}
+.sit-userbar small{color:#64748b;font-size:.68rem}
+.sit-userbar strong{margin:2px 0}
+.sit-userbar span{font-size:.75rem;color:#64748b}
+.sit-userbar button{border:1px solid #cbd5e1;background:#fff;border-radius:9px;padding:8px 10px;font-weight:800;cursor:pointer}
+.sit-demo{margin:14px 0;padding:17px;border:1px dashed #7c3aed;background:#faf5ff}
+.sit-demo h3{margin:4px 0 6px}
+.sit-demo p{margin:0 0 12px;color:#6b21a8;font-size:.82rem;line-height:1.45}
+.sit-demo-row{display:flex;gap:8px;flex-wrap:wrap}
+.sit-demo select{flex:1;min-width:220px;padding:10px;border:1px solid #c4b5fd;border-radius:9px;background:#fff}
+.sit-demo button{padding:10px 14px;border:0;border-radius:9px;background:#6d28d9;color:#fff;font-weight:800;cursor:pointer}
+#sitTeacherCards{grid-column:1/-1}
+@media(max-width:600px){.sit-userbar{align-items:flex-start;flex-direction:column}.sit-demo-row{display:grid}.sit-demo select{min-width:0;width:100%}}
