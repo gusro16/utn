@@ -7,6 +7,7 @@
 <title>6N · Ruta Proyecto Web UTN</title>
 <meta content="Fundamentos · Centro de acompañamiento para el Proyecto Web UTN de 6N." name="description"/>
 <link href="style.css" rel="stylesheet"/>
+<link href="situacion-6n.css?v=20261112-1" rel="stylesheet"/>
 <style id="deliveryStyle">
 /* Espacio interior exclusivo de la sección de entrega. */
 #entrega > .card{padding:28px 30px}
@@ -31,6 +32,7 @@
 <button class="nav-btn" data-view="dudas">🔧 <span>Resolver dudas</span></button>
 <button class="nav-btn" data-view="utn">✅ <span>Condiciones UTN</span></button>
 <button class="nav-btn" data-view="rubrica">📊 <span>Rúbrica UTN</span></button>
+<button class="nav-btn" data-view="situacion">📌 <span>Situación actual</span></button>
 <button class="nav-btn" data-view="entrega">📦 <span>Subir proyecto</span></button>
 <button class="nav-btn" data-view="defensa">🧠 <span>Preparar defensa</span></button>
 </nav>
@@ -235,6 +237,54 @@
 </div>
 <div class="card" style="padding:25px 30px;margin-top:18px"><h3>🔎 Revisá antes de entregar</h3><p>Usá el analizador disponible en <strong>Condiciones UTN</strong> para controlar los requisitos técnicos. Analizar el proyecto no equivale a entregarlo.</p></div>
 </section>
+<section class="view" data-title="Situación actual de cada equipo" id="situacion">
+<div class="sit-head">
+  <div class="sit-lead card">
+    <p class="eyebrow">CRITERIO INSTITUCIONAL · NOVIEMBRE 2026</p>
+    <h2>Tu recorrido, el resultado UTN y qué sigue ahora</h2>
+    <p>Las notas de proceso muestran cómo venías durante el cuatrimestre. UTN es la instancia evaluativa externa y tiene un peso central, pero la escuela también considera el recorrido. Para quienes no aprobaron, la materia queda abierta hasta el recuperatorio.</p>
+  </div>
+  <div class="sit-rule card">
+    <strong>Regla central</strong>
+    <small>Quien no aprobó UTN debe rendir recuperatorio. La defensa oral del sitio es parte central de la evaluación. Si el recuperatorio no resulta aprobado, la escuela ponderará esa nota junto con el trabajo realizado de marzo a diciembre.</small>
+  </div>
+</div>
+
+<div class="sit-conditions">
+  <div class="sit-condition"><b>✅ UTN aprobado</b><span>No rinde recuperatorio. La acreditación escolar se define considerando UTN y las notas procesuales, con 7 como referencia de aprobación.</span></div>
+  <div class="sit-condition"><b>🟡 UTN no aprobado</b><span>La materia queda abierta. Se continúa trabajando el sitio, la evidencia escrita y la defensa hasta el recuperatorio.</span></div>
+  <div class="sit-condition"><b>🧠 Defensa oral</b><span>No alcanza con que el sitio funcione: cada integrante debe poder mostrar, modificar y explicar lo que hizo.</span></div>
+  <div class="sit-condition"><b>📝 Evidencias</b><span>Registrar qué se corrigió, dónde, por qué y cómo se justificaría durante el coloquio.</span></div>
+  <div class="sit-condition"><b>🔁 Nuevo sitio</b><span>Si UTN indicó que el trabajo no cumple lineamientos, la segunda instancia debe respetar exactamente lo pedido por UTN.</span></div>
+  <div class="sit-condition"><b>📚 Si no aprueba el recuperatorio</b><span>Ese resultado se analiza junto con el recorrido completo de marzo a diciembre antes de definir febrero.</span></div>
+</div>
+
+<div class="sit-calendar card">
+  <div class="section-head"><div><p class="eyebrow">PRÓXIMAS INSTANCIAS</p><h3>Calendario de trabajo</h3></div><strong id="situacionCount">15 equipos</strong></div>
+  <div class="sit-calendar-grid">
+    <div class="sit-date"><strong>13/11</strong><small>Devolución UTN y criterios de aprobación.</small></div>
+    <div class="sit-date"><strong>16/11</strong><small>Mejoras con evidencia escrita y defensas indicadas.</small></div>
+    <div class="sit-date"><strong>30/11 y 2/12</strong><small>Orientador: práctica, dudas, sitio y defensa.</small></div>
+    <div class="sit-date"><strong>Recuperatorio UTN</strong><small>Fecha a confirmar. Quienes no aprobaron deben presentarse.</small></div>
+  </div>
+</div>
+
+<div class="sit-filter">
+  <button class="active" data-sit-filter="all">Todos</button>
+  <button data-sit-filter="approved">UTN aprobado</button>
+  <button data-sit-filter="special">Defensa 16/11</button>
+  <button data-sit-filter="recovery">Recuperatorio</button>
+  <button data-sit-filter="newsite">Nuevo sitio</button>
+  <button data-sit-filter="absence">Ausencias / coloquio pendiente</button>
+</div>
+
+<div class="sit-grid" id="situacion6nGrid"></div>
+
+<div class="sit-final-rule">
+  <strong>Importante:</strong> esta sección muestra la situación actual y el trabajo que corresponde hacer ahora. No reemplaza la rúbrica UTN ni anticipa una nota final antes de las instancias pendientes.
+</div>
+</section>
+
 <section class="view" data-title="Preparar la defensa oral" id="defensa">
 <div class="content-header">
 <div><p class="eyebrow">NO MEMORIZAR: COMPRENDER</p><h2>Practicá explicar tu propio proyecto</h2><p>Elegí una pregunta al azar, abrí tu proyecto y respondela mostrando el código correspondiente.</p></div>
@@ -258,6 +308,7 @@
 <div id="modalContent"></div>
 </article>
 </div>
+<script src="situacion-6n.js?v=20261112-1"></script>
 <script src="app-loader.js?v=20261106-1810"></script>
 <script id="deliveryLogic">
 (()=>{if(location.pathname.includes('/6f/'))return;
