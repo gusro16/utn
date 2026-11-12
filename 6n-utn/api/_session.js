@@ -51,4 +51,4 @@ function json(res,status,data){
   res.setHeader('Cache-Control','no-store');
   res.end(JSON.stringify(data));
 }
-module.exports={getSession,setSession,clearSession,json};
+module.exports={getSession,setSession,clearSession,json,makeToken,parseToken};
