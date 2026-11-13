@@ -178,8 +178,10 @@
       '</div>'+
       '<div class="teacher-feedback"><h4>Devolución del 26/10</h4><p>'+esc(e.devolucion)+'</p><h4>Prioridad indicada entonces</h4><p>'+esc(e.prioridad)+'</p></div>'+
       '</div>';
+    const cierreRegular=Number(e.equipo)===12?'':
+      '<div class="teacher-approval"><strong>Condiciones de aprobación de 6F</strong><p>Para aprobar necesitan una calificación final de al menos 7/10: sitio terminado, archivos HTML y CSS que funcionen, navegación y recursos correctos, y cumplimiento de la consigna. Cada integrante tiene que poder explicar el código que utilizó. El proyecto completo y corregido debe quedar guardado antes del 20/11. Si aparecen dudas sobre la autoría o la comprensión del código, deberán defenderlo oralmente en el PIEE.</p></div>';
     return '<article class="card teacher-team-card" data-team="'+esc(e.equipo)+'">'+
-      nueva+
+      nueva+cierreRegular+
       '<details class="teacher-history"><summary>Ver evaluación anterior del 26/10 · nota '+notaHistorica.toFixed(1)+'</summary>'+anterior+'</details>'+
       '</article>';
   }).join('');
@@ -208,6 +210,8 @@
     #seguimiento6f .teacher-current h4{margin:12px 0 5px;font-size:14px}
     #seguimiento6f .teacher-current p{line-height:1.55}
     #seguimiento6f .teacher-current ul{margin:7px 0 2px;padding-left:20px;display:grid;gap:7px}
+    #seguimiento6f .teacher-approval{margin-top:16px;padding:15px 18px;background:#f1f5fb;border:1px solid #d9e4f3;border-radius:12px;font-size:13px}
+    #seguimiento6f .teacher-approval p{margin:7px 0 0;line-height:1.55}
     #seguimiento6f .teacher-history{margin-top:16px;border:1px solid #dbe3ee;border-radius:12px;padding:10px 14px}
     #seguimiento6f .teacher-history summary{font-weight:750;cursor:pointer;padding:4px 0;color:#334155}
     #seguimiento6f .teacher-history-body{padding-top:16px}
