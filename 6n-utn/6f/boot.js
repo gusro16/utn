@@ -13,6 +13,14 @@
     console.warn('No se pudo cargar el seguimiento de 6F',err);
   }
 
+  let entregasData=null;
+  try{
+    const entregasRes=await fetch('entregas-6f.json',{cache:'no-store'});
+    if(entregasRes.ok) entregasData=await entregasRes.json();
+  }catch(err){
+    console.warn('No se pudo cargar el registro de entregas 6F',err);
+  }
+
   q('title').textContent='6F · Ruta Proyecto Web';
   const meta=q('meta[name="description"]'); if(meta) meta.content='Centro de acompañamiento para el Proyecto Web de 6F.';
   q('.brand-mark').textContent='6F';
@@ -90,11 +98,19 @@
   seguimiento.id='seguimiento6f'; seguimiento.className='view'; seguimiento.dataset.title='Seguimiento docente del proyecto';
   const esc=(v)=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const equipos=Array.isArray(seguimientoData?.equipos)?seguimientoData.equipos:[];
+  const estadosRepositorio=new Map((Array.isArray(entregasData?.equipos)?entregasData.equipos:[]).map(e=>[String(Number(e.equipo)),e]));
+  const fechaCarga=(v)=>{
+    const m=String(v||'').match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+    return m?m[3]+'/'+m[2]+'/'+m[1]+' '+m[4]+':'+m[5]:'Sin fecha';
+  };
   const opciones=equipos.map(e=>'<option value="'+esc(e.equipo)+'">Equipo '+esc(e.equipo)+' · '+esc(e.beneficiario)+'</option>').join('');
   const tarjetas=equipos.map(e=>{
     const estado=Number(e.nota)>=7?'Aprobado':'Por debajo de 7';
+    const registro=estadosRepositorio.get(String(Number(e.equipo)));
+    const fechaControl=entregasData?.fechaControl||'13/11/2026';
+    const carga=registro?.estado==='entregado'?'Carga registrada '+fechaCarga(registro.ultimaActualizacion):'Sin carga registrada al '+fechaControl;
     return '<article class="card teacher-team-card" data-team="'+esc(e.equipo)+'">'+
-      '<div class="teacher-summary"><div><p class="eyebrow">EQUIPO '+esc(e.equipo)+'</p><h3>'+esc(e.beneficiario)+'</h3><small>Revisión: '+esc(seguimientoData?.actualizado||'')+'</small><div class="teacher-evidence"><span><b>Entrega:</b> '+esc(e.estadoEntrega||'Sin dato')+'</span><span><b>Última actualización detectada:</b> '+esc(e.ultimaActualizacion||'Sin dato')+'</span></div></div><div class="teacher-score"><strong>'+Number(e.nota).toFixed(1)+'</strong><span>/ 10</span><small>'+estado+'</small></div></div>'+
+      '<div class="teacher-summary"><div><p class="eyebrow">EQUIPO '+esc(e.equipo)+'</p><h3>'+esc(e.beneficiario)+'</h3><small>Evaluación histórica: '+esc(seguimientoData?.actualizado||'26/10/2026')+'</small><div class="teacher-evidence"><span class="teacher-repo-status"><b>Repositorio oficial:</b> '+esc(carga)+'</span><span><b>Evidencia en revisión anterior:</b> '+esc(e.estadoEntrega||'Sin dato')+'</span><span><b>Última actividad detectada en revisión anterior:</b> '+esc(e.ultimaActualizacion||'Sin dato')+'</span></div></div><div class="teacher-score"><strong>'+Number(e.nota).toFixed(1)+'</strong><span>/ 10</span><small>Nota del 26/10 · '+estado+'</small></div></div>'+
       '<div class="teacher-rubric-grid">'+
         '<div><span>HTML</span><strong>'+esc(e.html)+'/10</strong><small>25%</small></div>'+
         '<div><span>CSS</span><strong>'+esc(e.css)+'/10</strong><small>25%</small></div>'+
@@ -102,14 +118,14 @@
         '<div><span>Organización</span><strong>'+esc(e.organizacion)+'/10</strong><small>15%</small></div>'+
         '<div><span>Avance</span><strong>'+esc(e.avance)+'/10</strong><small>15%</small></div>'+
       '</div>'+
-      '<div class="teacher-feedback"><h4>Devolución</h4><p>'+esc(e.devolucion)+'</p><h4>Para la próxima revisión</h4><p>'+esc(e.prioridad)+'</p></div>'+
+      '<div class="teacher-feedback"><h4>Devolución anterior · '+esc(seguimientoData?.actualizado||'26/10/2026')+'</h4><p>'+esc(e.devolucion)+'</p><h4>Corrección indicada en ese corte</h4><p>'+esc(e.prioridad)+'</p><p class="teacher-review-pending">Este diagnóstico es histórico. Si actualizaron el repositorio después del 26/10, esa nueva versión todavía requiere una devolución técnica.</p></div>'+
     '</article>';
   }).join('');
   seguimiento.innerHTML=
-    '<div class="content-header"><div><p class="eyebrow">SEGUIMIENTO DOCENTE · 6F</p><h2>Revisá cómo viene tu proyecto</h2><p>La devolución se actualiza en las clases de lunes y viernes. Es una <strong>nota parcial y temporal</strong>: puede cambiar a medida que corrijan y avancen.</p></div></div>'+
-    '<div class="card teacher-note"><strong>Entrega final: '+esc(seguimientoData?.entrega||'13/11/2026')+'</strong><p>No se muestran nombres de estudiantes. Elegí tu equipo para ver la última revisión.</p></div>'+
+    '<div class="content-header"><div><p class="eyebrow">SEGUIMIENTO DOCENTE · 6F</p><h2>Revisá cómo viene tu proyecto</h2><p>Acá se muestra el <strong>registro de carga verificado al 13/11</strong> y la <strong>evaluación histórica del 26/10</strong>. La entrega más reciente todavía puede requerir revisión técnica.</p></div></div>'+
+    '<div class="card teacher-note"><strong>Entrega final: '+esc(seguimientoData?.entrega||'13/11/2026')+'</strong><p>No se muestran nombres de estudiantes. Elegí tu equipo para ver el estado de carga y la devolución anterior. <strong>La nota del 26/10 no califica automáticamente la última entrega.</strong></p></div>'+
     '<div class="card teacher-controls"><label for="teacherTeam6f">Equipo</label><select id="teacherTeam6f"><option value="">Elegí tu equipo</option>'+opciones+'</select></div>'+
-    '<div id="teacherEmpty6f" class="card teacher-empty">Elegí un equipo para ver su nota parcial, la rúbrica y la devolución.</div>'+tarjetas;
+    '<div id="teacherEmpty6f" class="card teacher-empty">Elegí un equipo para ver su estado de entrega y su evaluación anterior.</div>'+tarjetas;
   doc.querySelector('footer').before(seguimiento);
 
   const seguimientoStyles=doc.createElement('style');
@@ -136,6 +152,9 @@
     #seguimiento6f .teacher-feedback{display:grid;gap:6px}
     #seguimiento6f .teacher-feedback h4{margin:10px 0 0}
     #seguimiento6f .teacher-feedback p{margin:0;line-height:1.55}
+    #seguimiento6f .teacher-repo-status{font-size:14px;color:#12386f}
+    #seguimiento6f .teacher-review-pending{margin-top:8px!important;color:#64748b;font-size:13px}
+    #seguimiento6f .teacher-score small{font-size:11px}
     @media(max-width:780px){#seguimiento6f .teacher-rubric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#seguimiento6f .teacher-summary{flex-direction:column}.teacher-score{align-self:flex-start}}
   `;
   doc.head.append(seguimientoStyles);
