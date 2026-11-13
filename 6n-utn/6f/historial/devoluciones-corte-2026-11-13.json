@@ -1,0 +1,151 @@
+{
+  "fechaRevision": "13/11/2026",
+  "fechaLimite": "Antes del 20/11/2026",
+  "origen": "Revisión de archivos de las carpetas ACTUAL del repositorio oficial de 6F; la prueba visual y la defensa del código siguen siendo necesarias.",
+  "nota": "Registro técnico nuevo, sin calificación numérica. Las notas y devoluciones del 26/10 se conservan como historial.",
+  "equipos": [
+    {
+      "equipo": "01",
+      "situacion": "naranja",
+      "estado": "Comprometido",
+      "devolucion": "Revisé la versión que dejaron en el repositorio. Ya tienen páginas y un recorrido armado, pero todavía hay enlaces que pueden fallar. Corrijan eso primero y revisen los requisitos que faltan. Necesito una versión que se pueda abrir y recorrer completa, sin depender de su computadora.",
+      "correcciones": [
+        "En Eventos.html y contacto.html, el enlace a eventos.html no coincide con el archivo Eventos.html. Usen el mismo nombre, incluidas las mayúsculas.",
+        "En tienda.html, el enlace a #circular debe llevar a index.html#circular si esa sección está en la página principal.",
+        "Revisen el formulario y la tabla pedidos en la consigna: no encontré esos elementos en los HTML entregados."
+      ]
+    },
+    {
+      "equipo": "02",
+      "situacion": "rojo",
+      "estado": "Crítico",
+      "devolucion": "La entrega tiene una base de dos páginas, pero las imágenes que llama el código no están en la carpeta. Así, una parte importante del sitio queda sin mostrar. Necesito que completen los archivos y revisen la navegación antes de volver a subirlo.",
+      "correcciones": [
+        "En index.html se llaman adopt.jpg, perri.jpg y donaciones.jpg; esos archivos no aparecen en ACTUAL.",
+        "En adoptar.html se llaman maite.jpg, peki.jpg, pericles.jpg, bronco.jpg, cleo.jpg e images.png, que tampoco están en la entrega.",
+        "Agreguen un enlace claro para volver de adoptar.html a index.html y revisen el resto de las condiciones del proyecto."
+      ]
+    },
+    {
+      "equipo": "03",
+      "situacion": "naranja",
+      "estado": "Comprometido",
+      "devolucion": "Revisé las páginas que subieron. El menú y las secciones están, pero las referencias a las fotos todavía no coinciden con los nombres de los archivos. También quedaron correos de ejemplo en algunas páginas. Antes de sumar cosas, hagan que lo que ya tienen funcione bien.",
+      "correcciones": [
+        "En index.html, quesomos.html y ubicacion.html, corrijan los src de las imágenes para que coincidan exactamente con los archivos entregados.",
+        "En precios.html y horarios.html también hay imágenes llamadas con nombres que no aparecen en ACTUAL.",
+        "En precios.html y horarios.html reemplacen tucorreo@ejemplo.com por un contacto real y probado."
+      ]
+    },
+    {
+      "equipo": "04",
+      "situacion": "rojo",
+      "estado": "Crítico",
+      "devolucion": "Volví a revisar la carpeta nueva. Hay páginas y recursos cargados, pero el problema principal sigue sin resolverse: varios enlaces apuntan a 127.0.0.1. Eso abre solo en la computadora donde programaron. Tienen que corregir las rutas y probar el sitio completo desde otra computadora.",
+      "correcciones": [
+        "En index.html y las páginas de html/, reemplacen los enlaces http://127.0.0.1:5500/... por rutas relativas entre sus archivos.",
+        "En html/about-us.html, html/faq.html y html/noticias.html, revisen las rutas del CSS que empiezan con /css/. Desde html/ deberían apuntar a ../css/.",
+        "En index.html, corrijan html/IMG/file.jpg y comprueben las demás imágenes; en html/trello-pedidos.html completen el texto 'Ubicacion:__________'."
+      ]
+    },
+    {
+      "equipo": "05",
+      "situacion": "rojo",
+      "estado": "Crítico · sin entrega",
+      "devolucion": "Hoy no encontré archivos en ACTUAL. En la revisión anterior había HTML, CSS y recursos que todavía no estaban integrados. Necesito que suban la carpeta real del proyecto al repositorio para poder verificar qué corrigieron. Sin eso, no puedo evaluar el avance nuevo.",
+      "correcciones": [
+        "Suban la carpeta completa, con index.html, CSS y recursos que utilicen.",
+        "Comprueben que se abra el sitio y que las imágenes y enlaces funcionen.",
+        "Confirmen la carga en ACTUAL antes del 20/11."
+      ]
+    },
+    {
+      "equipo": "06",
+      "situacion": "naranja",
+      "estado": "Comprometido",
+      "devolucion": "Ya hay páginas y un catálogo desarrollado, pero todavía quedaron datos sin completar e indicaciones de edición dentro del código. Eso me indica que la versión no está cerrada. Revisen esos detalles y confirmen que cada contacto y cada sección funcionen de verdad.",
+      "correcciones": [
+        "En productos.html todavía aparecen edades recomendadas con 'a confirmar'. Completen ese dato cuando corresponda.",
+        "En contacto.html hay indicaciones de reemplazo para WhatsApp y referencias a perfiles de ejemplo; dejen solamente datos y enlaces reales.",
+        "Saquen las instrucciones de edición que quedaron en comentarios y revisen que puedan explicar cómo funciona el menú y el CSS."
+      ]
+    },
+    {
+      "equipo": "07",
+      "situacion": "amarillo",
+      "estado": "Necesita completar",
+      "devolucion": "Pude recorrer el código que subieron: hay una estructura de navegación y contenido sobre el negocio. Ahora falta cerrar el proyecto según la consigna y revisar la utilidad de cada sección. Quiero que me muestren una versión terminada, no solo páginas conectadas.",
+      "correcciones": [
+        "En productos.html hay rubros y marcas, pero revisen si la información alcanza para que un cliente encuentre lo que busca.",
+        "En como-usar.html expliquen algo útil para el cliente; eviten que sea una guía sobre cómo navegar su propia tarea escolar.",
+        "Revisen formulario, tabla y demás requisitos de la consigna: no aparecen en los HTML entregados."
+      ]
+    },
+    {
+      "equipo": "08",
+      "situacion": "rojo",
+      "estado": "Crítico · sin entrega",
+      "devolucion": "La carpeta ACTUAL está vacía. En la revisión anterior habían dejado una página con contenido e imágenes, pero con muy poca navegación. No puedo saber si eso cambió hasta que suban una versión nueva. Necesito ver el sitio real, no solo materiales separados.",
+      "correcciones": [
+        "Suban el proyecto completo a ACTUAL, con index.html y su CSS.",
+        "Organicen el contenido en páginas o secciones que puedan recorrerse desde un menú.",
+        "Prueben los enlaces y las imágenes antes de confirmar la actualización."
+      ]
+    },
+    {
+      "equipo": "09",
+      "situacion": "rojo",
+      "estado": "Crítico · sin entrega",
+      "devolucion": "No hay archivos en ACTUAL. En el corte anterior solo había imágenes y no encontré HTML ni CSS. A esta altura necesito encontrar un sitio que se pueda abrir. Suban el trabajo real antes del 20/11 para que pueda corregirlo.",
+      "correcciones": [
+        "Incluyan index.html y un archivo CSS, no solamente imágenes.",
+        "Armen un inicio, navegación y contenido del negocio con sus archivos.",
+        "Suban la carpeta completa al repositorio y verifiquen que quede registrada."
+      ]
+    },
+    {
+      "equipo": "10",
+      "situacion": "naranja",
+      "estado": "Comprometido",
+      "devolucion": "La carpeta tiene páginas de inicio, canchas, kiosco y contacto. Eso permite empezar a revisar el recorrido, pero todavía falta desarrollo y comprobación de requisitos. Revisen el contenido del club y hagan las pruebas necesarias para que el sitio quede completo.",
+      "correcciones": [
+        "En canchas.html las fotos vienen de URLs externas de Unsplash; comprueben que carguen y que representen correctamente al club.",
+        "En contactanos.html revisen y confirmen que la dirección de correo y el enlace mailto sean los del beneficiario.",
+        "Incorporen y prueben los requisitos técnicos que faltan, especialmente formulario y tabla, si siguen en la consigna."
+      ]
+    },
+    {
+      "equipo": "11",
+      "situacion": "amarillo",
+      "estado": "Necesita completar",
+      "devolucion": "En esta carga sí encontré index.html, CSS, imágenes y script.js conectados. Hay una propuesta visual y un contacto por WhatsApp. Todavía necesito que cierren los requisitos técnicos y comprueben el comportamiento del formulario. La nueva versión no queda aprobada solo por estar subida.",
+      "correcciones": [
+        "En index.html el sitio se desarrolla en una sola página; revisen la cantidad de páginas y demás condiciones pedidas.",
+        "En index.html el formulario usa enviarFormulario(event) de script.js: pruébenlo completo y confirmen que abra el mensaje correcto.",
+        "Revisen la inclusión de tabla y demás contenidos obligatorios: no encontré una tabla en el HTML entregado."
+      ]
+    },
+    {
+      "equipo": "12",
+      "situacion": "rojo",
+      "estado": "Crítico · sin entrega",
+      "devolucion": "No hay archivos en ACTUAL. En la revisión anterior vi código escrito dentro de un documento, pero no un sitio ejecutable. Necesito que conviertan ese trabajo en archivos .html y .css reales y que lo suban al repositorio. Sin eso no puedo revisar el funcionamiento.",
+      "correcciones": [
+        "Creen index.html y el archivo CSS a partir del código que habían escrito.",
+        "Abran index.html en el navegador y corrijan los errores que aparezcan.",
+        "Suban la carpeta del proyecto completo a ACTUAL antes del 20/11."
+      ]
+    },
+    {
+      "equipo": "14",
+      "situacion": "rojo",
+      "estado": "Crítico · sin entrega",
+      "devolucion": "No hay archivos en ACTUAL y tampoco tengo una versión nueva para revisar. Necesito que suban cuanto antes el proyecto completo. El trabajo se evalúa con archivos que pueda abrir y comprobar, no con una carpeta vacía.",
+      "correcciones": [
+        "Suban index.html, CSS y los recursos utilizados.",
+        "Comprueben que las páginas se conecten y que los archivos abran en otra computadora.",
+        "Confirmen que la actualización aparezca registrada antes del 20/11."
+      ]
+    }
+  ]
+}
