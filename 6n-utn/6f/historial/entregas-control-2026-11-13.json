@@ -1,0 +1,102 @@
+{
+  "actualizado": "2026-11-13",
+  "totalEquipos": 13,
+  "equipos": [
+    {
+      "equipo": "01",
+      "integrantes": "Barletta / Lombraña",
+      "proyecto": "Vintage Market Tigre",
+      "estado": "entregado",
+      "ultimaActualizacion": "2026-11-06T16:23:33-03:00",
+      "archivos": 15
+    },
+    {
+      "equipo": "02",
+      "integrantes": "Álvarez Posse / Yeste",
+      "proyecto": "Dos Orejas",
+      "estado": "entregado",
+      "ultimaActualizacion": "2026-11-08T23:17:15-03:00",
+      "archivos": 7
+    },
+    {
+      "equipo": "03",
+      "integrantes": "Miranda Guarnieri / Martino",
+      "proyecto": "El Bórdo",
+      "estado": "entregado",
+      "ultimaActualizacion": "2026-11-12T11:36:03-03:00",
+      "archivos": 12
+    },
+    {
+      "equipo": "04",
+      "integrantes": "Basualdo / Ticinese / Cristal",
+      "proyecto": "Gelato Stelvio",
+      "estado": "entregado",
+      "ultimaActualizacion": "2026-11-12T19:03:26-03:00",
+      "archivos": 29
+    },
+    {
+      "equipo": "05",
+      "integrantes": "Vaicaitis / Bessone",
+      "proyecto": "Casa Cúrcuma",
+      "estado": "pendiente"
+    },
+    {
+      "equipo": "06",
+      "integrantes": "Gioia / Carman",
+      "proyecto": "Dunge Didácticos",
+      "estado": "entregado",
+      "ultimaActualizacion": "2026-11-07T17:52:38-03:00",
+      "archivos": 18
+    },
+    {
+      "equipo": "07",
+      "integrantes": "Suárez / Albelo",
+      "proyecto": "La Casa del Perforista",
+      "estado": "entregado",
+      "ultimaActualizacion": "2026-11-07T14:17:53-03:00",
+      "archivos": 11
+    },
+    {
+      "equipo": "08",
+      "integrantes": "Di Menna / Itzaina",
+      "proyecto": "Alpa Multisport",
+      "estado": "pendiente"
+    },
+    {
+      "equipo": "09",
+      "integrantes": "Giannetto / Artigas",
+      "proyecto": "Golta Camisetas",
+      "estado": "pendiente"
+    },
+    {
+      "equipo": "10",
+      "integrantes": "Pérez Wierna / Fernández",
+      "proyecto": "Cede World Padel Center Chivilcoy",
+      "estado": "entregado",
+      "ultimaActualizacion": "2026-11-02T08:23:15-03:00",
+      "archivos": 8
+    },
+    {
+      "equipo": "11",
+      "integrantes": "Cañada Repossi / Gastaldi",
+      "proyecto": "Al Paso Mates",
+      "estado": "entregado",
+      "ultimaActualizacion": "2026-11-06T16:23:10-03:00",
+      "archivos": 15
+    },
+    {
+      "equipo": "12",
+      "integrantes": "Martínez Merino / Di Filippo",
+      "proyecto": "ONG CEAPI",
+      "estado": "pendiente"
+    },
+    {
+      "equipo": "14",
+      "integrantes": "Ventura / Carpilovsca",
+      "proyecto": "Resto House",
+      "estado": "pendiente"
+    }
+  ],
+  "fechaControl": "13/11/2026",
+  "fuente": "Revisión directa de ACTUAL y _ACTUALIZACION.json del repositorio oficial en Google Drive. Corte de verificación, no sincronización automática."
+}
