@@ -210,7 +210,7 @@
   q('footer').textContent='Proyecto Web 6F · Material de acompañamiento · Diseño Web 2026';
   const oldLoader=[...doc.querySelectorAll('script[src]')].find(x=>x.getAttribute('src')==='app-loader.js'); if(oldLoader) oldLoader.remove();
   const link=q('link[href="style.css"]'); if(link) link.setAttribute('href','../style.css');
-  const app=doc.createElement('script'); app.src='app-6f.js?v=20261106-1611'; doc.body.appendChild(app);
+  const app=doc.createElement('script'); app.src='app-6f.js?v=20261113-estado-8'; doc.body.appendChild(app);
   let html='<!doctype html>\n'+doc.documentElement.outerHTML;
   html=html.split('UTN.BA').join('').split('UTN').join('');
   document.open(); document.write(html); document.close();
