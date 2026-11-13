@@ -57,12 +57,13 @@ const routeSteps = [
         const equipos=Array.isArray(data.equipos)?data.equipos:[];
         const entregados=equipos.filter(e=>e.estado==='entregado');
         const pendientes=equipos.filter(e=>e.estado!=='entregado');
-        const item=(e)=>'<li><strong>Equipo '+esc(e.equipo)+' · '+esc(e.integrantes)+'</strong><small>'+esc(e.proyecto)+'</small></li>';
+        const fechaCarga=(v)=>{const m=String(v||'').match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);return m?m[3]+'/'+m[2]+'/'+m[1]+' '+m[4]+':'+m[5]:'';};
+        const item=(e)=>'<li><strong>Equipo '+esc(e.equipo)+' · '+esc(e.integrantes)+'</strong><small>'+esc(e.proyecto)+(e.ultimaActualizacion?' · Última carga: '+esc(fechaCarga(e.ultimaActualizacion)):'')+'</small></li>';
         const total=data.totalEquipos||equipos.length;
         const panel=document.createElement('div');
         panel.id='repoStatus6f';
         panel.className='card';
-        panel.innerHTML='<div class="section-head"><div><p class="eyebrow">ESTADO DEL REPOSITORIO</p><h3>Quiénes entregaron y quiénes faltan</h3></div><strong class="repo-status-count">'+entregados.length+' / '+total+'</strong></div><p class="repo-status-note">Se considera entregado cuando hay una actualización real del proyecto registrada en la carpeta <strong>ACTUAL</strong>.</p><div class="repo-status-grid"><div class="repo-status-col"><h4>✅ Entregaron</h4><ul>'+(entregados.length?entregados.map(item).join(''):'<li class="muted">Todavía no hay entregas registradas.</li>')+'</ul></div><div class="repo-status-col"><h4>⏳ Falta entregar</h4><ul>'+(pendientes.length?pendientes.map(item).join(''):'<li class="complete">Todos los equipos entregaron.</li>')+'</ul></div></div><small class="repo-status-updated">Estado revisado: '+esc(data.actualizado?new Date(data.actualizado).toLocaleString('es-AR'):'Sin dato')+'</small>';
+        panel.innerHTML='<div class="section-head"><div><p class="eyebrow">ESTADO DEL REPOSITORIO</p><h3>Quiénes entregaron y quiénes faltan</h3></div><strong class="repo-status-count">'+entregados.length+' / '+total+'</strong></div><p class="repo-status-note">Se considera entrega registrada cuando la carpeta <strong>ACTUAL</strong> contiene archivos del proyecto y una constancia de actualización. Esto no significa que el trabajo esté completo o aprobado. <strong>El listado refleja el último control de Drive, no una consulta en tiempo real.</strong></p><div class="repo-status-grid"><div class="repo-status-col"><h4>✅ Entregaron</h4><ul>'+(entregados.length?entregados.map(item).join(''):'<li class="muted">Todavía no hay entregas registradas.</li>')+'</ul></div><div class="repo-status-col"><h4>⏳ Sin entrega registrada</h4><ul>'+(pendientes.length?pendientes.map(item).join(''):'<li class="complete">Todos los equipos entregaron.</li>')+'</ul></div></div><small class="repo-status-updated">Último control verificado en Drive: '+esc(data.fechaControl||data.actualizado||'Sin dato')+'</small>';
 
         const firstCard=section.querySelector('.card');
         if(firstCard) firstCard.after(panel); else section.append(panel);
