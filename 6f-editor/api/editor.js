@@ -52,6 +52,13 @@ export default async function handler(req,res){
    const action=String(req.query?.action||'').toLowerCase(),b=req.method==='POST'?bodyOf(req):{},team=String(b.team||req.query?.team||''),code=String(req.headers['x-team-code']||b.code||''),role=auth(code,team);
    if(action==='login'&&req.method==='POST'){if(!role)return reply(res,401,{error:'Código incorrecto.'});return reply(res,200,{ok:true,role,team:role==='docente'?(ALL.includes(team)?team:null):team,teams:role==='docente'?ALL:undefined});}
    if(!role||!ALL.includes(team))return reply(res,401,{error:'Acceso no autorizado.'});
+   if(action==='utn' && req.method==='GET'){
+     if(team!=='12')return reply(res,403,{error:'La evaluación UTN voluntaria corresponde solamente al Equipo 12 de 6F.'});
+     let evaluation=null;
+     try{evaluation=JSON.parse(process.env.EDITOR_UTN12_RESULTS||'null');}catch{}
+     if(!evaluation)return reply(res,503,{error:'La evaluación todavía no está configurada. Consultá al profesor.'});
+     return reply(res,200,{ok:true,team:'12',evaluation});
+   }
    if(action==='files'&&req.method==='GET'){
      const prefix=base(team)+'current/',blobs=await pages(prefix);
      return reply(res,200,{ok:true,files:blobs.map(x=>({file:x.pathname.slice(prefix.length),size:x.size,updated:x.uploadedAt})).filter(x=>validPath(x.file))});
