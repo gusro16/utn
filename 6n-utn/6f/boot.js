@@ -221,7 +221,7 @@
   const navDef=navBtns.find(b=>b.dataset.view==='defensa'); if(navDef) navDef.querySelector('span').textContent='Defensa oral';
 
   q('#inicio .hero h2').textContent='Que no te pierdas: sabé dónde estás, qué sigue y qué necesita tu proyecto.';
-  const deadline=q('.deadline-box'); deadline.querySelector('strong').textContent='13 NOV'; deadline.querySelector('small').textContent='Entrega final del sitio';
+  const deadline=q('.deadline-box'); deadline.querySelector('strong').textContent='19 NOV'; deadline.querySelector('small').textContent='Cierre de correcciones';
   const quick=[...doc.querySelectorAll('.quick-grid .quick')];
   const status=quick.find(x=>x.dataset.target==='utn'); if(status){status.querySelector('strong').textContent='Estado de mi proyecto';status.querySelector('small').textContent='Requisitos y chequeo de archivos';}
   const rubq=quick.find(x=>x.dataset.target==='rubrica'); if(rubq) rubq.querySelector('strong').textContent='Rúbrica de evaluación';
@@ -231,7 +231,7 @@
   context.after(oralHome);
 
   const routeSec=q('#ruta'); routeSec.dataset.title='Ruta de trabajo, entrega y defensa'; routeSec.querySelector('.intro-line h2').textContent='Más tiempo, pero con una meta clara por etapa';
-  const cal=routeSec.querySelector('.compact-tip'); cal.innerHTML='<strong>Fechas a tener en cuenta:</strong> <strong>12/10</strong> es feriado nacional; <strong>9/11</strong> es feriado nacional y <strong>11/11</strong> es feriado en la Provincia de Buenos Aires por la visita del papa León XIV. La <strong>entrega final del sitio es el 13/11</strong>. Las <strong>defensas orales serán el 16/11 y el 20/11</strong>. El Día de la Soberanía Nacional de 2026 se traslada al 23/11, por lo que el 20/11 queda disponible para la segunda jornada de defensa.';
+  const cal=routeSec.querySelector('.compact-tip'); cal.innerHTML='<strong>Fechas a tener en cuenta:</strong> <strong>12/10</strong> es feriado nacional; <strong>9/11</strong> es feriado nacional y <strong>11/11</strong> es feriado en la Provincia de Buenos Aires por la visita del papa León XIV. El <strong>13/11 se registró el primer corte de entregas</strong>. Todos deben presentar el proyecto completo y corregido <strong>antes del 20/11</strong>. Las <strong>defensas orales previstas son el 16/11 y el 20/11</strong>. El Día de la Soberanía Nacional de 2026 se traslada al 23/11, por lo que el 20/11 queda disponible para la segunda jornada de defensa.';
 
   const temario=[...doc.querySelectorAll('#contentFilters .chip')].find(b=>b.dataset.filter==='temario'); if(temario) temario.textContent='Temario';
 
@@ -245,7 +245,7 @@
   if(reqs[6]) reqs[6].innerHTML='<strong>🤝 Beneficiario real</strong><small>El sitio debe responder a una necesidad concreta del beneficiario elegido por el equipo.</small>';
   if(reqs[7]) reqs[7].innerHTML='<strong>🔎 Benchmarking</strong><small>Revisá referentes del mismo rubro y justificá qué decisiones tomaste para tu propia propuesta.</small>';
   const delivery=cond.querySelector('.grid-2 .card:nth-child(2) ul');
-  delivery.innerHTML='<li>Trabajá siempre sobre la <strong>carpeta oficial del equipo en Google Drive</strong>, no sobre copias del Escritorio o Descargas.</li><li>Prepará una <strong>versión final ordenada</strong> del proyecto y una copia de respaldo antes de entregar.</li><li>Confirmá que <code>index.html</code> sea la página inicial y esté escrito en minúsculas.</li><li>Probalo desde otra computadora: páginas, enlaces, documentos, imágenes, audio y video.</li><li>Revisá que el contenido responda al <strong>beneficiario real</strong> y que las decisiones tomadas tengan sentido para ese público.</li><li>Volvé al <strong>benchmarking</strong>: compará navegación, organización, estética y contenidos con referentes del rubro sin copiar soluciones.</li><li>Entregá por el canal indicado en Classroom <strong>como máximo el 13 de noviembre</strong>.</li><li>Después de entregar, prepará la <strong>defensa oral del 16 o 20 de noviembre</strong>.</li><li>Cada integrante debe poder explicar las partes principales del proyecto y las decisiones tomadas.</li>';
+  delivery.innerHTML='<li>Trabajá siempre sobre la <strong>carpeta oficial del equipo en Google Drive</strong>, no sobre copias del Escritorio o Descargas.</li><li>Prepará una <strong>versión final ordenada</strong> del proyecto y una copia de respaldo antes de entregar.</li><li>Confirmá que <code>index.html</code> sea la página inicial y esté escrito en minúsculas.</li><li>Probalo desde otra computadora: páginas, enlaces, documentos, imágenes, audio y video.</li><li>Revisá que el contenido responda al <strong>beneficiario real</strong> y que las decisiones tomadas tengan sentido para ese público.</li><li>Volvé al <strong>benchmarking</strong>: compará navegación, organización, estética y contenidos con referentes del rubro sin copiar soluciones.</li><li>Actualizá la carpeta completa del proyecto <strong>antes del 20 de noviembre</strong> y comprobá que figure en el repositorio.</li><li>Después de entregar, prepará la <strong>defensa oral del 16 o 20 de noviembre</strong>.</li><li>Cada integrante debe poder explicar las partes principales del proyecto y las decisiones tomadas.</li>';
 
   const rub=q('#rubrica'); rub.dataset.title='Rúbrica interactiva de evaluación';
   const rh=rub.querySelector('.content-header'); rh.querySelector('.eyebrow').textContent='RÚBRICA DE EVALUACIÓN · FUNDAMENTOS'; rh.querySelector('h2').textContent='Entendé cómo se va a evaluar tu proyecto'; rh.querySelector('p:last-child').textContent='Elegí en cada criterio el descriptor que más se parece hoy a tu proyecto. Es una autoevaluación para orientarte: no calcula ni reemplaza la calificación docente.';
@@ -274,7 +274,7 @@
   q('footer').textContent='Proyecto Web 6F · Material de acompañamiento · Diseño Web 2026';
   const oldLoader=[...doc.querySelectorAll('script[src]')].find(x=>x.getAttribute('src')==='app-loader.js'); if(oldLoader) oldLoader.remove();
   const link=q('link[href="style.css"]'); if(link) link.setAttribute('href','../style.css');
-  const app=doc.createElement('script'); app.src='app-6f.js?v=20261113-historial'; doc.body.appendChild(app);
+  const app=doc.createElement('script'); app.src='app-6f.js?v=20261113-devoluciones'; doc.body.appendChild(app);
   let html='<!doctype html>\n'+doc.documentElement.outerHTML;
   html=html.split('UTN.BA').join('').split('UTN').join('');
   document.open(); document.write(html); document.close();
