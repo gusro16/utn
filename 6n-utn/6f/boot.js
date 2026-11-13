@@ -108,7 +108,7 @@
     const estado=Number(e.nota)>=7?'Aprobado':'Por debajo de 7';
     const registro=estadosRepositorio.get(String(Number(e.equipo)));
     const fechaControl=entregasData?.fechaControl||'13/11/2026';
-    const carga=registro?.estado==='entregado'?'Carga registrada '+fechaCarga(registro.ultimaActualizacion):'Sin carga registrada al '+fechaControl;
+    const carga=!entregasData?'Registro de cargas no disponible':(registro?.estado==='entregado'?'Carga registrada '+fechaCarga(registro.ultimaActualizacion):'Sin carga registrada al '+fechaControl);
     return '<article class="card teacher-team-card" data-team="'+esc(e.equipo)+'">'+
       '<div class="teacher-summary"><div><p class="eyebrow">EQUIPO '+esc(e.equipo)+'</p><h3>'+esc(e.beneficiario)+'</h3><small>Evaluación histórica: '+esc(seguimientoData?.actualizado||'26/10/2026')+'</small><div class="teacher-evidence"><span class="teacher-repo-status"><b>Repositorio oficial:</b> '+esc(carga)+'</span><span><b>Evidencia en revisión anterior:</b> '+esc(e.estadoEntrega||'Sin dato')+'</span><span><b>Última actividad detectada en revisión anterior:</b> '+esc(e.ultimaActualizacion||'Sin dato')+'</span></div></div><div class="teacher-score"><strong>'+Number(e.nota).toFixed(1)+'</strong><span>/ 10</span><small>Nota del 26/10 · '+estado+'</small></div></div>'+
       '<div class="teacher-rubric-grid">'+
@@ -229,7 +229,7 @@
   q('footer').textContent='Proyecto Web 6F · Material de acompañamiento · Diseño Web 2026';
   const oldLoader=[...doc.querySelectorAll('script[src]')].find(x=>x.getAttribute('src')==='app-loader.js'); if(oldLoader) oldLoader.remove();
   const link=q('link[href="style.css"]'); if(link) link.setAttribute('href','../style.css');
-  const app=doc.createElement('script'); app.src='app-6f.js?v=20261113-estado-8'; doc.body.appendChild(app);
+  const app=doc.createElement('script'); app.src='app-6f.js?v=20261113-historial'; doc.body.appendChild(app);
   let html='<!doctype html>\n'+doc.documentElement.outerHTML;
   html=html.split('UTN.BA').join('').split('UTN').join('');
   document.open(); document.write(html); document.close();
