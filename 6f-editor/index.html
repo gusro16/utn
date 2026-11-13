@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>6F · Editor de proyectos</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">6F</span><div><strong>Editor de proyectos</strong><small>Programación Web · 2026</small></div></div>
+    <div class="top-right"><span id="connection" class="status-pill">Sin conectar</span><button id="logout" hidden class="ghost">Salir</button></div>
+  </header>
+  <main>
+    <section id="loginView" class="login-card panel">
+      <p class="eyebrow">REPOSITORIO COMPARTIDO</p><h1>Trabajen sobre el mismo proyecto</h1>
+      <p>Elijan su equipo e ingresen el código que les compartió el profesor. Los archivos se guardan en el servidor y pueden retomarlos desde otra computadora.</p>
+      <form id="loginForm" class="login-fields">
+        <label>Equipo<select id="loginTeam" required>
+          <option value="">Elegí tu equipo</option>
+          <option value="01">01 · Vintage Market Tigre</option><option value="02">02 · Dos Orejas</option>
+          <option value="03">03 · El Bórdo</option><option value="04">04 · Gelato Stelvio</option>
+          <option value="05">05 · Casa Cúrcuma</option><option value="06">06 · Dunge Didácticos</option>
+          <option value="07">07 · La Casa del Perforista</option><option value="08">08 · Alpa Multisport</option>
+          <option value="09">09 · Golta Camisetas</option><option value="10">10 · Cede World Padel</option>
+          <option value="11">11 · Al Paso Mates</option><option value="12">12 · ONG CEAPI</option>
+          <option value="14">14 · Resto House</option>
+        </select></label>
+        <label>Código de acceso<input id="loginCode" type="password" autocomplete="off" required placeholder="Código del equipo"></label>
+        <label>Quién está trabajando<input id="loginName" type="text" maxlength="32" required placeholder="Tu nombre (para mostrar al compañero)"></label>
+        <button class="primary" type="submit">Abrir proyecto</button>
+      </form>
+      <p class="note">No compartan el código con otros equipos. Si todavía no hay archivos, pueden cargar la carpeta existente una sola vez. No hace falta volver a subirla después de cada cambio.</p>
+    </section>
+    <section id="workspace" hidden>
+      <div class="workspace-head panel">
+        <div><p class="eyebrow" id="teamLabel">EQUIPO</p><h2 id="projectName">Mi proyecto</h2><p id="workspaceInfo">Compartido entre integrantes.</p></div>
+        <div class="workspace-actions"><button id="refreshFiles" class="ghost">Actualizar lista</button><button id="downloadCurrent" class="ghost">Bajar archivo</button></div>
+      </div>
+      <div class="layout">
+        <aside class="files-panel panel">
+          <h3>Archivos del equipo</h3><div id="fileList" class="file-list"><p class="muted">Cargando...</p></div>
+          <div class="file-buttons">
+            <button id="newFile" class="secondary">+ Nuevo archivo</button>
+            <label class="secondary upload-label">Cargar carpeta<input id="folderInput" type="file" webkitdirectory multiple hidden></label>
+            <label class="secondary upload-label">Agregar archivos<input id="filesInput" type="file" multiple hidden></label>
+          </div>
+          <p class="small muted">Al importar, no se reemplazan archivos que ya existen. Si suben una carpeta, luego trabajen desde acá.</p>
+        </aside>
+        <section class="editor-panel panel">
+          <div class="editor-head"><div><span id="currentFile">Elegí un archivo</span><span id="saveStatus" class="muted">Sin cambios</span></div><div class="editor-actions"><button id="reload" class="ghost" disabled>Recargar</button><button id="save" class="primary" disabled>Guardar ahora</button></div></div>
+          <div id="lockedNotice" class="locked-notice" hidden></div>
+          <textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off" disabled placeholder="Seleccioná un archivo HTML, CSS o JS de la lista."></textarea>
+          <div class="editor-bottom"><span>Guardado automático después de unos segundos sin escribir.</span><span id="editorDetails">HTML · CSS · JavaScript</span></div>
+        </section>
+      </div>
+      <div class="secondary-layout">
+        <section class="preview-panel panel">
+          <div class="panel-heading"><h3>Vista previa</h3><div><select id="previewPage" aria-label="Página para la vista previa"></select><button id="showPreview" class="secondary">Actualizar vista</button></div></div>
+          <iframe id="previewFrame" title="Vista previa del proyecto" sandbox="allow-scripts allow-forms" referrerpolicy="no-referrer"></iframe>
+          <p class="small muted">La vista previa es orientativa. Para comprobar que todos los enlaces funcionan, prueben también el proyecto completo.</p>
+        </section>
+        <section class="history-panel panel">
+          <h3>Historial de este archivo</h3>
+          <p class="small muted">Antes de cada reemplazo, se conserva una copia anterior. Las nuevas versiones no borran ese respaldo.</p>
+          <div id="historyList" class="history-list">Seleccioná un archivo para ver su historial.</div>
+          <button id="exportDraft" class="ghost">Descargar borrador actual</button>
+          <p class="small muted">Si el sistema te avisa que otro integrante guardó primero, descargá tu borrador antes de recargar.</p>
+        </section>
+      </div>
+      <p class="footer-message"><strong>Importante:</strong> si uno está editando un archivo, el otro debe trabajar en otro. El sistema bloquea la edición simultánea del mismo archivo. La entrega y la revisión docente seguirán las indicaciones del profesor.</p>
+    </section>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>
