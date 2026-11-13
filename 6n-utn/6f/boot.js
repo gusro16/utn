@@ -45,6 +45,14 @@
   // Repositorio oficial 6F conectado al Apps Script institucional.
   const REPO_URL='https://script.google.com/a/macros/northfield.edu.ar/s/AKfycbzFY-sUUC_aTMBi3qxX6gBfN7WXDlBcgvRHWP9akD1Z37Y75vJBACorjpbFP-6b3qVflg/exec';
 
+  const EDITOR_URL='https://northfield-6f-editor-2026.vercel.app/';
+  const navEditor=doc.createElement('button');
+  navEditor.className='nav-btn';
+  navEditor.dataset.view='editor6f';
+  navEditor.innerHTML='💻 <span>Editor compartido</span>';
+  const navRepo=doc.querySelector('.nav-btn[data-view="defensa"]');
+  if(navRepo) navRepo.before(navEditor); else doc.querySelector('.nav').append(navEditor);
+
   const navEntrega=doc.createElement('button');
   navEntrega.className='nav-btn';
   navEntrega.dataset.view='entrega6f';
@@ -87,12 +95,41 @@
   `;
   doc.querySelector('footer').before(entrega);
 
+  const editor=doc.createElement('section');
+  editor.id='editor6f'; editor.className='view'; editor.dataset.title='Editor compartido · 6F';
+  editor.innerHTML=`
+    <div class="content-header">
+      <div><p class="eyebrow">TRABAJO EN EQUIPO · 6F</p>
+      <h2>Editor compartido de código</h2>
+      <p>Los dos integrantes pueden trabajar en el mismo proyecto, usando distintos archivos. Los cambios se guardan en el servidor y quedan disponibles para revisarlos.</p></div>
+    </div>
+    <div class="card" style="padding:18px 22px;margin-bottom:16px;border-left:5px solid #2563eb">
+      <strong>Cómo empezar</strong>
+      <ol style="line-height:1.8;margin:8px 0 0;padding-left:23px">
+        <li>Elegí tu equipo e ingresá el código que te compartió el profesor.</li>
+        <li>Si es la primera vez, usá <strong>Cargar carpeta</strong> para incorporar los archivos existentes (una sola vez por equipo).</li>
+        <li>Abrí un HTML o CSS y trabajá. El guardado es automático; verificá que diga <strong>Guardado en servidor</strong>.</li>
+        <li>Si un archivo lo está editando tu compañero, trabajá sobre otro. No intentes reemplazarlo desde una copia anterior.</li>
+      </ol>
+      <p style="margin:10px 0 0;color:#475569"><strong>Importante:</strong> los archivos ya entregados en Google Drive siguen como respaldo. Los cambios nuevos del editor quedan en su propio guardado; el contador anterior de Drive no se actualiza con estos cambios.</p>
+      <p style="margin:10px 0 0"><a href="${EDITOR_URL}" target="_blank" rel="noopener noreferrer">Abrir editor en una pestaña nueva</a> si preferís una pantalla más grande.</p>
+    </div>
+    <div class="card" style="padding:10px;border:1px solid #cbd5e1">
+      <iframe title="Editor compartido de Programación Web 6F" src="${EDITOR_URL}" loading="lazy" referrerpolicy="no-referrer" style="display:block;width:100%;height:920px;border:0;border-radius:12px;background:#f8fafc"></iframe>
+    </div>
+  `;
+  entrega.after(editor);
+
   const quickEntrega=doc.createElement('button');
   quickEntrega.className='quick card jump';
   quickEntrega.dataset.target='entrega6f';
   quickEntrega.innerHTML='<span>📁</span><strong>Mi repositorio</strong><small>Actualizar la carpeta oficial del proyecto</small>';
   const grid=q('#inicio .quick-grid');
   if(grid) grid.append(quickEntrega);
+  const quickEditor=doc.createElement('button');
+  quickEditor.className='quick card jump'; quickEditor.dataset.target='editor6f';
+  quickEditor.innerHTML='<span>💻</span><strong>Editor compartido</strong><small>Trabajar y guardar por archivo</small>';
+  if(grid) grid.append(quickEditor);
 
 
   // Seguimiento docente: corte parcial por equipo, actualizado desde un archivo separado.
@@ -274,7 +311,7 @@
   q('footer').textContent='Proyecto Web 6F · Material de acompañamiento · Diseño Web 2026';
   const oldLoader=[...doc.querySelectorAll('script[src]')].find(x=>x.getAttribute('src')==='app-loader.js'); if(oldLoader) oldLoader.remove();
   const link=q('link[href="style.css"]'); if(link) link.setAttribute('href','../style.css');
-  const app=doc.createElement('script'); app.src='app-6f.js?v=20261113-devoluciones'; doc.body.appendChild(app);
+  const app=doc.createElement('script'); app.src='app-6f.js?v=20261113-editor'; doc.body.appendChild(app);
   let html='<!doctype html>\n'+doc.documentElement.outerHTML;
   html=html.split('UTN.BA').join('').split('UTN').join('');
   document.open(); document.write(html); document.close();
