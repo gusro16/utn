@@ -43,8 +43,10 @@ module.exports=async(req,res)=>{
     res.setHeader('Location','/?auth=ok#situacion');
     res.end();
   }catch(e){
+    const reason=String(e&&e.message||'unknown_error').replace(/[^a-zA-Z0-9_-]/g,'_').slice(0,80);
+    console.error('[oauth-callback]', reason);
     res.statusCode=302;
-    res.setHeader('Location','/?auth=error#situacion');
+    res.setHeader('Location','/?auth=error&reason='+encodeURIComponent(reason)+'#situacion');
     res.end();
   }
 };
