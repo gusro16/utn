@@ -23,7 +23,47 @@ for (const t of Object.values(teams)) {
 }
 
 const emailToTeam = {
-  // Se completa con los correos institucionales exactos de cada alumno.
+  'apaterno@northfield.edu.ar':'paterno-tinnirello',
+  'ltinnirellolucila@northfield.edu.ar':'paterno-tinnirello',
+
+  'dserio@northfield.edu.ar':'serio-ledesma',
+  'ledesmacatalina@northfield.edu.ar':'serio-ledesma',
+
+  'tartufolirubifaustina@northfield.edu.ar':'tartufoli-converso',
+  'vconverso@northfield.edu.ar':'tartufoli-converso',
+
+  'antonella.lagrottarochi@northfield.edu.ar':'lagrotta-arcas',
+  'aarcas@northfield.edu.ar':'lagrotta-arcas',
+
+  'cresumil@northfield.edu.ar':'resumil-medrano',
+  'dmedrano@northfield.edu.ar':'resumil-medrano',
+
+  'mbonaventura@northfield.edu.ar':'bonaventura-vidal',
+  'jvidal@northfield.edu.ar':'bonaventura-vidal',
+
+  'iveleche@northfield.edu.ar':'veleche-bedascarrasbure',
+  'cbedascarrasbure@northfield.edu.ar':'veleche-bedascarrasbure',
+
+  'castellanozoe@northfield.edu.ar':'castellano-tagliatti',
+  'gtagliatti@northfield.edu.ar':'castellano-tagliatti',
+
+  'abenetti@northfield.edu.ar':'benetti-pagura',
+  'rpagura@northfield.edu.ar':'benetti-pagura',
+
+  'lpace@northfield.edu.ar':'pace-lopez-letizia',
+  'jolopez@northfield.edu.ar':'pace-lopez-letizia',
+
+  'cruizbarassi@northfield.edu.ar':'ruiz-barassi-anso',
+  'canso@northfield.edu.ar':'ruiz-barassi-anso',
+
+  'jsosa@northfield.edu.ar':'sosa-bolli',
+  'rbolli@northfield.edu.ar':'sosa-bolli',
+
+  'rgiavedoni@northfield.edu.ar':'giavedoni',
+  'rdebenedictis@northfield.edu.ar':'de-benedictis',
+
+  'jspollansky@northfield.edu.ar':'spollansky-figueira',
+  'ifigueira@northfield.edu.ar':'spollansky-figueira'
 };
 
 module.exports = { teams, emailToTeam };
