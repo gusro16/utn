@@ -3,7 +3,7 @@
   const parts=await Promise.all(files.map(f=>fetch(f).then(r=>{if(!r.ok) throw new Error('No se pudo cargar '+f); return r.text();})));
   let code=parts.join('');
 
-  const route=`const DELIVERY = new Date('2026-11-13T23:59:59-03:00');
+  const route=`const DELIVERY = new Date('2026-11-19T23:59:59-03:00');
 const routeSteps = [
   {date:'2026-10-05', label:'5/10', title:'Diagnóstico y orden', desc:'Confirmar el estado real de cada proyecto, ordenar archivos y verificar que la estructura general del sitio funcione.', tasks:['Abrir todas las páginas','Comprobar navegación básica','Confirmar CSS vinculado','Ordenar archivos y recursos']},
   {date:'2026-10-12', label:'12/10', title:'Feriado nacional', desc:'Día del Respeto a la Diversidad Cultural. No se cuenta como jornada de clase.', tasks:['No se planifica avance de clase para esta fecha.'], noClass:true},
@@ -16,8 +16,9 @@ const routeSteps = [
   {date:'2026-11-06', label:'6/11', title:'Versión casi final', desc:'La última semana tendrá dos feriados; por eso el proyecto debería quedar prácticamente cerrado en esta instancia.', tasks:['Prueba completa del sitio','Revisar beneficiario y contenidos','Explicar decisiones técnicas y visuales','Preparar copia final y respaldo']},
   {date:'2026-11-09', label:'9/11', title:'Feriado nacional', desc:'Feriado nacional por la visita del papa León XIV.', tasks:['No se planifica avance de clase para esta fecha.'], noClass:true},
   {date:'2026-11-11', label:'11/11', title:'Feriado · Provincia de Buenos Aires', desc:'Feriado en todo el territorio de la Provincia de Buenos Aires por la visita del papa León XIV.', tasks:['No se planifica avance de clase para esta fecha.'], noClass:true},
-  {date:'2026-11-13', label:'13/11', title:'Entrega final del sitio', desc:'Fecha límite de entrega del proyecto. El equipo debe llegar con la versión final revisada, probada y lista para compartir.', tasks:['Prueba final en otra computadora','Confirmar index.html en minúsculas','Revisar enlaces y multimedia','Verificar carpeta y respaldo','Entregar por Classroom'], final:true},
+  {date:'2026-11-13', label:'13/11', title:'Primer corte de entrega', desc:'Se revisa lo que figura en el repositorio oficial, conservando evidencia de los proyectos y de las correcciones anteriores.', tasks:['Verificar que la carga figure en ACTUAL','Revisar la devolución por equipo','Corregir los errores señalados','Conservar la versión anterior']},
   {date:'2026-11-16', label:'16/11', title:'Defensa oral · jornada 1', desc:'Primera jornada de defensas orales por equipos. Cada equipo dispone de 5 a 7 minutos reloj para fundamentar el desarrollo y explicar el uso del código.', tasks:['Presentar brevemente el propósito y beneficiario','Mostrar el recorrido del sitio','Fundamentar decisiones de HTML y CSS','Participación de ambos integrantes','Responder preguntas del profesor'], oral:true},
+  {date:'2026-11-19', label:'19/11', title:'Último día para terminar y corregir', desc:'Entregar la carpeta completa del proyecto antes del 20/11. El código tiene que funcionar y cada integrante debe poder explicarlo.', tasks:['Corregir los puntos indicados por el profesor','Verificar enlaces, imágenes y archivos','Completar los requisitos pedidos','Eliminar textos de ejemplo e instrucciones de plantilla','Actualizar la carpeta oficial y comprobar la carga'], final:true},
   {date:'2026-11-20', label:'20/11', title:'Defensa oral · jornada 2', desc:'Segunda jornada de defensas orales por equipos. Se evalúa el proyecto como producción grupal y el dominio de cada integrante en forma individual.', tasks:['5 a 7 minutos por equipo','Explicar decisiones de construcción','Mostrar comprensión del código utilizado','Cada integrante debe poder responder','Habrá preguntas breves'], oral:true}
 ];`;
   code=code.replace(/const DELIVERY = new Date\('2026-10-22T12:00:00-03:00'\);\nconst routeSteps = \[[\s\S]*?\n\];/,route);
