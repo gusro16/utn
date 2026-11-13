@@ -50,6 +50,18 @@ export default async function handler(req,res){
  try{
    if(!process.env.BLOB_READ_WRITE_TOKEN||!process.env.EDITOR_TEAM_CODES||!process.env.EDITOR_ADMIN_CODE)return reply(res,503,{error:'Editor sin configurar. No se guardó nada.'});
    const action=String(req.query?.action||'').toLowerCase(),b=req.method==='POST'?bodyOf(req):{},team=String(b.team||req.query?.team||''),code=String(req.headers['x-team-code']||b.code||''),role=auth(code,team);
+   if(action==='smoke'&&req.method==='GET'){
+     if(!process.env.EDITOR_SMOKE_CODE||!secureEqual(String(req.query?.secret||''),process.env.EDITOR_SMOKE_CODE))return reply(res,404,{error:'No encontrado'});
+     const t='00',file='prueba-'+randomUUID()+'.html',a=randomUUID(),z=randomUUID(),checks=[];
+     const one=await changeLock(t,file,'claim',{session:a,owner:'Prueba A'});checks.push(['primer_bloqueo',one[0]===200]);
+     const two=await changeLock(t,file,'claim',{session:z,owner:'Prueba B'});checks.push(['segundo_bloqueado',two[0]===423]);
+     const saved1=await save(t,file,{session:a,owner:'Prueba A',content:'version-1',etag:null,binary:false});checks.push(['guardar_nuevo',saved1[0]===200]);
+     const saved2=await save(t,file,{session:a,owner:'Prueba A',content:'version-2',etag:saved1[1]?.etag,binary:false});checks.push(['guardar_con_version',saved2[0]===200]);
+     const stale=await save(t,file,{session:a,owner:'Prueba A',content:'no-debe-escribirse',etag:saved1[1]?.etag,binary:false});checks.push(['rechazar_version_vieja',stale[0]===409]);
+     const readback=await read(current(t,file));checks.push(['lectura_vigente',readback?.bytes.toString('utf8')==='version-2']);
+     const archived=await pages(history(t,file),10);checks.push(['copia_anterior',archived.length>0]);
+     const out=checks.every(x=>x[1]);return reply(res,out?200:500,{ok:out,checks});
+   }
    if(action==='login'&&req.method==='POST'){if(!role)return reply(res,401,{error:'Código incorrecto.'});return reply(res,200,{ok:true,role,team:role==='docente'?(ALL.includes(team)?team:null):team,teams:role==='docente'?ALL:undefined});}
    if(!role||!ALL.includes(team))return reply(res,401,{error:'Acceso no autorizado.'});
    if(action==='files'&&req.method==='GET'){
