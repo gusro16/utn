@@ -1,0 +1,12 @@
+{
+  "name": "northfield-6f-editor",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@vercel/blob": "2.9.0"
+  }
+}
