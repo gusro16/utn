@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<title>6F · Evaluación UTN · Equipo 12</title>
+<link rel="stylesheet" href="/style.css">
+<style>
+body{background:#f3f6fb}main{max-width:940px;padding:16px;margin:0 auto}
+.topbar{min-height:62px}.panel{padding:24px;margin-bottom:14px}
+h1{font-size:24px;line-height:1.25}h2{font-size:20px}
+.access{text-align:left;max-width:610px;margin:4vh auto}.access label{display:block;font-size:13px;font-weight:750;margin:14px 0 7px}
+.access input{width:100%;padding:12px;border:1px solid #bccbdf;border-radius:9px}.access button{margin-top:14px;width:100%}
+.secret-note{font-size:12px;color:#66758b;margin:10px 0 0}
+.section-title{font-size:11px;letter-spacing:.11em;font-weight:800;color:#536d97;text-transform:uppercase}
+.resulthead{display:flex;justify-content:space-between;align-items:start;gap:14px}
+.status{display:inline-block;color:#9b2424;background:#ffe9e7;border:1px solid #fac4be;border-radius:30px;padding:8px 13px;font-weight:750;font-size:12px}
+.scorebox{border:1px solid #f8b9b9;background:#fff1f1;padding:14px 19px;border-radius:13px;min-width:126px;text-align:center}
+.scorebox strong{display:block;font-size:32px;color:#b42323;line-height:1.15}.scorebox small{font-size:11px;color:#7e3434}
+.name-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+.name-grid>div{border:1px solid #e1e8f1;background:#f7f9fe;border-radius:12px;padding:14px}
+.name-grid strong{display:block;font-size:15px}.name-grid b{font-size:21px;color:#b42323}
+.section{padding-top:14px;margin-top:14px;border-top:1px solid #e2e8f0}
+.section p{line-height:1.65;margin:8px 0 0}.section h3{font-size:15px;margin:0}
+.rubric-link{display:inline-block;color:#174ba3;font-weight:700;text-decoration:underline;margin:12px 0}
+.note{background:#edf4fc;border-radius:10px;padding:13px;font-size:13px;color:#334f78}
+button:hover{filter:brightness(.96)}
+@media(max-width:650px){.name-grid{grid-template-columns:1fr}.resulthead{flex-direction:column}main{padding:10px}.panel{padding:20px}.scorebox{width:100%}}
+</style>
+</head><body>
+<header class="topbar"><div class="brand"><span class="brand-mark">6F</span><div><strong>Evaluación UTN · Equipo 12</strong><small>ONG CEAPI · participación voluntaria</small></div></div></header>
+<main>
+<section id="access" class="panel access">
+<p class="eyebrow">ACCESO PRIVADO · EQUIPO 12 DE 6F</p><h1>Tu evaluación de UTN</h1>
+<p>Renata y Lía: su evaluación UTN se consulta desde el seguimiento de <strong>6F</strong>, con las mismas condiciones de acreditación que los equipos de 6N.</p>
+<form id="form"><label for="code">Código de acceso del Equipo 12</label><input id="code" type="password" autocomplete="off" required placeholder="Código del equipo" aria-describedby="help"><p id="help" class="secret-note">Usen el mismo código del editor compartido. También puede ingresar el profesor con su código docente.</p><button type="submit" class="primary" id="enter">Consultar evaluación</button></form>
+<p id="error" role="alert" hidden style="color:#a52626;margin-top:12px"></p>
+</section>
+<section id="report" hidden class="panel">
+<div class="resulthead"><div><p class="eyebrow">UTN · EXAMEN 30/10/2026</p><h1>ONG CEAPI</h1><p id="label" style="color:#53647b">Renata Di Filippo / Lía Martínez Merino</p><span id="status" class="status"></span></div><div class="scorebox"><strong id="score"></strong><small>puntaje del equipo · sobre 100</small></div></div>
+<div class="name-grid" id="students"></div>
+<p class="note">Para aprobar UTN se requieren <strong>60 puntos</strong>. Esta evaluación corresponde exclusivamente a la acreditación de UTN; no reemplaza la nota escolar anterior de 6F.</p>
+<div class="section"><h3>Cómo están hoy</h3><p id="situation"></p></div>
+<div class="section"><h3>Qué les pido ahora</h3><p id="next"></p></div>
+<div class="section"><h3>Rúbrica y recuperación</h3><p id="rubricTitle"></p><a class="rubric-link" id="rubric" href="#" target="_blank" rel="noopener noreferrer">Ver rúbrica original de UTN</a><p id="stage"></p></div>
+<div class="section"><h3>Registro de proceso</h3><p id="process"></p></div>
+<button id="exit" class="ghost" style="margin-top:18px">Cerrar evaluación</button>
+</section>
+</main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+$('form').addEventListener('submit',async e=>{
+ e.preventDefault();$('error').hidden=true;$('enter').disabled=true;
+ try{
+  const response=await fetch('/api/editor?action=utn&team=12',{headers:{'x-team-code':$('code').value.trim()},cache:'no-store'});
+  const data=await response.json();
+  if(!response.ok||!data.ok)throw new Error(data.error||'No se pudo consultar la evaluación.');
+  const u=data.evaluation;
+  $('score').textContent=u.score+'/100';
+  $('status').textContent=u.status;
+  $('students').replaceChildren();
+  (u.members||[]).forEach(m=>{
+    const box=document.createElement('div'),name=document.createElement('strong'),score=document.createElement('b');
+    name.textContent=m.name;score.textContent=m.score+'/100';box.append(name,score);$('students').append(box);
+  });
+  $('situation').textContent=u.statusText;
+  $('next').textContent=u.action;
+  $('rubricTitle').textContent=u.rubricTitle;
+  $('rubric').href=u.rubric;
+  $('stage').textContent=u.stage+'. La fecha específica deberá ser comunicada por UTN y el colegio.';
+  $('process').textContent=u.process;
+  $('access').hidden=true;$('report').hidden=false;$('code').value='';
+ }catch(err){$('error').textContent=err.message;$('error').hidden=false;}
+ finally{$('enter').disabled=false;}
+});
+$('exit').onclick=()=>{$('report').hidden=true;$('access').hidden=false;$('code').value='';};
+</script>
+</body></html>
