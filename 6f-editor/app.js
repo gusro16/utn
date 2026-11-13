@@ -163,6 +163,50 @@ async function viewRevision(id){
  }catch(e){notify(e.message,true);}
 }
 function downloadBlob(blob,filename){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);}
+function crc32(bytes){
+ let crc=0xffffffff;
+ for(const byte of bytes){crc^=byte;for(let i=0;i<8;i++)crc=(crc&1)?(crc>>>1)^0xedb88320:crc>>>1;}
+ return (crc^0xffffffff)>>>0;
+}
+function zipArchive(entries){
+ const encoder=new TextEncoder(),chunks=[],central=[];let offset=0,centralSize=0;
+ for(const {name,data} of entries){
+  const filename=encoder.encode(name),size=data.length,checksum=crc32(data);
+  if(size>0xffffffff||filename.length>65535)throw new Error('Uno de los archivos supera el tamaño de ZIP.');
+  const local=new Uint8Array(30+filename.length),h=new DataView(local.buffer);
+  h.setUint32(0,0x04034b50,true);h.setUint16(4,20,true);h.setUint16(6,0x0800,true);
+  h.setUint16(12,0x0021,true);h.setUint32(14,checksum,true);h.setUint32(18,size,true);h.setUint32(22,size,true);
+  h.setUint16(26,filename.length,true);local.set(filename,30);chunks.push(local,data);
+  const entry=new Uint8Array(46+filename.length),c=new DataView(entry.buffer);
+  c.setUint32(0,0x02014b50,true);c.setUint16(4,20,true);c.setUint16(6,20,true);c.setUint16(8,0x0800,true);
+  c.setUint16(14,0x0021,true);c.setUint32(16,checksum,true);c.setUint32(20,size,true);c.setUint32(24,size,true);
+  c.setUint16(28,filename.length,true);c.setUint32(42,offset,true);entry.set(filename,46);
+  central.push(entry);offset+=local.length+data.length;centralSize+=entry.length;
+ }
+ if(entries.length>65535||offset>0xffffffff||centralSize>0xffffffff)throw new Error('La carpeta es demasiado grande para exportarla.');
+ const end=new Uint8Array(22),e=new DataView(end.buffer);
+ e.setUint32(0,0x06054b50,true);e.setUint16(8,entries.length,true);e.setUint16(10,entries.length,true);
+ e.setUint32(12,centralSize,true);e.setUint32(16,offset,true);
+ return new Blob([...chunks,...central,end],{type:'application/zip'});
+}
+async function exportZip(){
+ const button=$('exportZip');if(!team||!files.length)return notify('Todavía no hay archivos para exportar.',true);
+ if(dirty&&!(await saveCurrent()))return notify('Primero guardá o descargá el borrador pendiente.',true);
+ button.disabled=true;button.textContent='Armando ZIP...';
+ try{
+  const contents=[];let total=0;
+  for(const path of sortedFiles()){
+   const v=await getFile(path);
+   const bytes=v.binary?fromBase64(v.content):new TextEncoder().encode(v.content);
+   total+=bytes.length;if(total>80_000_000)throw new Error('El proyecto supera 80 MB. Consultá al profesor.');
+   contents.push({name:path,data:bytes});
+  }
+  const date=new Date().toISOString().slice(0,10);
+  downloadBlob(zipArchive(contents),'6F-equipo-'+team+'-'+date+'.zip');
+  notify('Proyecto completo descargado. Conservá este respaldo.');
+ }catch(e){notify('No se pudo preparar el ZIP: '+e.message,true);}
+ finally{button.disabled=false;button.textContent='Descargar proyecto ZIP';}
+}
 async function downloadFile(){
  if(!current)return;
  try{if(dirty&&!isBinary(current)){downloadBlob(new Blob([$('code').value],{type:'text/plain'}),current.split('/').pop());return;}
@@ -243,7 +287,7 @@ $('code').addEventListener('keydown',e=>{if(e.key==='Tab'){e.preventDefault();co
 $('folderInput').addEventListener('change',e=>importFiles(e.target,true));
 $('filesInput').addEventListener('change',e=>importFiles(e.target,false));
 $('showPreview').onclick=renderPreview;$('previewPage').onchange=e=>previewPage=e.target.value;
-$('downloadCurrent').onclick=downloadFile;$('exportDraft').onclick=downloadDraft;
+$('downloadCurrent').onclick=downloadFile;$('exportDraft').onclick=downloadDraft;$('exportZip').onclick=exportZip;
 window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
 setInterval(leaseHeartbeat,40000);
 setInterval(()=>{if(team)refreshFiles().catch(()=>{});},20000);
