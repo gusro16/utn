@@ -25,12 +25,18 @@ module.exports=async(req,res)=>{
       body:new URLSearchParams({code,client_id:clientId,client_secret:clientSecret,redirect_uri:redirect,grant_type:'authorization_code'})
     });
     const token=await tokenRes.json();
+    if(!tokenRes.ok) throw new Error('token_'+String(token.error||'exchange_failed'));
     if(!token.id_token) throw new Error('no_id_token');
     const verifyRes=await fetch('https://oauth2.googleapis.com/tokeninfo?id_token='+encodeURIComponent(token.id_token));
     const profile=await verifyRes.json();
-    const domain=process.env.ALLOWED_DOMAIN||'northfield.edu.ar';
-    if(!verifyRes.ok||profile.aud!==clientId||profile.email_verified!=='true'||profile.hd!==domain) throw new Error('domain_not_allowed');
+    const domain=(process.env.ALLOWED_DOMAIN||'northfield.edu.ar').toLowerCase();
     const email=String(profile.email||'').toLowerCase();
+    const verified=profile.email_verified===true||profile.email_verified==='true';
+    const sameDomain=profile.hd===domain||email.endsWith('@'+domain);
+    if(!verifyRes.ok) throw new Error('tokeninfo_failed');
+    if(profile.aud!==clientId) throw new Error('audience_mismatch');
+    if(!verified) throw new Error('email_not_verified');
+    if(!sameDomain) throw new Error('domain_not_allowed');
     const teacherEmails=String(process.env.TEACHER_EMAILS||'').toLowerCase().split(',').map(s=>s.trim()).filter(Boolean);
     let role='student',teamKey=emailToTeam[email]||null;
     if(teacherEmails.includes(email)){role='teacher';teamKey=null;}
