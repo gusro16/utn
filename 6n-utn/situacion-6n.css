@@ -88,3 +88,16 @@
 .sit-team[data-state="approved"] .sit-action{background:#f0fdf4;border-color:#bbf7d0}
 .sit-team[data-state="approved"] .sit-action b{color:#166534}
 .sit-team[data-state="improve"] .sit-review{background:#eff6ff;border-color:#bfdbfe}
+
+/* Tutorial de reentrega: pasos breves y legibles, en Mi situación y Subir correcciones. */
+.sit-upload-steps{list-style:none;counter-reset:upload-steps;margin:16px 0;padding:0;display:grid;gap:10px}
+.sit-upload-steps li{counter-increment:upload-steps;position:relative;margin:0;padding:11px 13px 11px 48px;background:#fff;border:1px solid #cbd5e1;border-radius:10px;font-size:.89rem;line-height:1.5;color:#24334a}
+.sit-upload-steps li::before{content:counter(upload-steps);position:absolute;top:12px;left:12px;display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#1d4ed8;color:#fff;font-weight:800;font-size:.82rem}
+.sit-upload-steps b{color:#0f172a}
+.sit-upload-steps code{overflow-wrap:anywhere;font-size:.84em}
+.sit-upload-warning{padding:12px 13px;border:1px solid #f59e0b;border-radius:10px;background:#fffbeb;color:#78350f!important}
+.sit-upload-classroom{margin:13px 0;padding:13px 15px;border-left:4px solid #0d9488;border-radius:10px;background:#f0fdfa;color:#134e4a;line-height:1.55;font-size:.86rem}
+.sit-upload-public{margin-top:18px;padding:23px 26px}
+.sit-upload-public h3{margin:0 0 8px}
+.sit-upload-card>a{margin:4px 0 3px}
+@media(max-width:600px){.sit-upload-public{padding:18px 15px}.sit-upload-steps li{padding:12px 10px 12px 44px}.sit-upload-steps li::before{left:10px}}
