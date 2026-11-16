@@ -40,6 +40,29 @@ for (const t of Object.values(teams)) {
   t.site = t.slug ? PROJECT_BASE + t.slug + '/' : null;
 }
 
+// Carpetas existentes de cada equipo para actualizaciones de noviembre.
+// No modifican ni reemplazan los ZIP originales compartidos con UTN.
+const submissionFolders6n = {
+  "paterno-tinnirello": "https://drive.google.com/drive/folders/1wThuiascv27BNTf9mn3btl5OYzGQGzYh",
+  "serio-ledesma": "https://drive.google.com/drive/folders/1xvu1yDM7iI6sDod7HldSeNucAAhllIkC",
+  "tartufoli-converso": "https://drive.google.com/drive/folders/1TVMAbSJtrw4JXC-rj-uGr5z_UHUCIJVY",
+  "lagrotta-arcas": "https://drive.google.com/drive/folders/1fvx8zV_Apv8bAbSiF1fpsqaCWvsDMXzs",
+  "benetti-pagura": "https://drive.google.com/drive/folders/1fYiy4k7gUwFP3SyGplLAB32lKfhxA4L_",
+  "pace-lopez-letizia": "https://drive.google.com/drive/folders/1XxluECZGCQccNi5pkB4v6twoFDzxmvf0",
+  "ruiz-barassi-anso": "https://drive.google.com/drive/folders/1qmG5KE5ipNAGZtfZuNHn6ElWlL8Kkorc",
+  "bonaventura-vidal": "https://drive.google.com/drive/folders/1KYc7sY-UmXbkxNZPPo3JIlIvzTgBBs7c",
+  "spollansky-figueira": "https://drive.google.com/drive/folders/14rwP__OiBsIGquYOWoG-_pTFNYdLceLk",
+  "giavedoni": "https://drive.google.com/drive/folders/1gc0b_MSEzv_9aMpumqdbMsQwlMXYtgdg",
+  "de-benedictis": "https://drive.google.com/drive/folders/1FJ4ly7JYoChEcCe-TTu5lKzSfbFH1Uns",
+  "sosa-bolli": "https://drive.google.com/drive/folders/1hHZEbo7l6pXP7TKSicr05gTWiHFwlqqg",
+  "resumil-medrano": "https://drive.google.com/drive/folders/1SmXsCA-d751SpgBI9uvF8nfWk3fB6P2p",
+  "veleche-bedascarrasbure": "https://drive.google.com/drive/folders/1FEPlJO-JD-GLQDu_1cwpeqqLJcqMQ7T-",
+  "castellano-tagliatti": "https://drive.google.com/drive/folders/1dnj3AFS3hybS3Md34_WCnbHUP4eecb_y"
+};
+for (const [key, url] of Object.entries(submissionFolders6n)) {
+  if (teams[key]) teams[key].updatesFolder = url;
+}
+
 const emailToTeam = {
   'apaterno@northfield.edu.ar':'paterno-tinnirello',
   'ltinnirellolucila@northfield.edu.ar':'paterno-tinnirello',
