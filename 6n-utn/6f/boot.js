@@ -192,6 +192,25 @@
     '<div class="card teacher-controls"><label for="teacherTeam6f">Equipo</label><select id="teacherTeam6f"><option value="">Elegí tu equipo</option>'+opciones+'</select></div>'+
     '<div id="teacherEmpty6f" class="card teacher-empty">Elegí tu equipo para ver la situación, qué corregir y la evaluación histórica.</div>'+tarjetas;
   doc.querySelector('footer').before(seguimiento);
+  // Devolución UTN exclusiva de las dos alumnas de CEAPI (6F, equipo 12).
+  const renataTeam=seguimiento.querySelector('.teacher-team-card[data-team="12"]');
+  if(renataTeam){
+    const revisionUTN=doc.createElement('div');
+    revisionUTN.className='utn-review-6f';
+    revisionUTN.innerHTML='<strong>📝 Devolución UTN · Renata y Lía</strong>'+
+      '<p>Revisé la rúbrica de UTN y dejé una ayuda con lo que hay que corregir. La idea es ir punto por punto, sin complicarse.</p>'+
+      '<a href="https://docs.google.com/document/d/1QrKY5UYRCRS4qYT_7OXyYxB3D9lcjMyJCBriiiiGCU8/edit" target="_blank" rel="noopener noreferrer">📄 Abrir mi devolución</a>'+
+      '<small>Solo lectura con las cuentas institucionales de las integrantes.</small>';
+    renataTeam.append(revisionUTN);
+    const revisionStyles=doc.createElement('style');
+    revisionStyles.textContent='#seguimiento6f .utn-review-6f{margin-top:20px;padding:16px 18px;border:1px solid #bfdbfe;border-left:4px solid #2563eb;border-radius:12px;background:#eff6ff}'+
+      '#seguimiento6f .utn-review-6f strong{display:block;color:#1e3a8a;margin-bottom:8px}'+
+      '#seguimiento6f .utn-review-6f p{line-height:1.5;color:#334155;margin:0 0 12px}'+
+      '#seguimiento6f .utn-review-6f a{display:inline-block;padding:10px 14px;background:#1d4ed8;border-radius:9px;color:white;text-decoration:none;font-weight:800}'+
+      '#seguimiento6f .utn-review-6f small{display:block;color:#475569;margin-top:8px}';
+    doc.head.append(revisionStyles);
+  }
+
 
   const seguimientoStyles=doc.createElement('style');
   seguimientoStyles.textContent=`
