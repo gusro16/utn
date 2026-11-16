@@ -13,6 +13,14 @@ function card(t){
   const reviewText=isImproving
     ?'Aprobaron UTN. Revisé su rúbrica y les dejé qué corregir y cómo mostrarme que entienden los cambios. Abran el documento: ahí está la consigna de entrega y explicación.'
     :'Revisé la rúbrica de UTN y dejé una ayuda con lo que hay que corregir. La idea es ir punto por punto, sin complicarse.';
+  const updatesFolderCard=(t.state==='approved'||!t.updatesFolder)?'':
+    '<div class="sit-review" style="border-left:4px solid #2563eb;margin-top:14px">'+
+    '<strong>📦 Subir la versión corregida (noviembre)</strong>'+
+    '<p>Subí un <b>ZIP completo</b> con un nombre nuevo (por ejemplo, proyecto-correcciones-noviembre.zip). <b>No borres ni reemplaces</b> los archivos originales.</p>'+
+    '<a class="primary" href="'+esc(t.updatesFolder)+'" target="_blank" rel="noopener noreferrer">☁️ Abrir la carpeta de mi equipo en Drive</a>'+
+    '<small>Comprobá que el ZIP nuevo aparece en Drive con el tamaño correcto. La carga directa evita el tiempo de espera del formulario anterior.</small>'+
+    (isImproving?'<p><b>Tu entrega evaluable se hace en Classroom:</b> adjuntá allí el ZIP (o su enlace de Drive), una captura y el video de correcciones.</p><a href="https://classroom.google.com/c/Nzk0MTM1NzM2Njcz/a/ODk5OTAyMzA1OTQ2/details" target="_blank" rel="noopener noreferrer">📚 Abrir actividad de Classroom</a>':'<p><b>Recuperatorio UTN:</b> esta carpeta permite guardar la nueva versión para su revisión y práctica. Conservá el ZIP anterior.</p>')+
+    '</div>';
   const review=t.review?'<div class="sit-review"><strong>'+esc(reviewTitle)+'</strong><p>'+esc(reviewText)+'</p><a href="'+esc(t.review)+'" target="_blank" rel="noopener noreferrer" aria-label="Abrir devolución para el equipo '+esc(t.team)+' en modo lectura">📄 Abrir mi devolución</a><small>Se abre con tu cuenta institucional. Es solo para leer.</small></div>':'';
   return '<article class="sit-team" data-state="'+esc(t.state)+'">'+
     '<div class="sit-team-top"><div><h3>'+esc(t.team)+'</h3><div class="sit-members">'+esc(t.members)+'</div></div><span class="sit-badge '+esc(t.state)+'">'+esc(t.badge)+'</span></div>'+
@@ -20,7 +28,7 @@ function card(t){
     '<div class="sit-status"><b>Cómo están hoy</b>'+esc(t.status)+'</div>'+
     '<div class="sit-action"><b>Qué les pido ahora</b>'+esc(t.action)+'</div>'+
     (t.state==='approved'?'':'<div class="sit-evidence"><b>Mientras trabajan:</b> anoten qué cambiaron, en qué archivo o parte del sitio y por qué. Eso después les va a servir para preparar la defensa sin tener que memorizar nada.</div>')+
-    '<div class="sit-links">'+site+rubric+'</div>'+review+
+    '<div class="sit-links">'+site+rubric+'</div>'+review+updatesFolderCard+
   '</article>';
 }
 
