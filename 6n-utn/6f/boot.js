@@ -111,6 +111,27 @@
     '<div class="card teacher-controls"><label for="teacherTeam6f">Equipo</label><select id="teacherTeam6f"><option value="">Elegí tu equipo</option>'+opciones+'</select></div>'+
     '<div id="teacherEmpty6f" class="card teacher-empty">Elegí un equipo para ver su nota parcial, la rúbrica y la devolución.</div>'+tarjetas;
   doc.querySelector('footer').before(seguimiento);
+  // Devolución UTN de las dos estudiantes de 6F que rindieron el examen.
+  // Se muestra solo dentro de la tarjeta del equipo 12; Google Docs da lectura
+  // exclusivamente a las dos cuentas institucionales autorizadas.
+  const ceapiCard=seguimiento.querySelector('.teacher-team-card[data-team="12"]');
+  if(ceapiCard){
+    const utReview=doc.createElement('div');
+    utReview.className='utn-review-6f';
+    utReview.innerHTML='<strong>📝 Devolución de UTN · Renata y Lía</strong>'+
+      '<p>Revisé la rúbrica de UTN y dejé una ayuda con lo que hay que corregir. La idea es ir punto por punto, sin complicarse.</p>'+
+      '<a href="https://docs.google.com/document/d/1QrKY5UYRCRS4qYT_7OXyYxB3D9lcjMyJCBriiiiGCU8/edit" target="_blank" rel="noopener noreferrer">📄 Abrir mi devolución</a>'+
+      '<small>Solo lectura con sus cuentas institucionales del colegio.</small>';
+    ceapiCard.append(utReview);
+    const utReviewStyle=doc.createElement('style');
+    utReviewStyle.textContent='#seguimiento6f .utn-review-6f{margin-top:20px;padding:16px 18px;border:1px solid #bfdbfe;border-left:4px solid #2563eb;border-radius:12px;background:#eff6ff}'+
+      '#seguimiento6f .utn-review-6f strong{display:block;color:#1e3a8a;margin-bottom:8px}'+
+      '#seguimiento6f .utn-review-6f p{line-height:1.5;color:#334155;margin:0 0 12px}'+
+      '#seguimiento6f .utn-review-6f a{display:inline-block;padding:10px 14px;background:#1d4ed8;border-radius:9px;color:white;text-decoration:none;font-weight:800}'+
+      '#seguimiento6f .utn-review-6f small{display:block;color:#475569;margin-top:8px}';
+    doc.head.append(utReviewStyle);
+  }
+
 
   const seguimientoStyles=doc.createElement('style');
   seguimientoStyles.textContent=`
