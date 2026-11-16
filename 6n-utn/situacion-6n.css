@@ -21,6 +21,7 @@
 .sit-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .sit-team{padding:20px;border:1px solid var(--border);border-radius:17px;background:#fff;box-shadow:var(--shadow)}
 .sit-team[data-state="approved"]{border-top:5px solid #16a34a}
+.sit-team[data-state="improve"]{border-top:5px solid #2563eb}
 .sit-team[data-state="recovery"]{border-top:5px solid #d97706}
 .sit-team[data-state="special"]{border-top:5px solid #2563eb}
 .sit-team[data-state="newsite"]{border-top:5px solid #dc2626}
@@ -30,6 +31,7 @@
 .sit-members{font-size:.78rem;color:var(--muted)}
 .sit-badge{font-size:.7rem;font-weight:900;border-radius:999px;padding:7px 10px;white-space:nowrap}
 .sit-badge.approved{background:#dcfce7;color:#166534}
+.sit-badge.improve{background:#dbeafe;color:#1d4ed8}
 .sit-badge.recovery{background:#fef3c7;color:#92400e}
 .sit-badge.special{background:#dbeafe;color:#1d4ed8}
 .sit-badge.newsite{background:#fee2e2;color:#991b1b}
@@ -81,3 +83,8 @@
 .sit-review a{display:inline-flex;align-items:center;padding:10px 14px;background:#1d4ed8;border-radius:9px;color:#fff;text-decoration:none;font-weight:800;font-size:.84rem}
 .sit-review a:hover,.sit-review a:focus-visible{background:#1e40af}
 .sit-review small{display:block;margin-top:8px;font-size:.74rem;color:#475569}
+
+/* Equipos sin entregas pendientes: cierre visual diferenciado. */
+.sit-team[data-state="approved"] .sit-action{background:#f0fdf4;border-color:#bbf7d0}
+.sit-team[data-state="approved"] .sit-action b{color:#166534}
+.sit-team[data-state="improve"] .sit-review{background:#eff6ff;border-color:#bfdbfe}
