@@ -73,3 +73,11 @@
 .sit-demo button{padding:10px 14px;border:0;border-radius:9px;background:#6d28d9;color:#fff;font-weight:800;cursor:pointer}
 #sitTeacherCards{grid-column:1/-1}
 @media(max-width:600px){.sit-userbar{align-items:flex-start;flex-direction:column}.sit-demo-row{display:grid}.sit-demo select{min-width:0;width:100%}}
+
+/* Devolución visible únicamente en la ficha del equipo autenticado. */
+.sit-review{margin-top:14px;padding:16px 18px;border:1px solid #bfdbfe;border-left:4px solid #2563eb;border-radius:12px;background:#eff6ff}
+.sit-review strong{display:block;color:#1e3a8a;margin-bottom:6px}
+.sit-review p{font-size:.86rem;line-height:1.5;margin:0 0 12px;color:#334155}
+.sit-review a{display:inline-flex;align-items:center;padding:10px 14px;background:#1d4ed8;border-radius:9px;color:#fff;text-decoration:none;font-weight:800;font-size:.84rem}
+.sit-review a:hover,.sit-review a:focus-visible{background:#1e40af}
+.sit-review small{display:block;margin-top:8px;font-size:.74rem;color:#475569}
