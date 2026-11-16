@@ -8,7 +8,12 @@ function card(t){
   const utn=t.utn==null?'Pendiente / no válido':t.utn+'/100';
   const site=t.site?'<a class="primary" href="'+esc(t.site)+'" target="_blank" rel="noopener">🌐 Ver sitio presentado</a>':'';
   const rubric=t.rubric?'<a href="'+esc(t.rubric)+'" target="_blank" rel="noopener">📊 Ver rúbrica UTN</a>':'';
-  const review=t.review?'<div class="sit-review"><strong>📝 Una ayuda para las correcciones</strong><p>Revisé la rúbrica de UTN y dejé una ayuda con lo que hay que corregir. La idea es ir punto por punto, sin complicarse.</p><a href="'+esc(t.review)+'" target="_blank" rel="noopener noreferrer" aria-label="Abrir devolución para el equipo '+esc(t.team)+' en modo lectura">📄 Abrir mi devolución</a><small>Se abre con tu cuenta institucional. Es solo para leer.</small></div>':'';
+  const isImproving=t.state==='improve';
+  const reviewTitle=isImproving?'📝 Mejora final del proyecto':'📝 Una ayuda para las correcciones';
+  const reviewText=isImproving
+    ?'Aprobaron UTN. Revisé su rúbrica y les dejé qué corregir y cómo mostrarme que entienden los cambios. Abran el documento: ahí está la consigna de entrega y explicación.'
+    :'Revisé la rúbrica de UTN y dejé una ayuda con lo que hay que corregir. La idea es ir punto por punto, sin complicarse.';
+  const review=t.review?'<div class="sit-review"><strong>'+esc(reviewTitle)+'</strong><p>'+esc(reviewText)+'</p><a href="'+esc(t.review)+'" target="_blank" rel="noopener noreferrer" aria-label="Abrir devolución para el equipo '+esc(t.team)+' en modo lectura">📄 Abrir mi devolución</a><small>Se abre con tu cuenta institucional. Es solo para leer.</small></div>':'';
   return '<article class="sit-team" data-state="'+esc(t.state)+'">'+
     '<div class="sit-team-top"><div><h3>'+esc(t.team)+'</h3><div class="sit-members">'+esc(t.members)+'</div></div><span class="sit-badge '+esc(t.state)+'">'+esc(t.badge)+'</span></div>'+
     '<div class="sit-scores"><div class="sit-score"><small>Proceso · desarrollo</small><strong>'+esc(t.proc1)+'</strong></div><div class="sit-score"><small>Proceso · avance</small><strong>'+esc(t.proc2)+'</strong></div><div class="sit-score"><small>UTN</small><strong>'+esc(utn)+'</strong></div></div>'+
