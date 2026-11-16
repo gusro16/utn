@@ -18,6 +18,20 @@ const teams = {
   'castellano-tagliatti': {team:'Castellano / Tagliatti',members:'Zoe Castellano · Giulia Tagliatti',proc1:4,proc2:4,utn:35,state:'newsite',badge:'Nuevo trabajo + recuperatorio',slug:'castellano-tagliatti',rubric:'https://drive.google.com/file/d/1V-3s2zfTZLFYmlEFq8j3AaROWRtJdqjL/view',status:'UTN dejó una observación porque en el coloquio no pudieron demostrar suficiente comprensión del código y apareció la duda sobre el uso de IA. Por eso la materia sigue abierta.',action:'Necesito que preparen un trabajo nuevo que realmente puedan construir, modificar y explicar ustedes. En la defensa cada una tiene que poder mostrar qué hace el HTML y el CSS que está usando.'}
 };
 
+// Guías de revisión para estudiantes. Se muestran solo al equipo autenticado.
+const reviewDocs={
+  "ruiz-barassi-anso": "https://docs.google.com/document/d/1XR3TdgZ0gBDfzFXSrNXrCDKN8mhcgneJ9p_OEPvm-OA/view",
+  "bonaventura-vidal": "https://docs.google.com/document/d/1ZN7K2mpn9FPXRCJdOjZ90gLSl056RchcwJHdEkp9C6A/view",
+  "giavedoni": "https://docs.google.com/document/d/1LVRFpEuqb-10cvsQ6HvZh70hCKw3Ue7akz_8u6Nstwc/view",
+  "de-benedictis": "https://docs.google.com/document/d/1QWgMAD7cBPTsuMzV7_pzqYU1CzeIp551UXbI4TjXiRU/view",
+  "resumil-medrano": "https://docs.google.com/document/d/1DRXDUXAEBBhgYHcukeJUhOTHEyvjjWDXwraH9TIhAmU/view",
+  "veleche-bedascarrasbure": "https://docs.google.com/document/d/176nEVm_DPPR0bErlOKco14cYCrsW434rl2nRuWhOn4A/view",
+  "castellano-tagliatti": "https://docs.google.com/document/d/1lk8dCdxmIQJDgGkr3zimsyldR9XS_NZwmi57GKoqqR8/view"
+};
+for (const [teamKey, reviewUrl] of Object.entries(reviewDocs)) {
+  if (teams[teamKey]) teams[teamKey].review = reviewUrl;
+}
+
 for (const t of Object.values(teams)) {
   t.site = t.slug ? PROJECT_BASE + t.slug + '/' : null;
 }
