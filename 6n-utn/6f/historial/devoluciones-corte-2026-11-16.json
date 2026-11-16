@@ -1,0 +1,150 @@
+{
+  "fechaRevision": "16/11/2026",
+  "origen": "Revisión completa de las carpetas ACTUAL: páginas HTML encontradas, navegación entre páginas, anclas, recursos y datos visibles. Se realizaron varias pasadas de comprobación antes de publicar esta devolución.",
+  "nota": "Devolución de avance sin calificación numérica. Se priorizan navegabilidad, claridad, contenido útil, estética, coherencia visual y uso correcto de HTML/CSS.",
+  "equipos": [
+    {
+      "equipo": "01",
+      "situacion": "naranja",
+      "estado": "En proceso",
+      "devolucion": "Revisé las cinco páginas que tienen en ACTUAL. El sitio está mayormente conectado, pero todavía hay tres recorridos concretos que pueden fallar. Corrijan esos enlaces y vuelvan a recorrer todo el sitio.",
+      "correcciones": [
+        "En tienda.html, “Moda Circular” usa href=\"#circular\", pero esa sección está en el inicio. Cámbienlo por index.html#circular.",
+        "En Eventos.html y contacto.html, el menú llama eventos.html en minúscula, pero el archivo real es Eventos.html. Unifiquen el nombre.",
+        "En tienda.html cambien lang=\"en\" por lang=\"es\" y prueben Inicio → Tienda → Compra → Inicio."
+      ]
+    },
+    {
+      "equipo": "02",
+      "situacion": "rojo",
+      "estado": "Crítico",
+      "devolucion": "Hoy el sitio tiene dos páginas, pero la navegación queda cortada y las imágenes que pide el código no están en ACTUAL con esos nombres. Primero resuelvan eso para que el sitio pueda recorrerse y verse completo.",
+      "correcciones": [
+        "index.html llega a adoptar.html, pero adoptar.html no tiene un enlace para volver al inicio.",
+        "index.html llama adopt.jpg, perri.jpg y donaciones.jpg; adoptar.html llama otras seis imágenes. Ninguna coincide con los tres archivos de imagen actuales.",
+        "Agreguen una navegación clara y revisen los cierres/estructura del HTML antes de trabajar detalles visuales."
+      ]
+    },
+    {
+      "equipo": "03",
+      "situacion": "amarillo",
+      "estado": "En proceso",
+      "devolucion": "Las cinco páginas están bien conectadas por el menú. El problema principal está en los recursos: las imágenes llamadas desde el HTML no coinciden con los nombres de los archivos entregados. Corrijan eso y los datos provisorios.",
+      "correcciones": [
+        "Revisen los src de index.html, horarios.html, precios.html, quesomos.html y ubicacion.html: los nombres actuales no coinciden con los archivos de ACTUAL.",
+        "En horarios.html y precios.html todavía aparece tucorreo@ejemplo.com. Reemplácenlo por un dato real.",
+        "Cambien lang=\"en\" por lang=\"es\" y vuelvan a recorrer las cinco páginas."
+      ]
+    },
+    {
+      "equipo": "04",
+      "situacion": "rojo",
+      "estado": "Comprometido",
+      "devolucion": "Las páginas existen, pero hoy gran parte de la navegación depende de 127.0.0.1 y de rutas absolutas. Eso significa que puede funcionar en su computadora y fallar para cualquier otra persona. Corrijan las rutas antes de seguir.",
+      "correcciones": [
+        "Reemplacen todos los http://127.0.0.1:5500/... por rutas relativas entre los archivos del proyecto.",
+        "Desde la carpeta html/, revisen las rutas hacia css/ y hacia las imágenes; no usen /Projecto/img/ porque esa carpeta no está en ACTUAL.",
+        "En index.html, html/IMG/file.jpg no coincide con la carpeta real img. Prueben todo abriendo index.html sin depender de Live Server."
+      ]
+    },
+    {
+      "equipo": "05",
+      "situacion": "rojo",
+      "estado": "Crítico · sin entrega",
+      "devolucion": "La carpeta ACTUAL sigue vacía. Sin una versión del sitio no puedo revisar navegación, diseño ni código.",
+      "correcciones": [
+        "Suban la carpeta completa con index.html, páginas vinculadas, CSS e imágenes.",
+        "Comprueben que el sitio pueda abrirse y recorrerse desde index.html.",
+        "Después de subirlo, revisen que los href y src funcionen desde la carpeta real."
+      ]
+    },
+    {
+      "equipo": "06",
+      "situacion": "naranja",
+      "estado": "En proceso",
+      "devolucion": "Las cinco páginas están conectadas correctamente y el menú funciona como estructura general. Ahora tienen que terminar el contenido real y corregir enlaces que todavía quedaron como ejemplo.",
+      "correcciones": [
+        "En contacto.html el número visible es real, pero el botón de WhatsApp todavía apunta a 549XXXXXXXXXX. Corrijan el href.",
+        "En productos.html todavía aparecen varias edades como “a confirmar”. Completen o eliminen esos datos provisorios.",
+        "En nosotros.html todavía hay ubicación provisoria. Limpien también las indicaciones de edición que quedaron dentro del código."
+      ]
+    },
+    {
+      "equipo": "07",
+      "situacion": "amarillo",
+      "estado": "Encaminado",
+      "devolucion": "Las seis páginas están conectadas entre sí y el menú mantiene el mismo recorrido. No veo una falla de navegación general. El trabajo pendiente está más en contenido, presentación y terminación.",
+      "correcciones": [
+        "Revisen que productos.html y servicios.html tengan información realmente útil para una persona que entra al sitio.",
+        "como-usar.html está integrada al menú: revisen que aporte valor al visitante y no repita información innecesaria.",
+        "Mantengan la navegación actual y mejoren tamaños, espacios, imágenes y coherencia visual."
+      ]
+    },
+    {
+      "equipo": "08",
+      "situacion": "rojo",
+      "estado": "Crítico · sin entrega",
+      "devolucion": "La carpeta ACTUAL sigue vacía. No tengo una versión del sitio que pueda abrir y recorrer.",
+      "correcciones": [
+        "Suban el proyecto completo, con index.html, CSS y recursos.",
+        "Desde index.html tiene que poder recorrerse el contenido principal del sitio.",
+        "Prueben enlaces e imágenes antes de confirmar la carga."
+      ]
+    },
+    {
+      "equipo": "09",
+      "situacion": "rojo",
+      "estado": "Crítico · sin entrega",
+      "devolucion": "La carpeta ACTUAL sigue vacía. No hay un sitio actual que pueda corregir.",
+      "correcciones": [
+        "Suban una carpeta completa con index.html, CSS y los recursos utilizados.",
+        "Las imágenes sueltas no alcanzan: necesito poder abrir y navegar el sitio.",
+        "Comprueben que los nombres de archivo coincidan con cada href y src."
+      ]
+    },
+    {
+      "equipo": "10",
+      "situacion": "amarillo",
+      "estado": "En proceso",
+      "devolucion": "Las cuatro páginas están conectadas correctamente desde el menú. Los problemas que quedan son puntuales: estructura HTML, correo y comprobación de recursos.",
+      "correcciones": [
+        "En canchas.html hay un <html> extra antes de <!DOCTYPE html>. Dejen una sola estructura html/head/body.",
+        "En contactanos.html el texto visible del correo y el mailto no coinciden: worldpaddelcenter / worlpaddelcenter. Unifiquen el dato correcto.",
+        "Comprueben las imágenes externas de canchas y recorran Inicio → Canchas → Kiosco → Contacto."
+      ]
+    },
+    {
+      "equipo": "11",
+      "situacion": "amarillo",
+      "estado": "Avanzado",
+      "devolucion": "El sitio de una sola página tiene todas las anclas del menú conectadas a sus secciones y las imágenes locales están presentes. La propuesta visual es sólida. Mantengan esa navegabilidad y revisen que los comportamientos agregados funcionen.",
+      "correcciones": [
+        "Prueben todas las anclas: Inicio, Mates, Bombillas, Combos, Conocenos, Tutoriales y Contacto.",
+        "Prueben el formulario y el visor de imágenes. Si incorporaron JavaScript por su cuenta, expliquen qué quisieron lograr, dónde se ve y para qué lo usaron.",
+        "En el video, expliquen decisiones concretas de HTML/CSS y muestren que el sitio funciona completo."
+      ]
+    },
+    {
+      "equipo": "12",
+      "situacion": "amarillo",
+      "estado": "Seguimiento UTN",
+      "devolucion": "Este equipo tiene una devolución específica de UTN ya disponible en su espacio. Para ellas se mantiene ese documento como referencia principal de corrección y recuperatorio.",
+      "correcciones": [
+        "Abrir la devolución UTN disponible en este mismo espacio.",
+        "Trabajar punto por punto sobre lo marcado en la rúbrica y en la revisión específica.",
+        "No mezclar esta devolución con el seguimiento general de los demás equipos de 6F."
+      ]
+    },
+    {
+      "equipo": "14",
+      "situacion": "rojo",
+      "estado": "Crítico · sin entrega",
+      "devolucion": "La carpeta ACTUAL sigue vacía. No tengo una versión del sitio que pueda abrir ni recorrer.",
+      "correcciones": [
+        "Suban la carpeta completa con index.html, las páginas vinculadas, CSS e imágenes.",
+        "Desde index.html se tiene que poder recorrer todo el proyecto.",
+        "Prueben href y src desde la carpeta real antes de confirmar la carga."
+      ]
+    }
+  ]
+}
