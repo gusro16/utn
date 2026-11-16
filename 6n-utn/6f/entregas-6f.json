@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-11-13",
+  "actualizado": "2026-11-16",
   "totalEquipos": 13,
   "equipos": [
     {
@@ -7,23 +7,23 @@
       "integrantes": "Barletta / Lombraña",
       "proyecto": "Vintage Market Tigre",
       "estado": "entregado",
-      "ultimaActualizacion": "2026-11-06T16:23:33-03:00",
-      "archivos": 15
+      "ultimaActualizacion": "2026-11-16T15:19:08-03:00",
+      "archivos": 18
     },
     {
       "equipo": "02",
       "integrantes": "Álvarez Posse / Yeste",
       "proyecto": "Dos Orejas",
       "estado": "entregado",
-      "ultimaActualizacion": "2026-11-08T23:17:15-03:00",
-      "archivos": 7
+      "ultimaActualizacion": "2026-11-13T08:15:59-03:00",
+      "archivos": 23
     },
     {
       "equipo": "03",
       "integrantes": "Miranda Guarnieri / Martino",
       "proyecto": "El Bórdo",
       "estado": "entregado",
-      "ultimaActualizacion": "2026-11-12T11:36:03-03:00",
+      "ultimaActualizacion": "2026-11-13T16:22:58-03:00",
       "archivos": 12
     },
     {
@@ -31,8 +31,8 @@
       "integrantes": "Basualdo / Ticinese / Cristal",
       "proyecto": "Gelato Stelvio",
       "estado": "entregado",
-      "ultimaActualizacion": "2026-11-12T19:03:26-03:00",
-      "archivos": 29
+      "ultimaActualizacion": "2026-11-16T08:38:14-03:00",
+      "archivos": 27
     },
     {
       "equipo": "05",
@@ -45,7 +45,7 @@
       "integrantes": "Gioia / Carman",
       "proyecto": "Dunge Didácticos",
       "estado": "entregado",
-      "ultimaActualizacion": "2026-11-07T17:52:38-03:00",
+      "ultimaActualizacion": "2026-11-13T16:01:21-03:00",
       "archivos": 18
     },
     {
@@ -53,27 +53,31 @@
       "integrantes": "Suárez / Albelo",
       "proyecto": "La Casa del Perforista",
       "estado": "entregado",
-      "ultimaActualizacion": "2026-11-07T14:17:53-03:00",
+      "ultimaActualizacion": "2026-11-07T14:17:54-03:00",
       "archivos": 11
     },
     {
       "equipo": "08",
       "integrantes": "Di Menna / Itzaina",
       "proyecto": "Alpa Multisport",
-      "estado": "pendiente"
+      "estado": "entregado",
+      "ultimaActualizacion": "2026-11-16T16:20:49-03:00",
+      "archivos": 17
     },
     {
       "equipo": "09",
       "integrantes": "Giannetto / Artigas",
       "proyecto": "Golta Camisetas",
-      "estado": "pendiente"
+      "estado": "entregado",
+      "ultimaActualizacion": "2026-11-16T15:02:31-03:00",
+      "archivos": 29
     },
     {
       "equipo": "10",
       "integrantes": "Pérez Wierna / Fernández",
       "proyecto": "Cede World Padel Center Chivilcoy",
       "estado": "entregado",
-      "ultimaActualizacion": "2026-11-02T08:23:15-03:00",
+      "ultimaActualizacion": "2026-11-02T08:23:16-03:00",
       "archivos": 8
     },
     {
@@ -81,7 +85,7 @@
       "integrantes": "Cañada Repossi / Gastaldi",
       "proyecto": "Al Paso Mates",
       "estado": "entregado",
-      "ultimaActualizacion": "2026-11-06T16:23:10-03:00",
+      "ultimaActualizacion": "2026-11-06T16:23:11-03:00",
       "archivos": 15
     },
     {
@@ -94,9 +98,11 @@
       "equipo": "14",
       "integrantes": "Ventura / Carpilovsca",
       "proyecto": "Resto House",
-      "estado": "pendiente"
+      "estado": "entregado",
+      "ultimaActualizacion": "2026-11-16T16:12:58-03:00",
+      "archivos": 9
     }
   ],
-  "fechaControl": "13/11/2026",
-  "fuente": "Revisión directa de ACTUAL y _ACTUALIZACION.json del repositorio oficial en Google Drive. Corte de verificación, no sincronización automática."
+  "fechaControl": "16/11/2026",
+  "fuente": "Verificación directa en Google Drive de las 13 carpetas ACTUAL del repositorio oficial y sus constancias _ACTUALIZACION.json; corte puntual 16/11/2026, no sincronización automática. Los archivos internos pueden requerir revisión de correspondencia y calidad."
 }
