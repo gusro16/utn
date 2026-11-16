@@ -17,15 +17,15 @@ function card(t){
     '<div class="sit-review sit-upload-card">'+
     '<strong>📦 Cómo subir tu proyecto corregido</strong>'+
     '<ol class="sit-upload-steps">'+
-    '<li><b>Prepará el proyecto.</b> Todos los archivos del sitio tienen que estar en una misma carpeta.</li>'+
-    '<li><b>Creá un ZIP.</b> Clic derecho sobre esa carpeta → Comprimir en ZIP. Poné un nombre nuevo: <code>proyecto-corregido-noviembre.zip</code>.</li>'+
-    '<li><b>Abrí tu Drive.</b> Tocá el botón azul de abajo para entrar en la carpeta de tu equipo.</li>'+
-    '<li><b>Subí el ZIP.</b> En Drive: <b>Nuevo → Subir archivo</b>. Elegí el ZIP y esperá que termine.</li>'+
-    '<li><b>Comprobá la carga.</b> El ZIP debe aparecer en la carpeta con su nombre y tamaño correcto.</li>'+
+    '<li><b>Reuní todos los archivos.</b> Una carpeta con <code>index.html</code>, demás páginas HTML, CSS, JavaScript, imágenes y otros recursos usados por el sitio.</li>'+
+    '<li><b>Elegí cómo subirlo.</b> Si sabés, comprimí la carpeta en ZIP. <b>Si no sabés hacer un ZIP, no pasa nada: podés subir la carpeta completa.</b></li>'+
+    '<li><b>Abrí Drive.</b> Tocá el botón azul de abajo para entrar en la carpeta de tu equipo.</li>'+
+    '<li><b>Subí el proyecto.</b> En Drive: <b>Nuevo → Subir archivo</b> (si tenés ZIP) o <b>Nuevo → Subir carpeta</b> (si no comprimiste). Esperá a que termine.</li>'+
+    '<li><b>Revisá que esté todo.</b> Comprobá que aparezca el ZIP o abrí la carpeta subida y verificá <code>index.html</code>, CSS, imágenes y demás archivos.</li>'+
     '</ol>'+
-    '<p class="sit-upload-warning"><b>¡Ojo!</b> No borres ni reemplaces el proyecto anterior. Si ya aparece el ZIP nuevo, no lo vuelvas a subir.</p>'+
+    '<p class="sit-upload-warning"><b>¡Ojo!</b> Subí una versión con nombre nuevo, por ejemplo <code>Proyecto_corregido_noviembre</code>. <b>No borres ni reemplaces la versión anterior.</b></p>'+
     '<a class="primary" href="'+esc(t.updatesFolder)+'" target="_blank" rel="noopener noreferrer">☁️ Abrir la carpeta de mi equipo en Drive</a>'+
-    (isImproving?'<div class="sit-upload-classroom"><b>📚 Falta la entrega en Classroom.</b> Adjuntá el ZIP, una captura y el video explicativo. Si usás un enlace de Drive, habilitá <b>«Cualquier persona con el enlace → Lector»</b>. Después tocá <b>Entregar</b>.</div><a href="https://classroom.google.com/c/Nzk0MTM1NzM2Njcz/a/ODk5OTAyMzA1OTQ2/details" target="_blank" rel="noopener noreferrer">Abrir la actividad de Classroom</a>':'<div class="sit-upload-classroom"><b>Recuperatorio UTN:</b> esta carpeta es para guardar tu nueva versión y revisarla. Conservá el proyecto anterior.</div>')+
+    (isImproving?'<div class="sit-upload-classroom"><b>📚 Falta la entrega en Classroom.</b> Adjuntá el <b>ZIP o enlace a la carpeta completa</b>, una captura del sitio y el video explicativo. Si adjuntás un enlace, comprobá que yo pueda abrirlo (idealmente <b>«Cualquier persona con el enlace → Lector»</b>). Después tocá <b>Entregar</b>.</div><a href="https://classroom.google.com/c/Nzk0MTM1NzM2Njcz/a/ODk5OTAyMzA1OTQ2/details" target="_blank" rel="noopener noreferrer">Abrir la actividad de Classroom</a>':'<div class="sit-upload-classroom"><b>Recuperatorio UTN:</b> esta carpeta es para guardar la nueva versión y revisarla. Conservá el proyecto anterior.</div>')+
     '</div>';
   const review=t.review?'<div class="sit-review"><strong>'+esc(reviewTitle)+'</strong><p>'+esc(reviewText)+'</p><a href="'+esc(t.review)+'" target="_blank" rel="noopener noreferrer" aria-label="Abrir devolución para el equipo '+esc(t.team)+' en modo lectura">📄 Abrir mi devolución</a><small>Se abre con tu cuenta institucional. Es solo para leer.</small></div>':'';
   return '<article class="sit-team" data-state="'+esc(t.state)+'">'+
