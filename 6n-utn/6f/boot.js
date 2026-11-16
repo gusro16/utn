@@ -145,6 +145,22 @@
   const equipos=Array.isArray(seguimientoData?.equipos)?seguimientoData.equipos:[];
   const estadosRepositorio=new Map((Array.isArray(entregasData?.equipos)?entregasData.equipos:[]).map(e=>[String(Number(e.equipo)),e]));
   const revisiones=new Map((Array.isArray(devolucionesData?.equipos)?devolucionesData.equipos:[]).map(e=>[String(Number(e.equipo)),e]));
+  // Informes individuales existentes: Google Drive conserva sus permisos de acceso.
+  const informes6f={
+    '10':'https://docs.google.com/document/d/1VP1zUFL35ZrCSSjXneaup_Se19_wCJJgi8ig2KSjGTs/view',
+    '11':'https://docs.google.com/document/d/12xNiWcDFZTYawxmVd2hzfcuHUyK8QaLfw901K56O5dY/view',
+    '12':'https://docs.google.com/document/d/1aSa8X-HO6Zj8iMdh80UevEjzbhQLBY_8J_IBEge4-ec/view',
+    '14':'https://docs.google.com/document/d/1mjC8Vkd9WsSD_D7NaaF09vtKA2MHsNez20RCKQCTjvM/view',
+    '1':'https://docs.google.com/document/d/1lvZU9wggBGyvtL5c_FweFfkN4AKrZ0DauPlgxiSpH6g/view',
+    '2':'https://docs.google.com/document/d/1SHjeYcDLQpTQfu8cvqW3dc7gXc36q5mpGoX8Z9uGWc4/view',
+    '3':'https://docs.google.com/document/d/1EmU72BthnuEVHclwXapnx7RJA5JS6BD5jM-XdWb-PRM/view',
+    '4':'https://docs.google.com/document/d/1l2LhgnEqFD02sHFBjEGdgtF5UaQT4LCi1dJNoY54bvs/view',
+    '5':'https://docs.google.com/document/d/1L-a449ecfVN_eOgG9Sv24xsngyqyksrY79MDx9uzHTY/view',
+    '6':'https://docs.google.com/document/d/1Xn9w0Ei18cx77TWxgAIjImWEJkDzhM660_zCyecwlcI/view',
+    '7':'https://docs.google.com/document/d/1xFrxfAhaTY_XHyWQ5o-cxT_IJQqaMuWo0GDETLu7H3Y/view',
+    '8':'https://docs.google.com/document/d/1cX9JI6jN0cCeL92z3rK6329E0djROdLiPDfM3Fa40_U/view',
+    '9':'https://docs.google.com/document/d/1hhzszqYh9N3je3b5iJeMW7p0YwOg420Hv96aHp-qH-w/view'
+  };
   const fechaCarga=(v)=>{
     const m=String(v||'').match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
     return m?m[3]+'/'+m[2]+'/'+m[1]+' '+m[4]+':'+m[5]:'Sin fecha';
@@ -163,6 +179,7 @@
           '<div class="teacher-current-head"><div><p class="eyebrow">EQUIPO '+esc(e.equipo)+'</p><h3>'+esc(e.beneficiario)+'</h3></div><span class="teacher-situation">'+esc(revision.estado)+'</span></div>'+
           '<p class="teacher-current-date">Revisión técnica: '+esc(devolucionesData?.fechaRevision||'13/11/2026')+' · <strong>'+esc(carga)+'</strong></p>'+
           '<h4>Mi devolución</h4><p>'+esc(revision.devolucion)+'</p>'+
+          (informes6f[String(Number(e.equipo))]?'<p class="teacher-report-link"><a href="'+esc(informes6f[String(Number(e.equipo))])+'" target="_blank" rel="noopener noreferrer">📄 Abrir informe completo de mi equipo en Google Docs ↗</a></p>':'')+
           '<h4>Qué tienen que corregir</h4><ul>'+revision.correcciones.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul>'+
           '</section>'
       : '<div class="teacher-current is-naranja"><p>La nueva devolución todavía no se encuentra disponible. Consulten conmigo antes de tomar la nota del 26/10 como actual.</p><p>'+esc(carga)+'</p></div>';
