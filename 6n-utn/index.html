@@ -52,19 +52,19 @@
 <section class="view active" data-title="Tu proyecto, paso a paso" id="inicio">
 <div class="hero card">
 <div>
-<span class="pill warning" id="calendarStatus">Calculando calendario…</span>
+<span class="pill warning" id="calendarStatus" style="display:none">Calendario de octubre cerrado</span>
 <h2>Que no te pierdas: sabé dónde estás, qué sigue y qué exige UTN.</h2>
 <p>Este espacio no hace el proyecto por vos. Te ayuda a organizarte, repasar lo visto, aprender lo mínimo que falta y detectar qué deberías revisar.</p>
 <div class="hero-actions">
-<button class="primary jump" data-target="ruta">Ver qué tengo que hacer ahora</button>
+<button class="primary jump" data-target="situacion">Ver mi situación y mi carpeta</button>
 <button class="secondary jump" data-target="dudas">Tengo un problema</button>
 </div>
 </div>
 <div class="deadline-box">
-<span>Fecha límite de entrega</span>
+<span>Entrega original UTN</span>
 <strong>22 OCT</strong>
-<small>Hasta las 12:00 h</small>
-<div class="countdown" id="countdown">—</div>
+<small>Octubre · instancia cerrada</small>
+<div class="countdown" id="countdown" style="display:none">—</div>
 </div>
 </div>
 <div class="grid-4 quick-grid">
@@ -72,7 +72,7 @@
 <button class="quick card jump" data-target="dudas"><span>🔧</span><strong>Resolver un problema</strong><small>Guías rápidas y pistas</small></button>
 <button class="quick card jump" data-target="contenidos"><span>📚</span><strong>Aprender / Repasar</strong><small>Contenido corto y aplicable</small></button>
 <button class="quick card jump" data-target="utn"><span>✅</span><strong>Mi situación frente a UTN</strong><small>Requisitos y chequeo de archivos</small></button>
-<button class="quick card jump" data-target="entrega"><span>📦</span><strong>Subir el proyecto</strong><small>Preparar ZIP o carpeta y revisar archivos</small></button>
+<button class="quick card jump" data-target="entrega"><span>📦</span><strong>Subir correcciones</strong><small>Drive del equipo o Classroom</small></button>
 <button class="quick card jump" data-target="rubrica"><span>📊</span><strong>Rúbrica UTN</strong><small>Cómo se evalúa realmente el proyecto</small></button>
 <button class="quick card jump" data-target="contenidos"><span>☁️</span><strong>Trabajar desde Drive</strong><small>Una sola carpeta oficial por equipo</small></button>
 </div>
@@ -96,7 +96,7 @@
 <div><p class="eyebrow">CALENDARIO DE CIERRE</p><h2>Una meta clara por encuentro</h2><p>No intentes hacer todo junto. Cerrá una etapa y recién después pasá a la siguiente.</p></div>
 </div>
 <div class="timeline" id="timeline"></div>
-<div class="card compact-tip"><strong>Calendario real:</strong> los encuentros de trabajo previstos son <strong>25/9, 2/10, 5/10, 16/10 y 19/10</strong>. El <strong>9/10 y el 12/10 no hay clases</strong> y no se contabilizan. La <strong>entrega final es el 22/10 hasta las 12:00 h</strong>; por eso, el 19/10 debe funcionar como el último encuentro fuerte de cierre y revisión.</div>
+<div class="card compact-tip"><strong>Calendario histórico de octubre:</strong> los encuentros de trabajo previstos fueron <strong>25/9, 2/10, 5/10, 16/10 y 19/10</strong>. El <strong>9/10 y el 12/10 no hay clases</strong> y no se contabilizan. La <strong>entrega original para UTN fue el 22/10 a las 12:00 h</strong>. Para las correcciones de noviembre, consultá Mi situación y la sección Subir correcciones.</div>
 </section>
 <section class="view" data-title="Aprender y repasar" id="contenidos">
 <div class="content-header">
@@ -310,23 +310,8 @@
 <div id="modalContent"></div>
 </article>
 </div>
-<script src="situacion-6n.js?v=20261112-1"></script>
+<script src="situacion-6n.js?v=20261116-reentregas"></script>
 <script src="app-loader.js?v=20261106-1810"></script>
-<script id="deliveryLogic">
-(()=>{if(location.pathname.includes('/6f/'))return;
-const $=id=>document.getElementById(id),zip=$('deliveryZip'),folder=$('deliveryFolder'),list=$('deliveryList'),total=$('deliveryTotal'),selected=$('deliverySelected'),confirm=$('deliveryConfirm');if(!zip||!folder)return;
-let staged=[];
-function format(n){return n>1048576?(n/1048576).toFixed(1)+' MB':(n/1024).toFixed(1)+' KB'}
-function render(){
-list.replaceChildren();let bytes=staged.reduce((a,x)=>a+x.file.size,0);selected.textContent=staged.length?staged.length+' archivo(s) preparados para revisión. Ninguno se envió.':'Todavía no seleccionaste archivos.';
-total.textContent=staged.length?'Tamaño total: '+format(bytes)+(bytes>1073741824?' — SUPERÓ 1 GB':''):'';
-staged.forEach((x,i)=>{const row=document.createElement('div');row.className='delivery-row';const name=document.createElement('span');name.textContent=(x.path||x.file.name)+' · '+format(x.file.size);const del=document.createElement('button');del.type='button';del.textContent='Quitar';del.addEventListener('click',()=>{staged.splice(i,1);confirm.checked=false;render()});row.append(name,del);list.append(row)});
-$('deliverySubmit').disabled=true;
-}
-function stage(input,isFolder){const files=Array.from(input.files||[]);if(!files.length)return;staged=files.map(file=>({file,path:isFolder?file.webkitRelativePath:file.name}));confirm.checked=false;render();if(isFolder&&!staged.some(x=>x.path.endsWith('/index.html')||x.path==='index.html'))selected.textContent+=' ATENCIÓN: no se encontró index.html.';if(!isFolder&&(!files[0].name.toLowerCase().endsWith('.zip')||files.length!==1))selected.textContent='Elegí un único archivo ZIP.';}
-zip.addEventListener('change',()=>{folder.value='';stage(zip,false)});folder.addEventListener('change',()=>{zip.value='';stage(folder,true)});
-$('deliveryClear').addEventListener('click',()=>{staged=[];zip.value='';folder.value='';confirm.checked=false;render()});confirm.addEventListener('change',()=>{$('deliverySubmit').disabled=true});render();
-})();
-</script>
+
 </body>
 </html>
