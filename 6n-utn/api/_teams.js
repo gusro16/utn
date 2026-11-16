@@ -20,13 +20,13 @@ const teams = {
 
 // Guías de revisión para estudiantes. Se muestran solo al equipo autenticado.
 const reviewDocs={
-  "ruiz-barassi-anso": "https://docs.google.com/document/d/1XR3TdgZ0gBDfzFXSrNXrCDKN8mhcgneJ9p_OEPvm-OA/view",
-  "bonaventura-vidal": "https://docs.google.com/document/d/1ZN7K2mpn9FPXRCJdOjZ90gLSl056RchcwJHdEkp9C6A/view",
-  "giavedoni": "https://docs.google.com/document/d/1LVRFpEuqb-10cvsQ6HvZh70hCKw3Ue7akz_8u6Nstwc/view",
-  "de-benedictis": "https://docs.google.com/document/d/1QWgMAD7cBPTsuMzV7_pzqYU1CzeIp551UXbI4TjXiRU/view",
-  "resumil-medrano": "https://docs.google.com/document/d/1DRXDUXAEBBhgYHcukeJUhOTHEyvjjWDXwraH9TIhAmU/view",
-  "veleche-bedascarrasbure": "https://docs.google.com/document/d/176nEVm_DPPR0bErlOKco14cYCrsW434rl2nRuWhOn4A/view",
-  "castellano-tagliatti": "https://docs.google.com/document/d/1lk8dCdxmIQJDgGkr3zimsyldR9XS_NZwmi57GKoqqR8/view"
+  "ruiz-barassi-anso": "https://docs.google.com/document/d/1XR3TdgZ0gBDfzFXSrNXrCDKN8mhcgneJ9p_OEPvm-OA/edit",
+  "bonaventura-vidal": "https://docs.google.com/document/d/1ZN7K2mpn9FPXRCJdOjZ90gLSl056RchcwJHdEkp9C6A/edit",
+  "giavedoni": "https://docs.google.com/document/d/1LVRFpEuqb-10cvsQ6HvZh70hCKw3Ue7akz_8u6Nstwc/edit",
+  "de-benedictis": "https://docs.google.com/document/d/1QWgMAD7cBPTsuMzV7_pzqYU1CzeIp551UXbI4TjXiRU/edit",
+  "resumil-medrano": "https://docs.google.com/document/d/1DRXDUXAEBBhgYHcukeJUhOTHEyvjjWDXwraH9TIhAmU/edit",
+  "veleche-bedascarrasbure": "https://docs.google.com/document/d/176nEVm_DPPR0bErlOKco14cYCrsW434rl2nRuWhOn4A/edit",
+  "castellano-tagliatti": "https://docs.google.com/document/d/1lk8dCdxmIQJDgGkr3zimsyldR9XS_NZwmi57GKoqqR8/edit"
 };
 for (const [teamKey, reviewUrl] of Object.entries(reviewDocs)) {
   if (teams[teamKey]) teams[teamKey].review = reviewUrl;
