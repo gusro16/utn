@@ -23,7 +23,7 @@
 
   let devolucionesData=null;
   try{
-    const resDevoluciones=await fetch('historial/devoluciones-corte-2026-11-13.json',{cache:'no-store'});
+    const resDevoluciones=await fetch('historial/devoluciones-corte-2026-11-16.json',{cache:'no-store'});
     if(resDevoluciones.ok) devolucionesData=await resDevoluciones.json();
   }catch(err){
     console.warn('No se pudo cargar la revisión de 6F',err);
@@ -187,7 +187,7 @@
   }).join('');
   seguimiento.innerHTML=
     '<div class="content-header"><div><p class="eyebrow">SEGUIMIENTO DOCENTE · 6F</p><h2>Revisá cómo viene tu proyecto</h2><p>Elegí tu equipo para ver la <strong>situación actual</strong> y las correcciones concretas. Las notas del 26/10 se conservan en el historial; no representan automáticamente la evaluación de esta nueva entrega.</p></div></div>'+
-    '<div class="card teacher-deadline"><strong>Entrega completa y corregida: antes del 20 de noviembre.</strong><p>El sitio tiene que funcionar, cumplir la consigna y mostrar un trabajo que puedan explicar. No dejen textos de ejemplo, comentarios de plantilla ni partes generadas con IA que no comprendan.</p><p>Si encuentro indicios de código que no puedan justificar, el equipo deberá defender oralmente el sitio en el <strong>PIEE</strong>. La revisión oral permitirá comprobar cómo hicieron el trabajo.</p></div>'+
+    '<div class="card teacher-deadline"><strong>Revisá la devolución de tu equipo y corregí el proyecto.</strong><p>La prioridad es que el sitio se pueda recorrer completo, sea claro, actual, visualmente cuidado y funcione desde otra computadora.</p><p>Además, preparen un <strong>video de explicación</strong> donde naveguen el proyecto, abran el código y cuenten qué hicieron, qué corrigieron y para qué usaron las etiquetas y propiedades principales.</p></div>'+
     '<div class="card teacher-note"><strong>Último control del repositorio: '+esc(entregasData?.fechaControl||'13/11/2026')+'</strong><p>Este es un corte registrado, no una consulta en tiempo real. Elegí tu equipo para leer mi devolución. Las correcciones son individuales para cada proyecto y todavía no constituyen una nota final.</p></div>'+
     '<div class="card teacher-controls"><label for="teacherTeam6f">Equipo</label><select id="teacherTeam6f"><option value="">Elegí tu equipo</option>'+opciones+'</select></div>'+
     '<div id="teacherEmpty6f" class="card teacher-empty">Elegí tu equipo para ver la situación, qué corregir y la evaluación histórica.</div>'+tarjetas;
@@ -278,7 +278,7 @@
   const navBtns=[...doc.querySelectorAll('.nav-btn')];
   const navCond=navBtns.find(b=>b.dataset.view==='utn'); if(navCond) navCond.querySelector('span').textContent='Condiciones del proyecto';
   const navRub=navBtns.find(b=>b.dataset.view==='rubrica'); if(navRub) navRub.querySelector('span').textContent='Rúbrica de evaluación';
-  const navDef=navBtns.find(b=>b.dataset.view==='defensa'); if(navDef) navDef.querySelector('span').textContent='Defensa oral';
+  const navDef=navBtns.find(b=>b.dataset.view==='defensa'); if(navDef) navDef.querySelector('span').textContent='Video y explicación';
 
   q('#inicio .hero h2').textContent='Que no te pierdas: sabé dónde estás, qué sigue y qué necesita tu proyecto.';
   const deadline=q('.deadline-box'); deadline.querySelector('strong').textContent='19 NOV'; deadline.querySelector('small').textContent='Cierre de correcciones';
@@ -287,11 +287,11 @@
   const rubq=quick.find(x=>x.dataset.target==='rubrica'); if(rubq) rubq.querySelector('strong').textContent='Rúbrica de evaluación';
   const context=doc.createElement('div'); context.className='card compact-tip'; context.innerHTML='<strong>🎯 Contexto 6F:</strong> este proyecto tiene un <strong>beneficiario real</strong>. Además de que el código funcione, revisá si la información, la navegación y la propuesta visual realmente le sirven. El <strong>benchmarking</strong> sirve para comparar referentes y tomar decisiones propias, no para copiar.';
   q('#inicio .grid-2').before(context);
-  const oralHome=doc.createElement('div'); oralHome.className='card compact-tip'; oralHome.innerHTML='<strong>🗣️ Después de entregar:</strong> las defensas orales serán el <strong>16 y 20 de noviembre</strong>. Cada equipo tendrá <strong>5 a 7 minutos</strong>. Habrá una <strong>nota grupal</strong> y una <strong>nota individual</strong>, con preguntas breves sobre el desarrollo y el código utilizado.';
+  const oralHome=doc.createElement('div'); oralHome.className='card compact-tip'; oralHome.innerHTML='<strong>🎥 Explicación del proyecto:</strong> preparen un <strong>video por equipo</strong> que muestre el sitio completo. Naveguen todas las páginas o secciones, abran el código y expliquen con sus palabras qué hicieron, qué corrigieron y qué decisiones tomaron con HTML y CSS. Si incorporaron algo extra, expliquen para qué lo usaron y muestren que funciona.';
   context.after(oralHome);
 
-  const routeSec=q('#ruta'); routeSec.dataset.title='Ruta de trabajo, entrega y defensa'; routeSec.querySelector('.intro-line h2').textContent='Más tiempo, pero con una meta clara por etapa';
-  const cal=routeSec.querySelector('.compact-tip'); cal.innerHTML='<strong>Fechas a tener en cuenta:</strong> <strong>12/10</strong> es feriado nacional; <strong>9/11</strong> es feriado nacional y <strong>11/11</strong> es feriado en la Provincia de Buenos Aires por la visita del papa León XIV. El <strong>13/11 se registró el primer corte de entregas</strong>. Todos deben presentar el proyecto completo y corregido <strong>antes del 20/11</strong>. Las <strong>defensas orales previstas son el 16/11 y el 20/11</strong>. El Día de la Soberanía Nacional de 2026 se traslada al 23/11, por lo que el 20/11 queda disponible para la segunda jornada de defensa.';
+  const routeSec=q('#ruta'); routeSec.dataset.title='Ruta de trabajo y cierre del proyecto'; routeSec.querySelector('.intro-line h2').textContent='Más tiempo, pero con una meta clara por etapa';
+  const cal=routeSec.querySelector('.compact-tip'); cal.innerHTML='<strong>Próximo paso:</strong> lean la devolución de su equipo, corrijan el proyecto y vuelvan a recorrerlo completo. El sitio debe funcionar desde la carpeta entregada, sin enlaces ni recursos rotos. Acompañen la entrega con un <strong>video de explicación</strong> donde participen todos los integrantes.';
 
   const temario=[...doc.querySelectorAll('#contentFilters .chip')].find(b=>b.dataset.filter==='temario'); if(temario) temario.textContent='Temario';
 
@@ -314,12 +314,12 @@
 
   const defense=q('#defensa');
   if(defense){
-    defense.dataset.title='Preparar la defensa oral';
+    defense.dataset.title='Video de explicación del proyecto';
     const dh=defense.querySelector('.content-header');
     if(dh){
-      const eye=dh.querySelector('.eyebrow'); if(eye) eye.textContent='DEFENSA ORAL · 16 Y 20 DE NOVIEMBRE';
-      const h2=dh.querySelector('h2'); if(h2) h2.textContent='5 a 7 minutos para demostrar que entienden lo que construyeron';
-      const p=dh.querySelector('p:last-child'); if(p) p.textContent='La defensa es por equipo, pero también se evalúa individualmente el dominio de cada integrante. No alcanza con mostrar que el sitio funciona: tienen que poder fundamentar decisiones y explicar el código utilizado.';
+      const eye=dh.querySelector('.eyebrow'); if(eye) eye.textContent='VIDEO · EXPLICACIÓN DEL PROYECTO';
+      const h2=dh.querySelector('h2'); if(h2) h2.textContent='Muestren el sitio completo y expliquen lo que hicieron';
+      const p=dh.querySelector('p:last-child'); if(p) p.textContent='El video es por equipo y debe mostrar el recorrido completo del sitio. Todos los integrantes tienen que participar y explicar con sus palabras decisiones de HTML, CSS, navegación, contenido y las correcciones realizadas.';
     }
     const info=doc.createElement('div');
     info.className='official-banner';
@@ -327,14 +327,14 @@
     const prep=doc.createElement('div');
     prep.className='grid-2';
     prep.innerHTML='<div class="card"><div class="section-head"><div><p class="eyebrow">EN 5–7 MINUTOS</p><h3>Qué deberían poder mostrar</h3></div></div><ul class="clean-list"><li>Cuál era la necesidad del <strong>beneficiario</strong> y qué objetivo tuvo el sitio.</li><li>Cómo está organizado y cómo se recorre.</li><li>Qué decisiones importantes tomaron con <strong>HTML y CSS</strong>.</li><li>Mostrar ejemplos reales de código del propio proyecto y explicar qué hacen.</li><li>Contar al menos una dificultad que tuvieron y cómo la resolvieron.</li><li>Participación de <strong>ambos integrantes</strong>.</li></ul></div><div class="card"><div class="section-head"><div><p class="eyebrow">DOS NOTAS</p><h3>Qué se mira</h3></div></div><ul class="clean-list"><li><strong>Nota grupal:</strong> resultado del proyecto, coherencia de la propuesta, funcionamiento y calidad general de la defensa.</li><li><strong>Nota individual:</strong> comprensión del código, capacidad para explicar decisiones y respuestas a las preguntas.</li><li>No conviene dividir el proyecto en “mi parte / tu parte”: cualquiera puede ser consultado sobre distintas partes del sitio.</li></ul></div>';
-    const anchor=dh || defense.firstElementChild;
+    info.innerHTML='<strong>Modalidad</strong>Un video por equipo, sin una duración rígida: tiene que durar lo necesario para mostrar bien el proyecto. Naveguen todas las páginas o secciones, muestren que los enlaces y recursos funcionan y abran el código real de la entrega.';prep.innerHTML='<div class="card"><div class="section-head"><div><p class="eyebrow">EN EL VIDEO</p><h3>Qué deberían poder mostrar</h3></div></div><ul class="clean-list"><li>Cuál es el propósito del sitio y a quién está dirigido.</li><li>Cómo está organizado y cómo se recorre.</li><li>Qué etiquetas HTML y propiedades CSS usaron y para qué.</li><li>Qué corrigieron después de la devolución.</li><li>Si incorporaron JavaScript u otro recurso no visto en clase, qué quisieron lograr, dónde se ve y si funciona.</li><li>Participación de <strong>todos los integrantes</strong>.</li></ul></div><div class="card"><div class="section-head"><div><p class="eyebrow">IMPORTANTE</p><h3>Qué se busca comprobar</h3></div></div><ul class="clean-list"><li>Que el sitio sea claro, intuitivo, actual y visualmente cuidado.</li><li>Que se pueda navegar completo sin enlaces, imágenes o recursos rotos.</li><li>Que las decisiones principales del proyecto tengan sentido para el beneficiario.</li><li>Que puedan explicar lo que realmente entregaron, sin necesidad de memorizar definiciones.</li></ul></div>';const anchor=dh || defense.firstElementChild;
     if(anchor){anchor.after(info);info.after(prep);} else {defense.prepend(prep);defense.prepend(info);}
   }
 
   q('footer').textContent='Proyecto Web 6F · Material de acompañamiento · Diseño Web 2026';
   const oldLoader=[...doc.querySelectorAll('script[src]')].find(x=>x.getAttribute('src')==='app-loader.js'); if(oldLoader) oldLoader.remove();
   const link=q('link[href="style.css"]'); if(link) link.setAttribute('href','../style.css');
-  const app=doc.createElement('script'); app.src='app-6f.js?v=20261113-editor'; doc.body.appendChild(app);
+  const app=doc.createElement('script'); app.src='app-6f.js?v=20261116-devoluciones'; doc.body.appendChild(app);
   let html='<!doctype html>\n'+doc.documentElement.outerHTML;
   html=html.split('UTN.BA').join('').split('UTN').join('');
   document.open(); document.write(html); document.close();
