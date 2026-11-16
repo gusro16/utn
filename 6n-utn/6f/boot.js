@@ -72,6 +72,17 @@
         <p>Este es el repositorio oficial de seguimiento. Subí la <strong>carpeta completa del proyecto</strong> cada vez que haya avances importantes.</p>
       </div>
     </div>
+    <div class="card" style="padding:23px 26px;margin:16px 0;border:2px solid #1d4ed8;background:#eff6ff">
+      <strong style="display:block;font-size:1.05rem;color:#1e3a8a">📌 ENTREGA DOBLE OBLIGATORIA · 19 DE NOVIEMBRE</strong>
+      <p style="margin:10px 0"><b>El proyecto actualizado se entrega en las DOS plataformas, sin excepción:</b></p>
+      <ol style="line-height:1.8;padding-left:20px;margin:8px 0">
+        <li><b>Repositorio 6F:</b> elegí tu equipo y subí la <b>carpeta completa</b> con todos los archivos del sitio. Esperá la confirmación y comprobá que figure en ACTUAL.</li>
+        <li><b>Google Classroom:</b> entrá a la actividad <b>PROGRAMACIÓN WEB | ENTREGA FINAL DEL PROYECTO</b>, adjuntá el proyecto completo (ZIP o enlace a Drive) y el video explicativo, y tocá <b>Entregar</b>.</li>
+      </ol>
+      <p><b>Si usás un enlace de Drive:</b> habilitá <b>«Cualquier persona con el enlace → Lector»</b> y probá que se pueda abrir. Revisá que estén <code>index.html</code>, los demás HTML, CSS, imágenes y todos los recursos.</p>
+      <p style="margin:8px 0 12px;color:#9a3412;font-weight:800">Una entrega NO reemplaza a la otra. Las dos deben quedar confirmadas antes del 19/11.</p>
+      <a href="https://classroom.google.com/c/Nzk0MTM2MDkwMzgx/a/ODk5ODM2MDY3NzQ3/details" target="_blank" rel="noopener noreferrer" style="display:inline-flex;background:#1d4ed8;color:#fff;padding:11px 16px;border-radius:10px;text-decoration:none;font-weight:800">📚 Ir a la actividad de Classroom ↗</a>
+    </div>
     <div class="card" style="padding:28px 30px;border-left:5px solid #2563eb">
       <h3 style="margin-top:0">📁 Repositorio oficial</h3>
       <p>Seleccioná tu equipo y actualizá la carpeta del proyecto. La versión más reciente queda en <strong>ACTUAL</strong> y el sistema conserva evidencia de versiones anteriores para poder seguir el proceso.</p>
@@ -204,7 +215,7 @@
   }).join('');
   seguimiento.innerHTML=
     '<div class="content-header"><div><p class="eyebrow">SEGUIMIENTO DOCENTE · 6F</p><h2>Revisá cómo viene tu proyecto</h2><p>Elegí tu equipo para ver la <strong>situación actual</strong> y las correcciones concretas. Las notas del 26/10 se conservan en el historial; no representan automáticamente la evaluación de esta nueva entrega.</p></div></div>'+
-    '<div class="card teacher-deadline"><strong>Revisá la devolución de tu equipo y corregí el proyecto.</strong><p>La prioridad es que el sitio se pueda recorrer completo, sea claro, actual, visualmente cuidado y funcione desde otra computadora.</p><p>Además, preparen un <strong>video de explicación</strong> donde naveguen el proyecto, abran el código y cuenten qué hicieron, qué corrigieron y para qué usaron las etiquetas y propiedades principales.</p></div>'+
+    '<div class="card teacher-deadline"><strong>📌 Entrega doble obligatoria hasta el 19/11: carpeta completa al Repositorio 6F Y proyecto + video a Classroom.</strong><p><a href="https://classroom.google.com/c/Nzk0MTM2MDkwMzgx/a/ODk5ODM2MDY3NzQ3/details" target="_blank" rel="noopener noreferrer">Abrir la actividad de Classroom</a>. Las dos entregas deben quedar confirmadas.</p><strong>Revisá la devolución de tu equipo y corregí el proyecto.</strong><p>La prioridad es que el sitio se pueda recorrer completo, sea claro, actual, visualmente cuidado y funcione desde otra computadora.</p><p>Además, preparen un <strong>video de explicación</strong> donde naveguen el proyecto, abran el código y cuenten qué hicieron, qué corrigieron y para qué usaron las etiquetas y propiedades principales.</p></div>'+
     '<div class="card teacher-note"><strong>Último control del repositorio: '+esc(entregasData?.fechaControl||'13/11/2026')+'</strong><p>Este es un corte registrado, no una consulta en tiempo real. Elegí tu equipo para leer mi devolución. Las correcciones son individuales para cada proyecto y todavía no constituyen una nota final.</p></div>'+
     '<div class="card teacher-controls"><label for="teacherTeam6f">Equipo</label><select id="teacherTeam6f"><option value="">Elegí tu equipo</option>'+opciones+'</select></div>'+
     '<div id="teacherEmpty6f" class="card teacher-empty">Elegí tu equipo para ver la situación, qué corregir y la evaluación histórica.</div>'+tarjetas;
@@ -305,7 +316,12 @@
   const context=doc.createElement('div'); context.className='card compact-tip'; context.innerHTML='<strong>🎯 Contexto 6F:</strong> este proyecto tiene un <strong>beneficiario real</strong>. Además de que el código funcione, revisá si la información, la navegación y la propuesta visual realmente le sirven. El <strong>benchmarking</strong> sirve para comparar referentes y tomar decisiones propias, no para copiar.';
   q('#inicio .grid-2').before(context);
   const oralHome=doc.createElement('div'); oralHome.className='card compact-tip'; oralHome.innerHTML='<strong>🎥 Explicación del proyecto:</strong> preparen un <strong>video por equipo</strong> que muestre el sitio completo. Naveguen todas las páginas o secciones, abran el código y expliquen con sus palabras qué hicieron, qué corrigieron y qué decisiones tomaron con HTML y CSS. Si incorporaron algo extra, expliquen para qué lo usaron y muestren que funciona.';
-  context.after(oralHome);
+  const dobleAviso=doc.createElement('div');
+  dobleAviso.className='card compact-tip';
+  dobleAviso.style.cssText='margin:16px 0;border:2px solid #2563eb;background:#eff6ff';
+  dobleAviso.innerHTML='<strong>📌 6F · ENTREGA OBLIGATORIA EN DOS LUGARES (hasta el 19/11)</strong><p style="margin:8px 0">1) <b>Suban la carpeta completa al Repositorio de 6F</b> y comprueben que figure en ACTUAL.<br>2) <b>Entreguen el proyecto completo y el video en Classroom</b> y toquen Entregar.</p><p style="margin:8px 0"><b>Una entrega no reemplaza la otra.</b> Si adjuntan un enlace de Drive en Classroom, debe tener permiso Lector para cualquiera con el enlace.</p><a href="https://classroom.google.com/c/Nzk0MTM2MDkwMzgx/a/ODk5ODM2MDY3NzQ3/details" target="_blank" rel="noopener noreferrer">📚 Abrir actividad de Classroom</a>';
+  context.after(dobleAviso);
+  dobleAviso.after(oralHome);
 
   const routeSec=q('#ruta'); routeSec.dataset.title='Ruta de trabajo y cierre del proyecto'; routeSec.querySelector('.intro-line h2').textContent='Más tiempo, pero con una meta clara por etapa';
   const cal=routeSec.querySelector('.compact-tip'); cal.innerHTML='<strong>Próximo paso:</strong> lean la devolución de su equipo, corrijan el proyecto y vuelvan a recorrerlo completo. El sitio debe funcionar desde la carpeta entregada, sin enlaces ni recursos rotos. Acompañen la entrega con un <strong>video de explicación</strong> donde participen todos los integrantes.';
