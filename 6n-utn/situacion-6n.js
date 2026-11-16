@@ -14,12 +14,18 @@ function card(t){
     ?'Aprobaron UTN. Revisé su rúbrica y les dejé qué corregir y cómo mostrarme que entienden los cambios. Abran el documento: ahí está la consigna de entrega y explicación.'
     :'Revisé la rúbrica de UTN y dejé una ayuda con lo que hay que corregir. La idea es ir punto por punto, sin complicarse.';
   const updatesFolderCard=(t.state==='approved'||!t.updatesFolder)?'':
-    '<div class="sit-review" style="border-left:4px solid #2563eb;margin-top:14px">'+
-    '<strong>📦 Subir la versión corregida (noviembre)</strong>'+
-    '<p>Subí un <b>ZIP completo</b> con un nombre nuevo (por ejemplo, proyecto-correcciones-noviembre.zip). <b>No borres ni reemplaces</b> los archivos originales.</p>'+
+    '<div class="sit-review sit-upload-card">'+
+    '<strong>📦 Cómo subir tu proyecto corregido</strong>'+
+    '<ol class="sit-upload-steps">'+
+    '<li><b>Prepará el proyecto.</b> Todos los archivos del sitio tienen que estar en una misma carpeta.</li>'+
+    '<li><b>Creá un ZIP.</b> Clic derecho sobre esa carpeta → Comprimir en ZIP. Poné un nombre nuevo: <code>proyecto-corregido-noviembre.zip</code>.</li>'+
+    '<li><b>Abrí tu Drive.</b> Tocá el botón azul de abajo para entrar en la carpeta de tu equipo.</li>'+
+    '<li><b>Subí el ZIP.</b> En Drive: <b>Nuevo → Subir archivo</b>. Elegí el ZIP y esperá que termine.</li>'+
+    '<li><b>Comprobá la carga.</b> El ZIP debe aparecer en la carpeta con su nombre y tamaño correcto.</li>'+
+    '</ol>'+
+    '<p class="sit-upload-warning"><b>¡Ojo!</b> No borres ni reemplaces el proyecto anterior. Si ya aparece el ZIP nuevo, no lo vuelvas a subir.</p>'+
     '<a class="primary" href="'+esc(t.updatesFolder)+'" target="_blank" rel="noopener noreferrer">☁️ Abrir la carpeta de mi equipo en Drive</a>'+
-    '<small>Comprobá que el ZIP nuevo aparece en Drive con el tamaño correcto. La carga directa evita el tiempo de espera del formulario anterior.</small>'+
-    (isImproving?'<p><b>Tu entrega evaluable se hace en Classroom:</b> adjuntá allí el ZIP (o su enlace de Drive), una captura y el video de correcciones.</p><a href="https://classroom.google.com/c/Nzk0MTM1NzM2Njcz/a/ODk5OTAyMzA1OTQ2/details" target="_blank" rel="noopener noreferrer">📚 Abrir actividad de Classroom</a>':'<p><b>Recuperatorio UTN:</b> esta carpeta permite guardar la nueva versión para su revisión y práctica. Conservá el ZIP anterior.</p>')+
+    (isImproving?'<div class="sit-upload-classroom"><b>📚 Falta la entrega en Classroom.</b> Adjuntá el ZIP, una captura y el video explicativo. Si usás un enlace de Drive, habilitá <b>«Cualquier persona con el enlace → Lector»</b>. Después tocá <b>Entregar</b>.</div><a href="https://classroom.google.com/c/Nzk0MTM1NzM2Njcz/a/ODk5OTAyMzA1OTQ2/details" target="_blank" rel="noopener noreferrer">Abrir la actividad de Classroom</a>':'<div class="sit-upload-classroom"><b>Recuperatorio UTN:</b> esta carpeta es para guardar tu nueva versión y revisarla. Conservá el proyecto anterior.</div>')+
     '</div>';
   const review=t.review?'<div class="sit-review"><strong>'+esc(reviewTitle)+'</strong><p>'+esc(reviewText)+'</p><a href="'+esc(t.review)+'" target="_blank" rel="noopener noreferrer" aria-label="Abrir devolución para el equipo '+esc(t.team)+' en modo lectura">📄 Abrir mi devolución</a><small>Se abre con tu cuenta institucional. Es solo para leer.</small></div>':'';
   return '<article class="sit-team" data-state="'+esc(t.state)+'">'+
