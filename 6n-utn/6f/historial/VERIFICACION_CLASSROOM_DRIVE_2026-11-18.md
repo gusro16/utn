@@ -12,7 +12,7 @@
 |---|---|---|---|---|---|
 | 01 | Vintage Market Tigre | Sí, 16/11, 18 archivos | Sí: carpeta `SitioWeb.html`, 18 archivos | `videoVTG.mp4`, 4 s: feria, **no explicación del sitio** | Video explicativo válido y comprobar botón Entregar |
 | 02 | Dos Orejas | Sí, 13/11, 23 archivos | No localizado otro paquete del sitio en la carpeta compartida | `VID-20261117-WA0074.mp4`, 2:12, muestra web y código, con audio | Confirmar adjunto del sitio en Classroom y estado Entregada |
-| 03 | El Bórdo | Sí, 13/11, 12 archivos | No localizado en carpeta examinada | No localizado; comentarios del 17/11 anuncian envío | Confirmar ambos adjuntos y estado Entregada |
+| 03 | El Bórdo | Sí, 13/11, 12 archivos | No localizado como paquete aparte en carpeta examinada | `PROGRAMACIÓN WEB &#124; ENTREGA FINAL DEL PROYECTO (17 nov 2026 a las 11:20 p.m.).mov`, 1:18, **barbería de Belén de Escobar** corroborada con `index.html` de equipo 03; sin audio | Confirmar sitio adjunto en Classroom, explicación oral y estado Entregada |
 | 04 | Gelato Stelvio | Sí, 16/11, 27 archivos | No localizado otro paquete en carpeta examinada | `Grupo 4_ Gelato Stelvio.mp4`, 6:27, muestra web y código, con audio | Confirmar adjunto del sitio y estado Entregada |
 | 05 | Casa Cúrcuma | **Carpeta ACTUAL vacía** | No localizado | No localizado | Urgente: sitio + video en Classroom y copia en repositorio |
 | 06 | Dunge Didácticos | Sí, 13/11, 18 archivos contando subcarpetas | No localizado | No localizado; Dimas reportó dificultad de carga el 18/11 | Confirmar sitio + video y resolver inconveniente |
@@ -24,8 +24,9 @@
 | 12 | ONG CEAPI | **Carpeta ACTUAL vacía** | No localizado | No localizado | Urgente: confirmar estado de entregas y seguir tratamiento particular del equipo |
 | 14 | Resto House (nombre registrado) | Sí, 16/11, subcarpeta `Paz_Bello` con 9 archivos | Sí: 9 archivos HTML/CSS en raíz de carpeta Classroom | No localizado | Confirmar que Paz Bello es el proyecto del equipo; solicitar video y estado Entregada |
 
-## Archivo no asignado
-- `PROGRAMACIÓN WEB | ENTREGA FINAL DEL PROYECTO (17 nov 2026 a la(s) 11:20 p.m.).mov`: 1:18, **video de una barbería**, sin pista de audio, no corresponde inequívocamente a ninguno de los 13 proyectos registrados. No asignar sin comprobación.
+## Corrección de identificación por evidencia adicional
+- El MOV de 1:18 sobre una barbería **SÍ corresponde al equipo 03 El Bórdo**, verificado al leer el `index.html` de su carpeta ACTUAL (título `Barberia - Index`, encabezado `Barbería`, ubicación Belén de Escobar) y documentos `Equipo 3 6F Documento` que identifican `Barbería el bordo`. Se corrige la clasificación preliminar de video no asignado.
+- El MOV no tiene pista de audio; la revisión oral debe distinguir demostración visual de explicación verbal.
 - Archivos de tamaño 0 con MIME `application/octet-stream` (`Nueva carpeta (2)`, `ALPA`, `imagenes`) no equivalen a una carpeta válida cargada, por lo que no se contaron como entregas completas.
 
 ## Limitaciones (muy importantes)
@@ -37,7 +38,7 @@
 
 ## Estado al cierre
 - Repositorio: 11/13 con sitio, 2/13 vacías.
-- Material de sitio en carpeta de Classroom: identificado para equipos 01, 08, 09 y 14. Video identificado para 01, 02, 04 y 09, de los cuales 01 no es explicativo.
+- Material de sitio en carpeta de Classroom: identificado para equipos 01, 08, 09 y 14. Video identificado para **01, 02, 03, 04 y 09**; 01 no es explicativo (video de 4 segundos de feria), 03 y 09 carecen de pista de audio.
 - Equipo con sitio y video aparente en carpeta Classroom: 01 y 09; 01 debe corregir video, 09 debe aclarar la explicación sin voz.
 - Para cierre definitivo debe revisarse la lista de entregas desde Classroom (Trabajo de los alumnos), con ambos adjuntos verificables y botón Entregada.
 
